@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: DB Heavent;
+    src: url("Font/DBHeaventt-Light.ttf") format("truetype");
+}
