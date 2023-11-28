@@ -4,18 +4,15 @@
 
 <template>
   <div class="bg-black h-96 mb-16">
-    <div id="default-carousel" class="relative w-full" data-carousel="slide">
-      <!-- Carousel wrapper -->
+    <!-- <div id="default-carousel" class="relative w-full" data-carousel="slide">
       <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
-        <!-- Item 1 -->
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
           <img
-            src="../image/test.JPG"
+            src="/docs/images/carousel/carousel-1.svg"
             class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
             alt="..."
           />
         </div>
-        <!-- Item 2 -->
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
           <img
             src="/docs/images/carousel/carousel-2.svg"
@@ -23,15 +20,13 @@
             alt="..."
           />
         </div>
-        <!-- Item 3 -->
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
           <img
-            src="../image/test.JPG"
+            src="/docs/images/carousel/carousel-3.svg"
             class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
             alt="..."
           />
         </div>
-        <!-- Item 4 -->
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
           <img
             src="/docs/images/carousel/carousel-4.svg"
@@ -39,7 +34,6 @@
             alt="..."
           />
         </div>
-        <!-- Item 5 -->
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
           <img
             src="/docs/images/carousel/carousel-5.svg"
@@ -48,7 +42,6 @@
           />
         </div>
       </div>
-      <!-- Slider indicators -->
       <div
         class="absolute z-30 flex space-x-3 -translate-x-1/2 bottom-5 left-1/2"
       >
@@ -88,7 +81,6 @@
           data-carousel-slide-to="4"
         ></button>
       </div>
-      <!-- Slider controls -->
       <button
         type="button"
         class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
@@ -141,7 +133,7 @@
           <span class="sr-only">Next</span>
         </span>
       </button>
-    </div>
+    </div> -->
   </div>
 </template>
 
