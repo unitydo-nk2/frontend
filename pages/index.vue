@@ -10,7 +10,7 @@ import Carousel from '~/components/Carousel.vue';
       <NavBar />
     </div>
     <div>
-      <Carousel />
+      <!-- <Carousel /> -->
     </div>
     <div class="ml-16 mb-8 overflow-x-scroll">
       <div

@@ -3,7 +3,7 @@
 <script setup></script>
 
 <template>
-  <div class="font-primary ">
+  <div>
     <div class="pl-4 sm:ml-64 grid">
       <div class="p-4 rounded-lg dark:border-gray-700">
         <div class="text-zinc-400 text-base font-normal font-['DB Heavent']">

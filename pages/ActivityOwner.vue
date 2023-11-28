@@ -308,10 +308,10 @@
         </ul>
       </div>
     </aside>
-    <!-- <ActivityPost /> -->
+    <CreateActivityPost />
     <!-- <ViewActivityPost /> -->
     <!-- <ViewActivityUser /> -->
-    <ManageUserList />
+    <!-- <ManageUserList /> -->
     <!-- <ManageUserDetail /> -->
   </div>
 </template>
