@@ -67,7 +67,7 @@
       <img
         alt=""
         class="w-96 h-96 rounded-xl object-cover w-full aspect-square group-hover:scale-110 transition duration-300 ease-in-out"
-        src="/image/testimg.jpg"
+        src="../public/image/test.jpg"
       />
     </div>
   </div>

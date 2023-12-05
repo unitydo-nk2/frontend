@@ -1,6 +1,15 @@
 <!-- @format -->
 
-<script setup></script>
+<script setup>
+
+
+const props = defineProps({
+  activity: {
+    type: Object,
+    default: {}
+  }
+})
+</script>
 
 <template>
   <div
@@ -183,15 +192,17 @@
         <div class="m-4 w-full h-px border border-neutral-50"></div>
         <!-- buttons -->
         <div class="flex">
-          <button
-            class="m-4 w-28 h-14 bg-white rounded-xl border border-indigo-600"
-          >
-            <div
-              class="w-24 h-9 text-indigo-600 text-base font-bold font-['DB Heavent'] leading-7 tracking-wide"
+          <nuxt-link to="/RegisterActivity">
+            <button
+              class="m-4 w-28 h-14 bg-white rounded-xl border border-indigo-600"
             >
-              สมัครเลย !
-            </div>
-          </button>
+              <div
+                class="w-24 h-9 text-indigo-600 text-base font-bold font-['DB Heavent'] leading-7 tracking-wide"
+              >
+                สมัครเลย !
+              </div>
+            </button>
+          </nuxt-link>
           <button class="m-4 w-48 h-14 bg-indigo-600 rounded-xl">
             <div
               class="w-40 text-white text-base font-bold font-['DB Heavent'] leading-7 tracking-wide"
