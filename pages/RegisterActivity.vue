@@ -1,6 +1,27 @@
 <!-- @format -->
 
-<script setup></script>
+<script setup>
+const activities = ref([])
+const getActivities = async () => {
+  // const res = await fetch(``)
+  const res = await fetch(``, {
+    method: 'GET',
+    headers: {
+
+    }
+  })
+  if (res.status === 200) {
+    activities.value = await res.json()
+  } else if (res.status === 401) {
+    const resf = await fetch(``, {
+      headers: {
+
+      }
+    })
+  } else {
+    console.log('cannot get data')
+  }
+}</script>
 
 <template>
   <div>
