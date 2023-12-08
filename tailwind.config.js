@@ -23,24 +23,32 @@ module.exports = {
   plugins: [require('flowbite/plugin')],
   theme: {
     extend: {
+      height: {
+        180: "30rem",
+        banner: "38rem",
+      },
+      width: {
+        94: "23rem",
+        300: "90rem",
+      },
       fontFamily: {
-        primary: 'DB Heavent'
+        primary: ["DBHeavent", "sans-serif"],
       },
       colors: {
-        'unityDo-primary': '#5628FF',
-        'unityDo-primary-light': '#EDE8FF',
-        'unityDo-deep-grey': '#323335',
-        'unityDo-light-grey': '#ECEAE9',
-        'unityDo-middle-grey': '#C0C0C0',
-        'unityDo-royal-blue': '#937AFF',
-        'unityDo-yellow': '#F8DB45',
-        'unityDo-green': '#15B823',
-        'unityDo-cyan': '#6E6B6B',
-        'unityDo-red': '#DB2323',
-        'unityDo-pink': '#FF3D9A',
-        'unityDo-black': '#161616'
-      }
-    }
+        "unityDo-primary": "#5628FF",
+        "unityDo-primary-light": "#EDE8FF",
+        "unityDo-deep-grey": "#323335",
+        "unityDo-light-grey": "#ECEAE9",
+        "unityDo-middle-grey": "#C0C0C0",
+        "unityDo-royal-blue": "#937AFF",
+        "unityDo-yellow": "#F8DB45",
+        "unityDo-green": "#15B823",
+        "unityDo-cyan": "#6E6B6B",
+        "unityDo-red": "#DB2323",
+        "unityDo-pink": "#FF3D9A",
+        "unityDo-black": "#161616",
+      },
+    },
   },
   plugins: []
 }

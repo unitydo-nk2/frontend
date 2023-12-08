@@ -1,10 +1,17 @@
-<!-- @format -->
+<script setup>
+const emit = defineEmits(["deleteActivity"]);
 
-<script setup></script>
+const props = defineProps({
+  activities: {
+    type: Array,
+    default: [],
+  },
+});
+</script>
 
 <template>
-  <div class="font-primary ">
-    <div class="pl-4 sm:ml-64 grid">
+  <div class="font-primary w-full">
+    <div class="px-4 grid">
       <div class="p-4 rounded-lg dark:border-gray-700">
         <div class="text-zinc-400 text-base font-normal font-['DB Heavent']">
           Activities > Activity Detail
@@ -16,8 +23,8 @@
         </div>
         <div class="w-full h-px mt-4 mb-2 border border-stone-300"></div>
       </div>
-      <div class="flex flex-in-line">
-        <nuxt-link to="/CreateAllActivityPost">
+      <div class="flex flex-in-line px-4 gap-4 justify-between">
+        <nuxt-link to="/CreateEditActivity">
           <button
             class="w-44 h-9 px-2.5 py-1.5 rounded-md border border-indigo-600 justify-start items-center gap-1 inline-flex"
           >
@@ -43,6 +50,7 @@
             </div>
           </button>
         </nuxt-link>
+        <!-- <div class="flex gap-4">
         <button
           class="w-28 border text-neutral-500 text-base font-medium font-['DB Heavent']"
         >
@@ -107,182 +115,103 @@
 
           Sort
         </button>
+        </div> -->
       </div>
+      <!-- component -->
+      <link
+        rel="stylesheet"
+        href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css"
+      />
+      <link
+        rel="stylesheet"
+        href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css"
+      />
 
-      <div class="mt-4 relative overflow-x-auto shadow-md">
-        <table
-          class="w-full text-sm text-left text-gray-500 dark:text-gray-400"
-        >
-          <thead
-            class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+      <section class="py-1 bg-blueGray-50">
+        <div class="w-full px-4 mx-auto mt-4">
+          <div
+            class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded"
           >
-            <tr>
-              <th scope="col" class="px-6 py-3">
-                <div
-                  class="flex items-center w-32 text-neutral-900 text-xs font-medium font-['DB Heavent']"
-                >
-                  Activities name
-                  <a href="#"
-                    ><svg
-                      width="9"
-                      height="14"
-                      viewBox="0 0 9 14"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M4.62735 12.6792C4.42724 12.9415 4.03246 12.9415 3.83235 12.6792L1.18026 9.2035C0.92916 8.87442 1.16382 8.4002 1.57776 8.4002H6.88194C7.29588 8.4002 7.53054 8.87442 7.27944 9.2035L4.62735 12.6792Z"
-                        fill="#6F6B6B"
-                      />
-                      <path
-                        d="M3.83163 1.32076C4.03175 1.05849 4.42652 1.05849 4.62664 1.32076L7.27873 4.7965C7.52982 5.12558 7.29516 5.5998 6.88123 5.5998H1.57704C1.16311 5.5998 0.928445 5.12558 1.17954 4.7965L3.83163 1.32076Z"
-                        fill="#6F6B6B"
-                      />
-                    </svg>
-                  </a>
+            <div class="rounded-t mb-0 px-4 py-3 border-0">
+              <div class="flex flex-wrap items-center">
+                <div class="relative w-full px-4 max-w-full flex-grow flex-1">
+                  <h3 class="font-semibold text-base text-blueGray-700">
+                    All activities
+                  </h3>
                 </div>
-              </th>
-              <th scope="col" class="px-6 py-3">
-                <div
-                  class="flex items-center w-32 text-neutral-900 text-xs font-medium font-['DB Heavent']"
-                >
-                  ผู้จัดกิจกรรม
-                  <a href="#">
-                    <svg
-                      width="9"
-                      height="13"
-                      viewBox="0 0 9 13"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
+              </div>
+            </div>
+
+            <div class="block w-full overflow-x-auto">
+              <table class="items-center bg-transparent w-full border-collapse">
+                <thead>
+                  <tr>
+                    <th
+                      class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
                     >
-                      <path
-                        d="M4.62735 11.8794C4.42724 12.1417 4.03246 12.1417 3.83235 11.8794L1.18026 8.40369C0.92916 8.07462 1.16382 7.60039 1.57776 7.60039L6.88194 7.60039C7.29588 7.60039 7.53054 8.07462 7.27944 8.40369L4.62735 11.8794Z"
-                        fill="#6F6B6B"
-                      />
-                      <path
-                        d="M3.83163 0.520951C4.03175 0.258689 4.42652 0.25869 4.62664 0.520951L7.27873 3.9967C7.52982 4.32577 7.29516 4.8 6.88123 4.8H1.57704C1.16311 4.8 0.928445 4.32577 1.17954 3.9967L3.83163 0.520951Z"
-                        fill="#6F6B6B"
-                      />
-                    </svg>
-                  </a>
-                </div>
-              </th>
-              <th scope="col" class="px-6 py-3">
-                <div
-                  class="flex items-center w-32 text-neutral-900 text-xs font-medium font-['DB Heavent']"
-                >
-                  หมวดหมู่
-                  <a href="#"
-                    ><svg
-                      width="9"
-                      height="13"
-                      viewBox="0 0 9 13"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
+                      Activity Name
+                    </th>
+                    <th
+                      class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
                     >
-                      <path
-                        d="M4.62735 11.8794C4.42724 12.1417 4.03246 12.1417 3.83235 11.8794L1.18026 8.40369C0.92916 8.07462 1.16382 7.60039 1.57776 7.60039L6.88194 7.60039C7.29588 7.60039 7.53054 8.07462 7.27944 8.40369L4.62735 11.8794Z"
-                        fill="#6F6B6B"
-                      />
-                      <path
-                        d="M3.83163 0.520951C4.03175 0.258689 4.42652 0.25869 4.62664 0.520951L7.27873 3.9967C7.52982 4.32577 7.29516 4.8 6.88123 4.8H1.57704C1.16311 4.8 0.928445 4.32577 1.17954 3.9967L3.83163 0.520951Z"
-                        fill="#6F6B6B"
-                      />
-                    </svg>
-                  </a>
-                </div>
-              </th>
-              <th scope="col" class="px-6 py-3">
-                <div
-                  class="flex items-center w-32 text-neutral-900 text-xs font-medium font-['DB Heavent']"
-                ></div>
-              </th>
-              <th scope="col" class="px-6 py-3">
-                <div
-                  class="flex items-center w-32 text-neutral-900 text-xs font-medium font-['DB Heavent']"
-                ></div>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-              <th
-                scope="row"
-                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-              >
-                Apple MacBook Pro 17"
-              </th>
-              <td class="px-6 py-4">Silver</td>
-              <td class="px-6 py-4">Laptop</td>
-              <td class="px-6 py-4">
-                <button>
-                  <svg
-                    width="14"
-                    height="14"
-                    viewBox="0 0 14 14"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <g clip-path="url(#clip0_820_4349)">
-                      <path
-                        d="M11.5268 13.4856H11.5269C12.2148 13.4849 12.772 12.9275 12.7728 12.2398V12.2396V9.14374C12.7728 9.06161 12.8393 8.99507 12.9214 8.99507C13.0036 8.99507 13.0701 9.06161 13.0701 9.14374V12.2395C13.0692 13.0916 12.3786 13.7821 11.5265 13.7831H1.74359C0.891517 13.7821 0.201027 13.0917 0.2 12.2396V3.15363C0.201027 2.30161 0.891455 1.61118 1.74347 1.61016H4.83919C4.92127 1.61016 4.98787 1.67678 4.98787 1.75883C4.98787 1.84096 4.92132 1.9075 4.83919 1.9075L1.74336 1.9075L1.74313 1.9075C1.05535 1.90831 0.498156 2.46567 0.497345 3.15328V3.15352L0.497345 12.2396L0.497345 12.2398C0.498156 12.9275 1.05533 13.4849 1.74317 13.4856H1.74336H11.5268Z"
-                        fill="#6F6B6B"
-                        stroke="#6F6B6B"
-                        stroke-width="0.4"
-                      />
-                      <path
-                        d="M13.1312 0.512308C12.5185 -0.100457 11.525 -0.100457 10.9122 0.512308L4.69171 6.73284C4.64908 6.77547 4.6183 6.82832 4.60223 6.88634L3.78421 9.83957C3.75057 9.96065 3.78475 10.0903 3.87356 10.1793C3.96249 10.2681 4.09216 10.3022 4.21324 10.2687L7.16647 9.45058C7.22449 9.43451 7.27733 9.40373 7.31997 9.3611L13.5404 3.14043C14.1522 2.52725 14.1522 1.53463 13.5404 0.921453L13.1312 0.512308ZM5.45143 6.95948L10.5425 1.86832L12.1844 3.51021L7.09319 8.60137L5.45143 6.95948ZM5.12346 7.6176L6.43521 8.92948L4.62075 9.43219L5.12346 7.6176ZM13.0473 2.64738L12.6775 3.01717L11.0355 1.37514L11.4054 1.00535C11.7458 0.664988 12.2977 0.664988 12.638 1.00535L13.0473 1.4145C13.3871 1.75527 13.3871 2.30675 13.0473 2.64738Z"
-                        fill="#6F6B6B"
-                      />
-                    </g>
-                    <defs>
-                      <clipPath id="clip0_820_4349">
-                        <rect width="14" height="14" fill="white" />
-                      </clipPath>
-                    </defs>
-                  </svg>
-                </button>
-              </td>
-              <td class="px-6 py-4">
-                <button>
-                  <svg
-                    width="14"
-                    height="15"
-                    viewBox="0 0 14 15"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M9.47467 14.2913H4.12082C3.58517 14.2836 3.07219 14.0739 2.68445 13.7043C2.29671 13.3346 2.06279 12.8322 2.02948 12.2976L1.3951 2.64949C1.39185 2.57954 1.4025 2.50964 1.42643 2.44383C1.45036 2.37801 1.4871 2.3176 1.53453 2.26608C1.58338 2.21268 1.64254 2.16971 1.70843 2.13976C1.77432 2.10981 1.84558 2.0935 1.91794 2.0918H11.6776C11.7492 2.09164 11.8202 2.10623 11.886 2.13465C11.9518 2.16308 12.0111 2.20474 12.0601 2.25704C12.1092 2.30935 12.1469 2.37118 12.1711 2.43869C12.1952 2.5062 12.2052 2.57796 12.2004 2.64949L11.5939 12.2976C11.5602 12.837 11.3224 13.3434 10.9287 13.7137C10.5351 14.0841 10.0152 14.2906 9.47467 14.2913ZM2.50352 3.13747L3.0403 12.2348C3.05803 12.5091 3.17965 12.7664 3.3804 12.9542C3.58115 13.142 3.84593 13.2462 4.12082 13.2456H9.47467C9.74908 13.2446 10.0129 13.1398 10.2133 12.9523C10.4137 12.7649 10.5359 12.5086 10.5552 12.2348L11.1199 3.17233L2.50352 3.13747Z"
-                      fill="#6F6B6B"
-                    />
-                    <path
-                      d="M13.0709 3.13747H0.522837C0.384172 3.13747 0.251186 3.08239 0.153135 2.98433C0.0550843 2.88628 0 2.7533 0 2.61463C0 2.47597 0.0550843 2.34298 0.153135 2.24493C0.251186 2.14688 0.384172 2.0918 0.522837 2.0918H13.0709C13.2096 2.0918 13.3426 2.14688 13.4406 2.24493C13.5387 2.34298 13.5938 2.47597 13.5938 2.61463C13.5938 2.7533 13.5387 2.88628 13.4406 2.98433C13.3426 3.08239 13.2096 3.13747 13.0709 3.13747Z"
-                      fill="#6F6B6B"
-                    />
-                    <path
-                      d="M8.88912 3.13702H4.70643C4.56833 3.13521 4.43639 3.07955 4.33873 2.98189C4.24106 2.88423 4.1854 2.75229 4.18359 2.61418V1.35938C4.19243 1.00163 4.33849 0.660977 4.59153 0.407936C4.84457 0.154894 5.18522 0.00883725 5.54297 0H8.05258C8.41628 0.00909529 8.76202 0.159993 9.016 0.420482C9.26998 0.680972 9.41207 1.03042 9.41196 1.39423V2.61418C9.41015 2.75229 9.35449 2.88423 9.25683 2.98189C9.15916 3.07955 9.02723 3.13521 8.88912 3.13702ZM5.22927 2.09135H8.36629V1.39423C8.36629 1.31103 8.33324 1.23124 8.27441 1.17241C8.21557 1.11358 8.13578 1.08053 8.05258 1.08053H5.54297C5.45977 1.08053 5.37998 1.11358 5.32115 1.17241C5.26232 1.23124 5.22927 1.31103 5.22927 1.39423V2.09135Z"
-                      fill="#6F6B6B"
-                    />
-                    <path
-                      d="M8.71523 11.5015C8.62278 11.4997 8.53446 11.444 8.46908 11.3464C8.40371 11.2487 8.36644 11.1168 8.36523 10.9787V5.40174C8.36523 5.26308 8.40211 5.13009 8.46775 5.03204C8.53338 4.93399 8.62241 4.87891 8.71523 4.87891C8.80806 4.87891 8.89708 4.93399 8.96272 5.03204C9.02836 5.13009 9.06523 5.26308 9.06523 5.40174V10.9787C9.06403 11.1168 9.02676 11.2487 8.96139 11.3464C8.89601 11.444 8.80768 11.4997 8.71523 11.5015Z"
-                      fill="#6F6B6B"
-                    />
-                    <path
-                      d="M4.53359 11.5015C4.44114 11.4997 4.35282 11.444 4.28744 11.3464C4.22207 11.2487 4.1848 11.1168 4.18359 10.9787V5.40174C4.18359 5.26308 4.22047 5.13009 4.28611 5.03204C4.35174 4.93399 4.44077 4.87891 4.53359 4.87891C4.62642 4.87891 4.71544 4.93399 4.78108 5.03204C4.84672 5.13009 4.88359 5.26308 4.88359 5.40174V10.9787C4.88239 11.1168 4.84512 11.2487 4.77974 11.3464C4.71437 11.444 4.62604 11.4997 4.53359 11.5015Z"
-                      fill="#6F6B6B"
-                    />
-                    <path
-                      d="M6.62344 11.5015C6.53099 11.4997 6.44266 11.444 6.37729 11.3464C6.31191 11.2487 6.27465 11.1168 6.27344 10.9787V5.40174C6.27344 5.26308 6.31031 5.13009 6.37595 5.03204C6.44159 4.93399 6.53061 4.87891 6.62344 4.87891C6.71626 4.87891 6.80529 4.93399 6.87092 5.03204C6.93656 5.13009 6.97344 5.26308 6.97344 5.40174V10.9787C6.97223 11.1168 6.93497 11.2487 6.86959 11.3464C6.80421 11.444 6.71589 11.4997 6.62344 11.5015Z"
-                      fill="#6F6B6B"
-                    />
-                  </svg>
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+                      Activity Owner
+                    </th>
+                    <th
+                      class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+                    >
+                      Categories
+                    </th>
+                    <th
+                      class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+                    ></th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr v-for="(activity, index) in activities" :key="index">
+                    <th
+                      class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700"
+                    >
+                      {{ activity.activityName }}
+                    </th>
+                    <td
+                      class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                    >
+                      {{ activity.activityOwnerUsername }}
+                    </td>
+                    <td
+                      class="border-t-0 px-6 align-center border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                    >
+                      {{ activity.mainCategory }} / {{ activity.category }}
+                    </td>
+                    <td
+                      class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 inline-flex gap-10"
+                    >
+                      <div>
+                        <img
+                          @click="emit('deleteActivity', activity.id)"
+                          class="cursor-pointer hover:drop-shadow-2xl"
+                          src="/image/delete.svg"
+                          alt="delete"
+                        />
+                      </div>
+                      <div>
+                        <nuxt-link :to="`/CreateEditActivity/${activity.id}`">
+                        <img
+                          class="cursor-pointer hover:drop-shadow-2xl"
+                          src="/image/edit.svg"
+                          alt="edit"
+                        />
+                        </nuxt-link>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   </div>
 </template>

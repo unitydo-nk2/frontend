@@ -1,15 +1,19 @@
 <script setup>
 const props = defineProps({
-  activities: {
+  users: {
     type: Array,
     default: [],
   },
+  activityName: {
+    type: String,
+    default: null,
+  }
 });
 </script>
 
 <template>
   <div class="font-primary w-full">
-    <div class="pl-4 grid">
+    <div class="pl-4 grid ">
       <div class="p-4 rounded-lg dark:border-gray-700">
         <div class="text-zinc-400 text-base font-normal font-['DB Heavent']">
           Manage Users > Member List
@@ -44,53 +48,69 @@ const props = defineProps({
                     <th
                       class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
                     >
-                      Activity Name
+Name                    </th>
+                    <th
+                      class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+                    >
+                      Username
                     </th>
                     <th
                       class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
                     >
-                      Activity Date
+                      gender
                     </th>
                     <th
                       class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
                     >
-                      User registrations
-                    </th>
-                    <th
+                status</th>
+                <th
                       class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
-                    ></th>
+                    >
+                registration date</th>
+                <th
+                      class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+                    >
+                </th>
                   </tr>
                 </thead>
 
                 <tbody>
-                  <tr v-for="(activity, index) in activities" :key="index">
+                  <tr v-for="(user, index) in users" :key="index">
                     <th
                       class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700"
                     >
-                      {{ activity.activityName }}
+                      {{ user.name }} {{ user.surName }}
                     </th>
                     <td
                       class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
                     >
-                      {{ Date(activity.activityDate) }} -
-                      {{ Date(activity.activityEndDate) }}
+                    {{ user.username }}
                     </td>
                     <td
                       class="border-t-0 px-6 align-center border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
                     >
-                      {{ activity.userRegistration }} / {{ activity.amount }}
+                    {{ user.gender }}
+                    </td>
+                    <td
+                      class="border-t-0 px-6 align-center border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                    >
+                    {{ user.status }}
+                    </td>
+                    <td
+                      class="border-t-0 px-6 align-center border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                    >
+                    {{ Date(user.registrationDate) }}
                     </td>
                     <td
                       class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
                     >
-                    <nuxt-link :to="`/ViewAllActivityUser/${activity.activityId}`">
-
+                    <nuxt-link :to="`/UserDetails/${user.userId}`">
                       <button
                         type="button"
                         class="inline-block rounded border-2 border-primary px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-primary transition duration-150 ease-in-out hover:border-primary-600 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-primary-600 focus:border-primary-600 focus:text-primary-600 focus:outline-none focus:ring-0 active:border-primary-700 active:text-primary-700 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
                         data-te-ripple-init
                       >
-                        Member List
+                      show details
                       </button>
                       </nuxt-link>
                     </td>

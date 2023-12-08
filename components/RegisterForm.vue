@@ -1,8 +1,30 @@
 <script setup>
+const emit = defineEmits(['createNewRegistration'])
+
+const user = reactive({
+  name: "",
+  surName: "",
+  username: "userNameIsInRelease2",
+  password: "passwordIsInRelease2",
+  nickName: "",
+  email: "",
+  gender: "",
+  dateOfBirth: "",
+  religion: "",
+  telephoneNumber: "",
+  address: "",
+  emergencyPhoneNumber: "",
+  profileImg: "ProfileIsInRelease2",
+  createTime: new Date(),
+  updateTime: new Date(),
+});
+
 </script>
 
 <template>
   <div>
+    <div>
+    </div>
     <div class="font-primary flex flex-col justify-center items-center">
       <div class="m-4 text-black text-3xl font-bold tracking-wide">
         สมัครเข้าร่วมกิจกรรม
@@ -66,7 +88,6 @@
           </div>
         </div>
       </div>
-      <!-- topic -->
       <div class="m-4 w-10/12 h-auto bg-white rounded-lg shadow">
         <div
           class="ml-12 mt-4 gap-3 flex text-neutral-700 text-3xl font-bold font-['DB Heavent'] tracking-wide"
@@ -101,7 +122,6 @@
         <hr
           class="ml-12 w-10/12 bg-gray-100 border-0 rounded dark:bg-gray-700"
         />
-        <!-- form -->
         <div class="grid grid-cols-2">
           <div>
             <div
@@ -110,6 +130,7 @@
               ชื่อ <span class="">*</span>
             </div>
             <input
+              v-model="user.name"
               type="text"
               class="ml-24 w-96 h-10 rounded-md border border-zinc-400"
             />
@@ -121,6 +142,7 @@
               นามสกุล <span class="">*</span>
             </div>
             <input
+              v-model="user.surName"
               type="text"
               class="ml-18 w-96 h-10 rounded-md border border-zinc-400"
             />
@@ -132,6 +154,7 @@
               ชื่อเล่น <span class="">*</span>
             </div>
             <input
+              v-model="user.nickName"
               type="text"
               class="ml-24 w-96 h-10 rounded-md border border-zinc-400"
             />
@@ -143,6 +166,7 @@
               Email <span class="">*</span>
             </div>
             <input
+              v-model="user.email"
               type="text"
               class="ml-18 w-96 h-10 rounded-md border border-zinc-400"
             />
@@ -156,10 +180,14 @@
             >
               เพศ <span class="">*</span>
             </div>
-            <select class="w-44 h-10 rounded-md border border-zinc-400">
-              <option></option>
-              <option></option>
-              <option></option>
+            <select
+              v-model="user.gender"
+              class="w-44 h-10 rounded-md border border-zinc-400"
+            >
+              <option value="male">male</option>
+              <option value="female">female</option>
+              <option value="lgbtq">lgbtq+</option>
+              <option value="reatherNotToSay">rather not to say</option>
             </select>
           </div>
           <div>
@@ -169,6 +197,7 @@
               วันเดือนปี <span class="">*</span>
             </div>
             <input
+              v-model="user.dateOfBirth"
               type="date"
               class="w-44 h-10 rounded-md border border-zinc-400"
             />
@@ -179,14 +208,20 @@
             >
               ศาสนา <span class="">*</span>
             </div>
-            <select class="w-44 h-10 rounded-md border border-zinc-400">
-              <option></option>
-              <option></option>
-              <option></option>
+            <select
+              v-model="user.religion"
+              class="w-44 h-10 rounded-md border border-zinc-400"
+            >
+              <option value="Christianity">Christianity</option>
+              <option value="Islam">Islam</option>
+              <option value="Hinduism">Hinduism</option>
+              <option value="Buddhism">Buddhism</option>
+              <option value="Sikhism">Sikhism</option>
+              <option value="Judaism">Judaism</option>
+              <option value="etc">etc</option>
             </select>
           </div>
         </div>
-        <!-- เบอร์โทร ที่อยู่ -->
         <div class="grid grid-cols-2">
           <div>
             <div
@@ -195,6 +230,7 @@
               เบอร์โทรศัพท์มือถือ <span class="">*</span>
             </div>
             <input
+              v-model="user.telephoneNumber"
               type="text"
               class="ml-24 w-96 h-10 rounded-md border border-zinc-400"
             />
@@ -206,6 +242,7 @@
               เบอร์โทรฉุกเฉิน <span class="">*</span>
             </div>
             <input
+              v-model="user.emergencyPhoneNumber"
               type="text"
               class="ml-18 w-96 h-10 rounded-md border border-zinc-400"
             />
@@ -217,6 +254,7 @@
               ที่อยู่ของคุณ <span class="">*</span>
             </div>
             <input
+              v-model="user.address"
               type="text"
               class="ml-24 w-96 h-10 rounded-md border border-zinc-400"
             />
@@ -224,7 +262,7 @@
         </div>
 
         <!-- topic -->
-        <div class="">
+        <!-- <div class="">
           <div
             class="ml-12 mt-4 gap-3 flex text-neutral-700 text-3xl font-bold font-['DB Heavent'] tracking-wide"
           >
@@ -258,8 +296,8 @@
           <hr
             class="ml-12 w-10/12 bg-gray-100 border-0 rounded dark:bg-gray-700"
           />
-        </div>
-        <div class="grid grid-cols-2">
+        </div> -->
+        <!-- <div class="grid grid-cols-2">
           <div>
             <div
               class="ml-24 text-neutral-700 text-2xl font-normal leading-7 tracking-wide"
@@ -293,12 +331,23 @@
               class="ml-24 w-96 h-10 rounded-md border border-zinc-400"
             />
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
     <div class="flex justify-end">
       <button
+        @click="$emit('createNewRegistration', user)"
         class="font-primary w-56 h-14 px-5 py-3 bg-indigo-600 rounded-xl justify-start items-center gap-5 inline-flex"
+        :disabled="
+            user.name.length > 50 ||
+            user.surName.length > 50 ||
+            user.nickName.length > 50 ||
+            user.username.length > 50 ||
+            user.religion.length > 100 ||
+            user.address.length > 500 ||
+            user.telephoneNumber.length > 10 ||
+            user.emergencyPhoneNumber.length > 10
+          "
       >
         <div
           class="flex justify-center items-center w-60 text-center text-white text-base font-normal font-['DB Heavent'] leading-7 tracking-wide"

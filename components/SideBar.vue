@@ -1,6 +1,11 @@
-<!-- @format -->
-
-<script setup></script>
+<script setup>
+const props = defineProps({
+  activities: {
+    type: Array,
+    default: [],
+  }
+});
+</script>
 
 <template>
   <div>
@@ -11,10 +16,10 @@
     >
       <div class="h-full px-3 py-4 overflow-y-auto">
         <ul class="space-y-2 font-medium">
-          <li>
+          <!-- <li>
             <a
               href="#"
-              class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+              class="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-100 "
             >
               <svg
                 width="24"
@@ -51,12 +56,12 @@
 
               <span class="ml-3">Dashboard & Log </span>
             </a>
-          </li>
-          <nuxt-link to="/ActivityOwner">
+          </li> -->
+          <nuxt-link to="/ViewAllActivityPost">
             <li>
               <button
                 type="button"
-                class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100"
                 aria-controls="dropdown-activity"
                 data-collapse-toggle="dropdown-activity"
               >
@@ -148,25 +153,25 @@
               <li>
                 <a
                   href="#"
-                  class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                  class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100"
                   >Activity Details</a
                 >
               </li>
               <li>
                 <a
                   href="#"
-                  class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                  class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100"
                   >Form Library</a
                 >
               </li>
             </ul> -->
             </li>
           </nuxt-link>
-          <nuxt-link to="">
+          <!-- <nuxt-link to="">
             <li>
               <button
                 type="button"
-                class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100"
                 aria-controls="dropdown-activity"
                 data-collapse-toggle="dropdown-activity"
               >
@@ -240,12 +245,12 @@
                 >
               </button>
             </li>
-          </nuxt-link>
+          </nuxt-link> -->
           <nuxt-link to="/ViewAllActivityUser">
             <li>
               <button
                 type="button"
-                class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100"
                 aria-controls="dropdown-user"
                 data-collapse-toggle="dropdown-user"
               >
@@ -347,14 +352,14 @@
               <li>
                 <a
                   href="#"
-                  class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                  class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100"
                   >Member List</a
                 >
               </li>
               <li>
                 <a
                   href="#"
-                  class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                  class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100"
                   >Form Library</a
                 >
               </li>

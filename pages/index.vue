@@ -1,30 +1,16 @@
 <!-- @format -->
-<script setup>
-import NavBar from '~/components/NavBar.vue';
-// import Carousel from '~/components/Carousel.vue';
-
-
-import { onBeforeMount, ref } from 'vue'
-
+<script setup >
 const activities = ref([])
 
+onBeforeMount(async () => {
+  await getActivities()
+})
 
 const getActivities = async () => {
-  // const res = await fetch(``)
-  const res = await fetch(``, {
-    method: 'GET',
-    headers: {
-
-    }
-  })
+  const res = await fetch(`http://localhost:8080/api/activities/recommends`, {method: 'GET'})
   if (res.status === 200) {
     activities.value = await res.json()
-  } else if (res.status === 401) {
-    const resf = await fetch(``, {
-      headers: {
-
-      }
-    })
+    console.log('value '+activities.value)
   } else {
     console.log('cannot get data')
   }
@@ -32,27 +18,24 @@ const getActivities = async () => {
 </script>
 
 <template>
-  <div class="font-primary">
+  <div>
     <div>
-      <NavBar />
-    </div>
-    <div>
-      <!-- <Carousel /> -->
+      <Carousel />
     </div>
     <div class="ml-16 mb-8 overflow-x-scroll">
       <div
-        class="w-52 text-neutral-500 text-xl font-medium font-['DB Heavent'] leading-7 tracking-wide"
+        class="w-52 text-neutral-500 text-xl font-medium leading-7 tracking-wide"
       >
         Recommend activity
       </div>
       <div
-        class="text-indigo-600 text-3xl font-bold font-['DB Heavent'] leading-10 tracking-wide"
+        class="text-indigo-600 text-3xl font-bold leading-10 tracking-wide"
       >
         แนะนำสำหรับคุณ
       </div>
     </div>
     <div class="ml-16 overflow-x-scroll flex flex-row">
-      <Cards />
+      <Cards :activities="activities"/>
     </div>
   </div>
 </template>

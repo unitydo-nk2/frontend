@@ -1,5 +1,3 @@
-<!-- @format -->
-
 <script setup>
 const props = defineProps({
   successTitle: {

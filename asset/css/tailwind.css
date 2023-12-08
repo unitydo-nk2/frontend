@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+  @layer base {
+    @font-face {
+      font-family: 'DBHeavent';
+      src: font-url('../Fonts/DBHeavent.ttf') format('ttf');
+      font-weight: normal;
+      font-style: normal;
+    }
+    html {
+        font-family : 'DBHeavent';
+    }
+  }

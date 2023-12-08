@@ -1,22 +1,23 @@
-<!-- @format -->
-
-<script setup></script>
+<script setup>
+const props = defineProps({
+  user: {
+    type: Object,
+    default: {},
+  },
+});
+</script>
 
 <template>
-  <div class="font-primary ">
-    <div class="pl-4 sm:ml-64 grid">
+  <div class="w-full">
+    <div class="pl-4 grid">
       <div class="p-4 rounded-lg dark:border-gray-700">
-        <div class="text-zinc-400 text-base font-normal font-['DB Heavent']">
-          <span style="text-zinc-400 text-base font-normal font-['DB Heavent']"
+        <div class="text-zinc-400 text-base font-normal">
+          <span style="text-zinc-400 text-base font-normal"
             >Manage Users > Member List > </span
-          ><span style="text-zinc-400 text-base font-normal font-['DB Heavent']"
+          ><span style="text-zinc-400 text-base font-normal"
             >“TEP-TEPE Pre Engineering Workshop” </span
-          ><span style="text-zinc-400 text-base font-bold font-['DB Heavent']"
-            >...</span
-          ><span
-            style="text-zinc-400 text-base font-normal font-['DB Heavent']"
-          >
-          </span>
+          ><span style="text-zinc-400 text-base font-bold">...</span
+          ><span style="text-zinc-400 text-base font-normal"> </span>
         </div>
         <div class="flex flex-in-line">
           <svg
@@ -32,10 +33,8 @@
             />
           </svg>
 
-          <div
-            class="ml-4 w-48 text-zinc-900 text-4xl font-bold font-['DB Heavent']"
-          >
-            เตชิต คิดดี
+          <div class="ml-4 w-48 text-zinc-900 text-4xl font-bold">
+            {{ user.name }} {{ user.surName }}
           </div>
         </div>
         <div class="w-full h-px mt-4 mb-2 border border-stone-300"></div>
@@ -46,7 +45,7 @@
           <!-- icon and topic -->
           <div class="">
             <div
-              class="flex flex-in-line m-4 w-52 text-zinc-900 text-base font-bold font-['DB Heavent'] leading-normal tracking-wide"
+              class="flex flex-in-line m-4 w-52 text-zinc-900 text-base font-bold leading-normal tracking-wide"
             >
               <svg
                 class="mr-4"
@@ -80,63 +79,49 @@
             <div class="w-96 h-px border border-neutral-200"></div>
           </div>
           <!-- info -->
-          <div class="grid grid-cols-3 h-52">
-            <div
-              class="w-22 text-stone-500 text-sm font-normal font-['DB Heavent'] leading-none"
-            >
-              ชื่อ :
+          <div class="grid grid-cols-3 h-52 p-4">
+            <div class="w-22 text-stone-500 text-sm font-normal leading-none">
+              ชื่อ : {{ user.name }}
             </div>
             <div
-              class="col-span-2 w-22 text-stone-500 text-sm font-normal font-['DB Heavent'] leading-none"
+              class="col-span-2 w-22 text-stone-500 text-sm font-normal leading-none"
             >
-              นามสกุล :
+              นามสกุล : {{ user.surName }}
+            </div>
+            <div class="w-22 text-stone-500 text-sm font-normal leading-none">
+              ชื่อเล่น : {{ user.nickName }}
             </div>
             <div
-              class="w-22 text-stone-500 text-sm font-normal font-['DB Heavent'] leading-none"
+              class="col-span-2 w-22 text-stone-500 text-sm font-normal leading-none"
             >
-              ชื่อเล่น :
+              E-mail : {{ user.email }}
+            </div>
+            <div class="w22 text-stone-500 text-sm font-normal leading-none">
+              เพศ : {{ user.gender }}
+            </div>
+            <div class="w-22 text-stone-500 text-sm font-normal leading-none">
+              วันเดือนปีเกิด : {{ user.dateOfBirth }}
+            </div>
+            <div class="w-22 text-stone-500 text-sm font-normal leading-none">
+              ศาสนา : {{ user.religion }}
+            </div>
+            <div class="w-22 text-stone-500 text-sm font-normal leading-none">
+              เบอร์โทรศัพท์ : {{ user.telephoneNumeber }}
             </div>
             <div
-              class="col-span-2 w-22 text-stone-500 text-sm font-normal font-['DB Heavent'] leading-none"
+              class="col-span-2 w-22 text-stone-500 text-sm font-normal leading-none"
             >
-              E-mail :
+              เบอร์ฉุกเฉิน : {{ user.emergencyPhoneNumber }}
             </div>
-            <div
-              class="w22 text-stone-500 text-sm font-normal font-['DB Heavent'] leading-none"
-            >
-              เพศ :
-            </div>
-            <div
-              class="w-22 text-stone-500 text-sm font-normal font-['DB Heavent'] leading-none"
-            >
-              วันเดือนปีเกิด :
-            </div>
-            <div
-              class="w-22 text-stone-500 text-sm font-normal font-['DB Heavent'] leading-none"
-            >
-              ศาสนา :
-            </div>
-            <div
-              class="w-22 text-stone-500 text-sm font-normal font-['DB Heavent'] leading-none"
-            >
-              เบอร์โทรศัพท์ :
-            </div>
-            <div
-              class="col-span-2 w-22 text-stone-500 text-sm font-normal font-['DB Heavent'] leading-none"
-            >
-              เบอร์ฉุกเฉิน :
-            </div>
-            <div
-              class="w-22 text-stone-500 text-sm font-normal font-['DB Heavent'] leading-none"
-            >
-              ที่อยู่ของคุณ :
+            <div class="w-22 text-stone-500 text-sm font-normal leading-none">
+              ที่อยู่ของคุณ : {{ user.address }}
             </div>
           </div>
         </div>
-        <div class="m-4 w-96 rounded-lg border border-neutral-200">
+        <!-- <div class="m-4 w-96 rounded-lg border border-neutral-200">
           <div class="">
             <div
-              class="flex flex-in-line m-4 w-52 text-zinc-900 text-base font-bold font-['DB Heavent'] leading-normal tracking-wide"
+              class="flex flex-in-line m-4 w-52 text-zinc-900 text-base font-bold leading-normal tracking-wide"
             >
               <svg
                 class="mr-4"
@@ -169,30 +154,29 @@
             </div>
             <div class="w-96 h-px border border-neutral-200"></div>
           </div>
-          <!-- info -->
           <div class="grid grid-cols-3 h-52">
             <div
-              class="w-22 text-stone-500 text-sm font-normal font-['DB Heavent'] leading-none"
+              class="w-22 text-stone-500 text-sm font-normal leading-none"
             >
               ชื่อโรคประจำตัว :
             </div>
             <div
-              class="col-span-2 w-22 text-stone-500 text-sm font-normal font-['DB Heavent'] leading-none"
+              class="col-span-2 w-22 text-stone-500 text-sm font-normal leading-none"
             >
               ยาที่ใช้รักษาประจำ :
             </div>
             <div
-              class="w-22 text-stone-500 text-sm font-normal font-['DB Heavent'] leading-none"
+              class="w-22 text-stone-500 text-sm font-normal leading-none"
             >
               สิ่งที่แพ้ :
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
       <!-- Table -->
-      <div class="w-full h-96 rounded-lg border border-neutral-200">
+      <!-- <div class="w-full h-96 rounded-lg border border-neutral-200">
         <div
-          class="m-4 w-28 text-zinc-900 text-base font-medium font-['DB Heavent']"
+          class="m-4 w-28 text-zinc-900 text-base font-medium"
         >
           การตอบคำถาม
         </div>
@@ -206,28 +190,28 @@
               <tr>
                 <th scope="col" class="px-6 py-3">
                   <div
-                    class="flex items-center w-28 text-neutral-900 text-xs font-medium font-['DB Heavent']"
+                    class="flex items-center w-28 text-neutral-900 text-xs font-medium"
                   >
                     ข้อคำถาม
                   </div>
                 </th>
                 <th scope="col" class="px-6 py-3">
                   <div
-                    class="flex items-center w-32 text-neutral-900 text-xs font-medium font-['DB Heavent']"
+                    class="flex items-center w-32 text-neutral-900 text-xs font-medium"
                   >
                     คำถาม
                   </div>
                 </th>
                 <th scope="col" class="px-6 py-3">
                   <div
-                    class="flex items-center w-28 text-neutral-900 text-xs font-medium font-['DB Heavent']"
+                    class="flex items-center w-28 text-neutral-900 text-xs font-medium"
                   >
                     คำตอบ
                   </div>
                 </th>
                 <th scope="col" class="px-6 py-3">
                   <div
-                    class="flex items-center w-32 text-neutral-900 text-xs font-medium font-['DB Heavent']"
+                    class="flex items-center w-32 text-neutral-900 text-xs font-medium"
                   ></div>
                 </th>
               </tr>
@@ -254,29 +238,33 @@
             </tbody>
           </table>
         </div>
-      </div>
+      </div> -->
       <!-- buttons -->
-      <div class="w-full h-20 bg-stone-50 rounded border border-neutral-200">
-        <button
-          class="w-36 h-12 px-6 py-2.5 bg-green-600 rounded-xl justify-center items-center gap-2.5 inline-flex"
-        >
-          <div
-            class="text-white text-base font-normal font-['DB Heavent'] leading-7 tracking-wide"
-          >
-            accept
-          </div>
-        </button>
-        <button
-          class="w-36 h-12 px-7 py-2.5 bg-red-600 rounded-xl border border-red-600 justify-center items-center gap-2.5 inline-flex"
-        >
-          <div
-            class="text-white text-base font-normal font-['DB Heavent'] leading-7 tracking-wide"
-          >
-            decline
-          </div>
-        </button>
-      </div>
     </div>
+    <div
+        class="w-full h-20 bg-stone-50  border border-neutral-200"
+      >
+        <div class="flex justify-center gap-8 mt-4">
+          <button
+            class="w-36 h-12 px-6 py-2.5 bg-green-600 rounded-xl justify-center items-center gap-2.5 inline-flex"
+          >
+            <div
+              class="text-white text-base font-normal leading-7 tracking-wide"
+            >
+              accept
+            </div>
+          </button>
+          <button
+            class="w-36 h-12 px-7 py-2.5 bg-red-600 rounded-xl border border-red-600 justify-center items-center gap-2.5 inline-flex"
+          >
+            <div
+              class="text-white text-base font-normal leading-7 tracking-wide"
+            >
+              decline
+            </div>
+          </button>
+        </div>
+      </div>
   </div>
 </template>
 

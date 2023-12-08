@@ -1,7 +1,4 @@
-<!-- @format -->
-
 <script setup>
-import store from '../store/store'
 
 // defineEmits(['ConfirmAndGoToAnotherPage'])
 </script>
