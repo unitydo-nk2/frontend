@@ -23,6 +23,7 @@ const getCategories = async () => {
 };
 
 const validateLength = (string, label, length = 0) => {
+  console.log("checking "+label+" "+string)
   if (label == "email") {
     validateEmail(string);
   }
@@ -84,7 +85,7 @@ const createNewActivity = async (activity) => {
     formData.append("user", userNameBlob);
     formData.append("location", newlocationBlob);
     formData.append("activity", newActivityBlob);
-    const res = await fetch("http://localhost:8080/api/activities", {
+    const res = await fetch(`${import.meta.env.VITE_BASE_URL}/activities`, {
       method: "POST",
       body: formData,
     });

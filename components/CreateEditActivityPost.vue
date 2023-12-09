@@ -1,3 +1,5 @@
+<!-- @format -->
+
 <script setup>
 const emit = defineEmits(["createActivity", "updateActivity"]);
 
@@ -24,8 +26,8 @@ watch(
         props.activity.activityDescription),
       (newActivity.value.activityBriefDescription =
         props.activity.activityBriefDescription),
-      (newActivity.value.activitySuggestion =
-        props.activity.activitySuggestion),
+      (newActivity.value.suggestionNotes =
+        props.activity.suggestionNotes),
       (newActivity.value.activityOwnerUserName =
         props.activity.activityOwnerUserName),
       (newActivity.value.category = props.activity.categoryId),
@@ -109,7 +111,7 @@ const newActivity = ref({});
           ข้อเสนอแนะ (option)
         </label>
         <input
-          v-model="newActivity.activitySuggestion"
+          v-model="newActivity.suggestionNotes"
           class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           id="grid-last-name"
           type="text"
