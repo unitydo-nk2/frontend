@@ -1,5 +1,5 @@
 <!-- @format -->
-<script setup >
+<script setup>
 const activities = ref([])
 
 onBeforeMount(async () => {
@@ -20,7 +20,7 @@ const getActivities = async () => {
 <template>
   <div>
     <div>
-      <Carousel />
+      <!-- <Carousel /> -->
     </div>
     <div class="ml-16 mb-8 overflow-x-scroll">
       <div
@@ -28,14 +28,12 @@ const getActivities = async () => {
       >
         Recommend activity
       </div>
-      <div
-        class="text-indigo-600 text-3xl font-bold leading-10 tracking-wide"
-      >
+      <div class="text-indigo-600 text-3xl font-bold leading-10 tracking-wide">
         แนะนำสำหรับคุณ
       </div>
     </div>
     <div class="ml-16 overflow-x-scroll flex flex-row">
-      <Cards :activities="activities"/>
+      <Cards :activities="activities" />
     </div>
   </div>
 </template>
