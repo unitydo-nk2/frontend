@@ -1,7 +1,6 @@
 <!-- @format -->
 
 <script setup>
-import { Meta } from '#build/components';
 
 const activities = ref([])
 const mainCategories = ref([])

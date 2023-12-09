@@ -19,7 +19,7 @@ const props = defineProps({
           :key="index"
           class="max-w-sm rounded overflow-hidden shadow-lg"
         >
-          <nuxt-link :to="`/activities/${activity.id}`">
+          <nuxt-link :to="`/Activities/${activity.id}`">
             <img
               class="w-full"
               src="/image/radioActiveCamp.png"
