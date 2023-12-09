@@ -1,3 +1,5 @@
+<!-- @format -->
+
 <script setup>
 const activities = ref([]);
 
@@ -6,7 +8,7 @@ onBeforeMount(async () => {
 });
 
 const getActivities = async () => {
-  const res = await fetch(`http://localhost:8080/api/activities/list`, {
+  const res = await fetch(`${import.meta.env.VITE_BASE_URL}/activities/list`, {
     method: "GET",
   });
   if (res.status === 200) {
@@ -25,7 +27,7 @@ const deleteActivity = async (deleteActivityId) => {
     confirm("Are you sure you want to delete this activity ?") == true
   ) {
     const res = await fetch(
-      `http://localhost:8080/api/activities/${deleteActivityId}`,
+      `${import.meta.env.VITE_BASE_URL}/activities/${deleteActivityId}`,
       {
         method: "DELETE",
       }

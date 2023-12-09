@@ -1,3 +1,5 @@
+<!-- @format -->
+
 <script setup>
 const activity = ref([]);
 const categories = ref([]);
@@ -12,7 +14,7 @@ onBeforeMount(async () => {
 });
 
 const getActivityByID = async (id) => {
-  const res = await fetch(`http://localhost:8080/api/activities/${id}`, {
+  const res = await fetch(`${import.meta.env.VITE_BASE_URL}/activities/${id}`, {
     method: "GET",
   });
   if (res.status === 200) {
@@ -24,7 +26,7 @@ const getActivityByID = async (id) => {
 };
 
 const getCategories = async () => {
-  const res = await fetch(`http://localhost:8080/api/categories/list`, {
+  const res = await fetch(`${import.meta.env.VITE_BASE_URL}/categories/list`, {
     method: "GET",
   });
   if (res.status === 200) {
@@ -70,7 +72,7 @@ const updateActivity = async (activityId, activity) => {
   formData.append("updateActivity", newActivityBlob);
 
   const res = await fetch(
-    `http://localhost:8080/api/activities/${activityId}`,
+    `${import.meta.env.VITE_BASE_URL}/activities/${activityId}`,
     {
       method: "PATCH",
       body: formData,
@@ -83,7 +85,6 @@ const updateActivity = async (activityId, activity) => {
     console.log("cannot get data");
   }
 }
-
 </script>
 
 <template>

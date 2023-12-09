@@ -1,3 +1,5 @@
+<!-- @format -->
+
 <script setup>
 const activity = ref([])
 
@@ -8,7 +10,7 @@ onBeforeMount(async () => {
 })
 
 const getActivityByID = async (id) => {
-  const res = await fetch(`http://localhost:8080/api/activities/${id}`, {method: 'GET'})
+  const res = await fetch(`${import.meta.env.VITE_BASE_URL}/activities/${id}`, {method: 'GET'})
   if (res.status === 200) {
     activity.value = await res.json()
     console.log('value '+activity.value)
@@ -20,7 +22,7 @@ const getActivityByID = async (id) => {
 
 <template>
   <div>
-    <ActivityDetail :activity="activity"/>
+    <ActivityDetail :activity="activity" />
   </div>
 </template>
 

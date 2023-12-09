@@ -1,3 +1,5 @@
+<!-- @format -->
+
 <script setup>
 const errorDetails = ref([]);
 const router = useRouter();
@@ -9,7 +11,7 @@ onBeforeMount(async () => {
 });
 
 const getCategories = async () => {
-  const res = await fetch(`http://localhost:8080/api/categories/list`, {
+  const res = await fetch(`${import.meta.env.VITE_BASE_URL}/categories/list`, {
     method: "GET",
   });
   if (res.status === 200) {
@@ -101,7 +103,10 @@ const createNewActivity = async (activity) => {
 <template>
   <div class="flex flex-row">
     <SideBareDemo />
-    <CreateEditActivityPost @createActivity="createNewActivity" :categories="categories" />
+    <CreateEditActivityPost
+      @createActivity="createNewActivity"
+      :categories="categories"
+    />
   </div>
 </template>
 

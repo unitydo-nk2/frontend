@@ -1,3 +1,5 @@
+<!-- @format -->
+
 <script setup>
 const users = ref([])
 
@@ -8,7 +10,7 @@ onBeforeMount(async () => {
 })
 
 const getActivityByID = async (activityId) => {
-  const res = await fetch(`http://localhost:8080/api/activities/${activityId}/registrants`, {method: 'GET'})
+  const res = await fetch(`${import.meta.env.VITE_BASE_URL}/activities/${activityId}/registrants`, {method: 'GET'})
   if (res.status === 200) {
     users.value = await res.json()
     console.log('value '+users.value)
@@ -17,14 +19,12 @@ const getActivityByID = async (activityId) => {
   }
 }
 </script>
- 
-<template>
-      <div class="flex flex-row">
-    <SideBareDemo />
-<ViewSpecificActivityRegistrant :users="users"/>
-</div>
-</template>
- 
-<style>
 
-</style>
+<template>
+  <div class="flex flex-row">
+    <SideBareDemo />
+    <ViewSpecificActivityRegistrant :users="users" />
+  </div>
+</template>
+
+<style></style>

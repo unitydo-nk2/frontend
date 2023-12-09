@@ -9,7 +9,7 @@ onBeforeMount(async () => {
 })
 
 const getActivities = async () => {
-  const res = await fetch(`http://localhost:8080/api/activities/userRegistration`, {method: 'GET'})
+  const res = await fetch(`${import.meta.env.VITE_BASE_URL}/activities/userRegistration`, {method: 'GET'})
   if (res.status === 200) {
     activities.value = await res.json()
     console.log('value '+activities.value)
@@ -17,14 +17,12 @@ const getActivities = async () => {
     console.log('cannot get data')
   }
 }
-
-
 </script>
 
 <template>
   <div class="flex flex-row">
     <SideBareDemo />
-    <ViewActivityUser :activities="activities"/>
+    <ViewActivityUser :activities="activities" />
   </div>
 </template>
 

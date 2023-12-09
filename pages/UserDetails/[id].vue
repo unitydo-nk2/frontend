@@ -1,3 +1,5 @@
+<!-- @format -->
+
 <script setup>
 const user = ref({})
 
@@ -8,7 +10,7 @@ onBeforeMount(async () => {
 })
 
 const getUserByID = async (id) => {
-  const res = await fetch(`http://localhost:8080/api/users/${id}`, {method: 'GET'})
+  const res = await fetch(`${import.meta.env.VITE_BASE_URL}/users/${id}`, {method: 'GET'})
   if (res.status === 200) {
     user.value = await res.json()
     console.log('value '+user.value)
@@ -19,9 +21,9 @@ const getUserByID = async (id) => {
 </script>
 
 <template>
-      <div class="flex flex-row">
+  <div class="flex flex-row">
     <SideBareDemo />
-    <ManageUserDetail :user="user"/>
+    <ManageUserDetail :user="user" />
   </div>
 </template>
 

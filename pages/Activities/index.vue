@@ -1,4 +1,8 @@
+<!-- @format -->
+
 <script setup>
+import { Meta } from '#build/components';
+
 const activities = ref([])
 const mainCategories = ref([])
 
@@ -8,7 +12,7 @@ onBeforeMount(async () => {
 })
 
 const getActivities = async () => {
-  const res = await fetch(`http://localhost:8080/api/activities/list`, {method: 'GET'})
+  const res = await fetch(`${import.meta.env.VITE_BASE_URL}/activities/list`, {method: 'GET'})
   if (res.status === 200) {
     activities.value = await res.json()
     console.log('value '+activities.value)
@@ -18,7 +22,7 @@ const getActivities = async () => {
 }
 
 const getMainCategories = async () => {
-  const res = await fetch(`http://localhost:8080/api/categories`, {method: 'GET'})
+  const res = await fetch(`${import.meta.env.VITE_BASE_URL}/categories`, {method: 'GET'})
   if (res.status === 200) {
     mainCategories.value = await res.json()
     console.log('mainCategories value '+mainCategories.value)
@@ -29,7 +33,7 @@ const getMainCategories = async () => {
 </script>
 
 <template>
-  <div >
+  <div>
     <div
       class="flex flex-col justify-center items-center w-full h-auto bg-gradient-to-r from-slate-700 to-fuchsia-950"
     >
@@ -60,16 +64,17 @@ const getMainCategories = async () => {
       >
         กิจกรรมสำหรับคุณ
       </div>
-      <div>
-        some thing
-      </div>
+      <div>some thing</div>
     </div>
     <div>
       <div>
-        <div element-name = "filter"></div>
-        <div element-name = "activity-list"> 
+        <div element-name="filter"></div>
+        <div element-name="activity-list">
           <div>
-            <ActivityListWithFilter :activities="activities" :mainCategories="mainCategories"/>
+            <ActivityListWithFilter
+              :activities="activities"
+              :mainCategories="mainCategories"
+            />
           </div>
         </div>
       </div>

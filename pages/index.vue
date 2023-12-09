@@ -7,7 +7,7 @@ onBeforeMount(async () => {
 })
 
 const getActivities = async () => {
-  const res = await fetch(`http://localhost:8080/api/activities/recommends`, {method: 'GET'})
+  const res = await fetch(`${import.meta.env.VITE_BASE_URL}/activities/recommends`, {method: 'GET'})
   if (res.status === 200) {
     activities.value = await res.json()
     console.log('value '+activities.value)

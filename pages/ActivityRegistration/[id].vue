@@ -1,3 +1,5 @@
+<!-- @format -->
+
 <script setup>
 const activity = ref([]);
 const errorDetails = ref([]);
@@ -13,7 +15,7 @@ onBeforeMount(async () => {
 
 const getActivityByID = async (id) => {
   const res = await fetch(
-    `http://localhost:8080/api/activities/registration/${id}`,
+    `${import.meta.env.VITE_BASE_URL}/activities/registration/${id}`,
     { method: "GET" }
   );
   if (res.status === 200) {
@@ -119,7 +121,7 @@ const createNewRegistration = async (user) => {
         ผู้จัดกิจกรรม : {{ activity.activityOwnerUserName }}
       </div>
     </div>
-    <RegisterForm @createNewRegistration="createNewRegistration"/>
+    <RegisterForm @createNewRegistration="createNewRegistration" />
   </div>
 </template>
 
