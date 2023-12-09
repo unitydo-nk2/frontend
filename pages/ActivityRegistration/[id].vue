@@ -85,7 +85,7 @@ const createNewRegistration = async (user) => {
     formData.append("user", blob);
     console.log("activityId "+ activityId)
     const res = await fetch(
-      'http://localhost:8080/api/activities/'+activityId+'/registration',
+      `${import.meta.env.VITE_BASE_URL}/activities/${activityId}/registration`,
       { method: "POST", body: formData }
     );
     if (res.status === 200) {
