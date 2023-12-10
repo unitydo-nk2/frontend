@@ -5,7 +5,8 @@ const activity = ref([]);
 const errorDetails = ref([]);
 const router = useRouter();
 let formData = new FormData()
-let activityId ;
+let activityId;
+
 onBeforeMount(async () => {
   const route = useRoute();
   const id = route.params.id;
@@ -66,6 +67,7 @@ const validateUser = (user) => {
 const createNewRegistration = async (user) => {
   errorDetails.value = []
   console.log("createNewRegistration call");
+  user.username = user.username + "_userName"
   validateUser(user);
   if (errorDetails.value.length == 0) {
     let userJson = JSON.stringify({

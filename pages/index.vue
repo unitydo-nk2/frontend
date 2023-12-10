@@ -18,7 +18,7 @@ const getActivities = async () => {
 </script>
 
 <template>
-  <div>
+  <div class="font-primary ">
     <div>
       <!-- <Carousel /> -->
     </div>
@@ -32,7 +32,7 @@ const getActivities = async () => {
         แนะนำสำหรับคุณ
       </div>
     </div>
-    <div class="ml-16 overflow-x-scroll flex flex-row">
+    <div class="ml-16 overflow-x-scroll ">
       <Cards :activities="activities" />
     </div>
   </div>

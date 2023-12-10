@@ -32,7 +32,7 @@ const getMainCategories = async () => {
 </script>
 
 <template>
-  <div>
+  <div class="font-primary ">
     <div
       class="flex flex-col justify-center items-center w-full h-auto bg-gradient-to-r from-slate-700 to-fuchsia-950"
     >
@@ -63,7 +63,6 @@ const getMainCategories = async () => {
       >
         กิจกรรมสำหรับคุณ
       </div>
-      <div>some thing</div>
     </div>
     <div>
       <div>

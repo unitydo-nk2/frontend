@@ -5,6 +5,7 @@ const activity = ref([]);
 const categories = ref([]);
 let formData = new FormData();
 const router = useRouter();
+const errorDetails = ref([]);
 
 onBeforeMount(async () => {
   const route = useRoute();
