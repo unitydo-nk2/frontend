@@ -1,3 +1,5 @@
+<!-- @format -->
+
 <script setup>
 const props = defineProps({
   activities: {
@@ -111,7 +113,7 @@ const searchData = computed(() => {
                   class="cursor-pointer bg-unityDo-light-grey hover:bg-unityDo-primary text-unityDo-primary hover:text-unityDo-light-grey py-2 px-4 rounded-full"
                 >
                   clear filter
-              </div>
+                </div>
               </div>
             </form>
 

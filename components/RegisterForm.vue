@@ -1,3 +1,5 @@
+<!-- @format -->
+
 <script setup>
 const emit = defineEmits(['createNewRegistration'])
 
@@ -18,13 +20,11 @@ const user = reactive({
   createTime: new Date(),
   updateTime: new Date(),
 });
-
 </script>
 
 <template>
   <div>
-    <div>
-    </div>
+    <div></div>
     <div class="font-primary flex flex-col justify-center items-center">
       <div class="m-4 text-black text-3xl font-bold tracking-wide">
         สมัครเข้าร่วมกิจกรรม
@@ -40,7 +40,7 @@ const user = reactive({
               class="w-8 h-8 left-0 top-0 absolute bg-indigo-600 rounded-full"
             ></div>
             <div
-              class="w-2.5 h-8 left-[10px] top-[1px] absolute text-white text-xl font-bold tracking-wide"
+              class="w-2.5 h-8 left-[12px] top-[2px] absolute text-white text-xl font-bold tracking-wide"
             >
               1
             </div>
@@ -55,16 +55,16 @@ const user = reactive({
         <div class="justify-start items-center flex">
           <div class="w-12 h-12 relative">
             <div
-              class="w-8 h-8 left-0 top-0 absolute bg-indigo-600 rounded-full"
+              class="w-8 h-8 left-0 top-0 absolute bg-slate-300 rounded-full"
             ></div>
             <div
-              class="w-2.5 h-8 left-[10px] top-[1px] absolute text-white text-xl font-bold tracking-wide"
+              class="w-2.5 h-8 left-[12px] top-[2px]  absolute text-white text-xl font-bold tracking-wide"
             >
               2
             </div>
           </div>
           <div
-            class="w-32 flex text-indigo-600 text-xl font-bold leading-7 tracking-wide"
+            class="w-32 flex text-neutral-500  text-xl font-bold leading-7 tracking-wide"
           >
             ตอบคำถาม
           </div>
@@ -73,24 +73,24 @@ const user = reactive({
         <div class="justify-start items-center flex">
           <div class="w-12 h-12 relative">
             <div
-              class="w-8 h-8 left-0 top-0 absolute bg-indigo-600 rounded-full"
+              class="w-8 h-8 left-0 top-0 absolute bg-slate-300 rounded-full"
             ></div>
             <div
-              class="w-2.5 h-8 left-[10px] top-[1px] absolute text-white text-xl font-bold tracking-wide"
+              class="w-2.5 h-8 left-[12px] top-[2px]  absolute text-white text-xl font-bold tracking-wide"
             >
               3
             </div>
           </div>
           <div
-            class="w-32 flex text-indigo-600 text-xl font-bold leading-7 tracking-wide"
+            class="w-32 flex text-neutral-500  text-xl font-bold leading-7 tracking-wide"
           >
             สำเร็จ !
           </div>
         </div>
       </div>
-      <div class="m-4 w-10/12 h-auto bg-white rounded-lg shadow">
+      <div class="m-4 p-10 w-10/12 h-auto bg-white rounded-lg shadow">
         <div
-          class="ml-12 mt-4 gap-3 flex text-neutral-700 text-3xl font-bold font-['DB Heavent'] tracking-wide"
+          class="ml-12  gap-3 flex text-neutral-700 text-3xl font-bold font-['DB Heavent'] tracking-wide"
         >
           <svg
             width="20"
@@ -122,7 +122,7 @@ const user = reactive({
         <hr
           class="ml-12 w-10/12 bg-gray-100 border-0 rounded dark:bg-gray-700"
         />
-        <div class="grid grid-cols-2">
+        <div class="grid grid-cols-2 gap-y-5">
           <div>
             <div
               class="ml-24 text-neutral-700 text-2xl font-normal leading-7 tracking-wide"
@@ -173,7 +173,9 @@ const user = reactive({
           </div>
         </div>
         <!-- เพศ วันเดือนปี ศาสนา -->
-        <div class="grid grid-cols-3 justify-items-center">
+        <div
+          class="m-4 grid grid-cols-3 justify-items-center left-[12px] top-[2px]  "
+        >
           <div class="">
             <div
               class="text-neutral-700 text-2xl font-normal leading-7 tracking-wide"
@@ -222,7 +224,7 @@ const user = reactive({
             </select>
           </div>
         </div>
-        <div class="grid grid-cols-2">
+        <div class="grid grid-cols-2 gap-y-5">
           <div>
             <div
               class="ml-24 text-neutral-700 text-2xl font-normal leading-7 tracking-wide"

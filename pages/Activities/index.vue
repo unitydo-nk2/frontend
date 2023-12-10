@@ -61,7 +61,7 @@ const getMainCategories = async () => {
       <div
         class="text-center text-indigo-600 text-5xl font-bold leading-10 tracking-wide"
       >
-        กิจกรรมสำหรับคุณ
+        กิจกรรมสำหรับคุณเร็ว ๆ นี้
       </div>
     </div>
     <div>

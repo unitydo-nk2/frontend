@@ -3,23 +3,23 @@
 <script></script>
 
 <template>
-  <nav
-    class=" reletive bg-white border-gray-200 "
-  >
+  <nav class=" reletive bg-white border-gray-200 ">
     <div
       class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"
     >
-      <a href="#" class="flex items-center">
-        <img
-          src="/image/unityDoLogo.png"
-          class="h-8 mr-3"
-          alt="Flowbite Logo"
-        />
-        <span
-          class="self-center text-2xl font-semibold whitespace-nowrap text-unityDo-primary"
-          >UnityDo</span
-        >
-      </a>
+      <nuxt-link to="/">
+        <a href="#" class="flex items-center">
+          <img
+            src="/image/unityDoLogo.png"
+            class="h-8 mr-3"
+            alt="Flowbite Logo"
+          />
+          <span
+            class="self-center text-2xl font-semibold whitespace-nowrap text-unityDo-primary"
+            >UnityDo</span
+          >
+        </a>
+      </nuxt-link>
       <button
         data-collapse-toggle="navbar-dropdown"
         type="button"
@@ -50,20 +50,31 @@
         >
           <nuxt-link to="/">
             <li>
-              <a
+              <!-- <a
                 href="#"
                 class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
                 aria-current="page"
-                >HOME</a
+                >หน้าหลัก</a
+              > -->
+              <a
+                href="#"
+                class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
+                >หน้าหลัก</a
               >
             </li>
           </nuxt-link>
           <nuxt-link to="/Activities">
             <li>
-              <button
+              <!-- <button
                 id="dropdownNavbarLink"
                 data-dropdown-toggle="dropdownNavbar"
                 class="flex items-center justify-between w-full py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto "
+              >
+                กิจกรรม
+              </button> -->
+
+              <button
+                class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 "
               >
                 กิจกรรม
               </button>

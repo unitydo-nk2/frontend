@@ -10,45 +10,25 @@ const props = defineProps({
 
 <template>
   <div
-    class=" font-primary grid md:grid-cols-2 w-full h-auto bg-gradient-to-r from-slate-700 to-fuchsia-950"
+    class="font-primary grid md:grid-cols-2 w-full h-auto bg-gradient-to-r from-slate-700 to-fuchsia-950"
   >
     <div class="grid">
       <div class="m-4">
-        <img
-          class="h-full w-full"
-          src="https://flowbite.s3.amazonaws.com/docs/gallery/featured/image.jpg"
-          alt=""
-        />
+        <img class="h-full w-full" src="/image/detailbig.png" alt="" />
       </div>
       <div>
         <div class="m-4 flex gap-4">
           <div>
-            <img
-              class="h-32 w-full"
-              src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg"
-              alt=""
-            />
+            <img class="h-32 w-full" src="/image/detailsmall.png" alt="" />
           </div>
           <div>
-            <img
-              class="h-32 w-full"
-              src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg"
-              alt=""
-            />
+            <img class="h-32 w-full" src="/image/detailsmall.png" alt="" />
           </div>
           <div>
-            <img
-              class="h-32 w-full"
-              src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-3.jpg"
-              alt=""
-            />
+            <img class="h-32 w-full" src="/image/detailsmall.png" alt="" />
           </div>
           <div>
-            <img
-              class="h-32 w-full"
-              src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg"
-              alt=""
-            />
+            <img class="h-32 w-full" src="/image/detailsmall.png" alt="" />
           </div>
         </div>
       </div>
@@ -194,22 +174,12 @@ const props = defineProps({
         <div class="flex">
           <nuxt-link :to="`/ActivityRegistration/${activity.activityId}`">
             <button
-              class="m-4 w-28 h-14 bg-white rounded-xl border border-indigo-600"
+              class="w-[196px] h-[60px] bg-white rounded-xl border border-indigo-600 text-indigo-600 text-2xl font-bold"
             >
-              <div
-                class="w-24 h-9 text-indigo-600 text-base font-bold leading-7 tracking-wide"
-              >
-                สมัครเลย !
-              </div>
+              สมัครเลย !
             </button>
           </nuxt-link>
-          <button class="m-4 w-48 h-14 bg-indigo-600 rounded-xl">
-            <div
-              class="w-40 text-white text-base font-bold leading-7 tracking-wide"
-            >
-              คู่มือการสมัคร
-            </div>
-          </button>
+
           <!-- <button class="m-4 w-16 h-16 bg-white rounded-full">
             <svg width="31" height="27" viewBox="0 0 31 27" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M30 13.5L18.4 1V7.25C12.6 7.25 1 11 1 26C1 23.9161 4.48 19.75 18.4 19.75V26L30 13.5Z"

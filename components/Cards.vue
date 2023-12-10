@@ -13,7 +13,7 @@ const props = defineProps({
   <div class=" w-full flex">
     <div v-for="(activity, index) in activities" :key="index">
       <div
-        class="w-80 h-80 mr-4 overflow-hidden aspect-video  cursor-pointer rounded-xl relative group"
+        class="w-[363px] h-[480px] mr-4 overflow-hidden aspect-video  cursor-pointer rounded-xl relative group"
       >
         <div
           class="z-50 opacity-0 group-hover:opacity-100 transition duration-300 ease-in-out cursor-pointer absolute from-black/80 to-transparent bg-gradient-to-t inset-x-0 -bottom-2 text-white"
@@ -25,7 +25,7 @@ const props = defineProps({
 
         <img
           alt=""
-          class="w-96 h-96 rounded-xl object-cover w-full aspect-square group-hover:scale-110 transition duration-300 ease-in-out"
+          class="w-[363px] h-[480px] rounded-xl object-cover  aspect-square group-hover:scale-110 transition duration-300 ease-in-out"
           src="/image/commingsoon.png"
         />
       </div>
