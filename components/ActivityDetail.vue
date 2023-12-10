@@ -135,10 +135,7 @@ const props = defineProps({
           <div
             class="m-4 text-white text-base font-bold leading-normal tracking-wide"
           >
-            <div v-if="activity.locationName == null">online activity</div>
-            <div v-else>
-              {{activity.locationName}}
-            </div>
+            {{activity.locationName}}
           </div>
           <div
             class="m-4 w-24 text-violet-100 text-base font-bold leading-normal tracking-wide"

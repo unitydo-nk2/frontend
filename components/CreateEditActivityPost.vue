@@ -32,8 +32,8 @@ watch(
         props.activity.activityOwnerUserName),
       (newActivity.value.category = props.activity.categoryId),
       (newActivity.value.activityFormat = props.activity.activityFormat),
-      (newActivity.value.locationName = props.activity.locationName),
-      (newActivity.value.googleMapLink = props.activity.googleMapLink),
+      (newActivity.value.locationName = props.activity.locationName == null ? '' : props.activity.locationName),
+      (newActivity.value.googleMapLink = props.activity.googleMapLink == null ? '' : props.activity.locationName),
       (newActivity.value.amount = props.activity.amount),
       (newActivity.value.activityDate = props.activity.activityDate),
       (newActivity.value.activityEndDate = props.activity.activityEndDate),
@@ -259,12 +259,12 @@ const newActivity = ref({
         </div>
       </div>
       <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-        <label
+        <labelf
           class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
           for="grid-zip"
         >
           จำนวนคนเข้าร่วม
-        </label>
+        </labelf>
         <input
           v-model="newActivity.amount"
           class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -285,6 +285,14 @@ const newActivity = ref({
     <div class="flex flex-wrap -mx-3 mb-6">
       <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
         <label
+          v-if='newActivity.activityFormat == "online"'
+          class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+          for="grid-first-name"
+        >
+          ช่องทางเข้าร่วมกิจกรรม เช่น zoom
+        </label>
+        <label
+          v-else
           class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
           for="grid-first-name"
         >
@@ -312,6 +320,14 @@ const newActivity = ref({
       </div>
       <div class="w-full md:w-1/2 px-3">
         <label
+          v-if='newActivity.activityFormat == "online"'
+          class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+          for="grid-last-name"
+        >
+          ลิงก์เข้าร่วมกิจกรรม
+        </label>
+        <label
+          v-else
           class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
           for="grid-last-name"
         >

@@ -1,3 +1,5 @@
+<!-- @format -->
+
 <script setup>
 const props = defineProps({
   user: {
@@ -12,12 +14,10 @@ const props = defineProps({
     <div class="pl-4 grid">
       <div class="p-4 rounded-lg dark:border-gray-700">
         <div class="text-zinc-400 text-base font-normal">
-          <span style="text-zinc-400 text-base font-normal"
-            >Manage Users > Member List > </span
-          ><span style="text-zinc-400 text-base font-normal"
-            >“TEP-TEPE Pre Engineering Workshop” </span
-          ><span style="text-zinc-400 text-base font-bold">...</span
-          ><span style="text-zinc-400 text-base font-normal"> </span>
+          <!-- <span style="text-zinc-400 text-base font-normal">Manage Users > Member List > </span><span
+            style="text-zinc-400 text-base font-normal">“TEP-TEPE Pre Engineering Workshop” </span><span
+            style="text-zinc-400 text-base font-bold">...</span> -->
+          <span style="text-zinc-400 text-base font-normal"> </span>
         </div>
         <div class="flex flex-in-line">
           <svg
@@ -161,9 +161,9 @@ const props = defineProps({
               ชื่อโรคประจำตัว :
             </div>
             <div
-              class="col-span-2 w-22 text-stone-500 text-sm font-normal leading-none"
-            >
-              ยาที่ใช้รักษาประจำ :
+                class="col-span-2 w-22 text-stone-500 text-sm font-normal leading-none"
+              >
+                ยาที่ใช้รักษาประจำ :
             </div>
             <div
               class="w-22 text-stone-500 text-sm font-normal leading-none"
@@ -228,9 +228,9 @@ const props = defineProps({
                 </th>
                 <td class="px-6 py-4">ทำไมถึงเข้าร่วมกิจกรรมนี้</td>
                 <td class="px-6 py-4">
-                  เพื่อช่วยลดปัญหาที่อาจเกิดขึ้นในสังคม
-                  ช่วยแก้ปัญหาและสร้างสรรค์เพื่อให้เกิดประโยชน์สุขแก่สังคม
-                  ยกตัวอย่างเช่น การช่วยกันดูแลรักษาสิ่งแวดล้อม
+                    เพื่อช่วยลดปัญหาที่อาจเกิดขึ้นในสังคม
+                    ช่วยแก้ปัญหาและสร้างสรรค์เพื่อให้เกิดประโยชน์สุขแก่สังคม
+                    ยกตัวอย่างเช่น การช่วยกันดูแลรักษาสิ่งแวดล้อม
                   โดยการไม่ทิ้งขยะลงในแหล่งน้ำ การแยกขยะ
                   แม้แต่การประหยัดน้ำปะปาหรือไฟฟ้าที่เป็นของส่วนรวม
                 </td>
@@ -241,7 +241,7 @@ const props = defineProps({
       </div> -->
       <!-- buttons -->
     </div>
-    <div
+    <!-- <div
         class="w-full h-20 bg-stone-50  border border-neutral-200"
       >
         <div class="flex justify-center gap-8 mt-4">
@@ -254,17 +254,17 @@ const props = defineProps({
               accept
             </div>
           </button>
-          <button
-            class="w-36 h-12 px-7 py-2.5 bg-red-600 rounded-xl border border-red-600 justify-center items-center gap-2.5 inline-flex"
-          >
-            <div
-              class="text-white text-base font-normal leading-7 tracking-wide"
+            <button
+              class="w-36 h-12 px-7 py-2.5 bg-red-600 rounded-xl border border-red-600 justify-center items-center gap-2.5 inline-flex"
             >
-              decline
-            </div>
-          </button>
-        </div>
-      </div>
+              <div
+                class="text-white text-base font-normal leading-7 tracking-wide"
+              >
+                decline
+              </div>
+            </button>
+          </div>
+        </div> -->
   </div>
 </template>
 
