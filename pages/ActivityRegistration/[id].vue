@@ -64,6 +64,7 @@ const validateUser = (user) => {
 };
 
 const createNewRegistration = async (user) => {
+  errorDetails.value = []
   console.log("createNewRegistration call");
   validateUser(user);
   if (errorDetails.value.length == 0) {

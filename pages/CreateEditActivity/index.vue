@@ -46,6 +46,7 @@ const validateActivity = (activity) => {
 };
 
 const createNewActivity = async (activity) => {
+  errorDetails.value = []
   console.log("createNewRegistration call");
   console.log(activity);
   validateActivity(activity);

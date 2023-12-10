@@ -39,6 +39,7 @@ const getCategories = async () => {
 
 //PATCH
 const updateActivity = async (activityId, activity) => {
+  errorDetails.value = []
   let updatedActivity = JSON.stringify({
     activityName: activity.activityName,
     activityBriefDescription: activity.activityBriefDescription,
