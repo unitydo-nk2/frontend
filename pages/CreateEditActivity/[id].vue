@@ -38,9 +38,42 @@ const getCategories = async () => {
   }
 };
 
+const validateGoogleMapLink = () => {
+  const regex = /https?:\/\/www\.google\.com\/maps\/.*@.*\/.*[z\/]/;
+  const isValid = regex.test(newActivity.value.googleMapLink);
+
+  if (!isValid) {
+    errorDetails = "Please enter a valid Google Map link.";
+  }
+};
+
+const validateLength = (string, label, length = 0) => {
+  console.log("checking "+label+" "+string)
+  if (label == "email") {
+    validateEmail(string);
+  }
+  if (string.length > length) {
+    errorDetails.value.push(
+      label + " cannot more than " + length + " characters"
+    );
+  } else if (string.length == 0 || string == undefined || string == null) {
+    errorDetails.value.push(label + " is requied");
+  }
+};
+
+const validateActivity = (activity) => {
+  console.log('checking')
+  validateLength(activity.activityName, "activity name", 50);
+  validateLength(activity.activityOwnerUserName, "username", 50);
+  validateLength(activity.activityBriefDescription, "brief description", 100);
+  validateLength(activity.activityDescription, "description", 300);
+  validateLength(activity.suggestionNotes, "suggestoin Note", 500);
+  validateGoogleMapLink(activity.googleMapLink);
+};
 //PATCH
 const updateActivity = async (activityId, activity) => {
   errorDetails.value = []
+  validateActivity(activity);
   let updatedActivity = JSON.stringify({
     activityName: activity.activityName,
     activityBriefDescription: activity.activityBriefDescription,

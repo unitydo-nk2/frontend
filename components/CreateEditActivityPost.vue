@@ -74,7 +74,7 @@ const newActivity = ref({
           class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
           for="grid-first-name"
         >
-          หัวข้อกิจกรรม {{ newActivity.activityName.length }} / 100
+          หัวข้อกิจกรรม
         </label>
         <input
           v-model="newActivity.activityName"
