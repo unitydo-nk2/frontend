@@ -152,7 +152,19 @@ const user = reactive({
             <div
               class="ml-18 text-neutral-700 text-2xl font-normal leading-7 tracking-wide"
             >
-              นามสกุล <span class="">*</span>
+              นามสกุล
+              <span
+                v-show="user.surName.length == 0"
+                class="text-red-500 text-base italic"
+              >
+                *Please fill out this field.</span
+              >
+              <span
+                v-show="user.surName.length > 50"
+                class="text-red-500 text-base italic"
+              >
+                *Surname cannot longer than 50 charaters.</span
+              >
             </div>
             <input
               v-model="user.surName"
@@ -164,7 +176,19 @@ const user = reactive({
             <div
               class="ml-24 text-neutral-700 text-2xl font-normal leading-7 tracking-wide"
             >
-              ชื่อเล่น <span class="">*</span>
+              ชื่อเล่น
+              <span
+                v-show="user.nickName.length == 0"
+                class="text-red-500 text-base italic"
+              >
+                *Please fill out this field.</span
+              >
+              <span
+                v-show="user.nickName.length > 50"
+                class="text-red-500 text-base italic"
+              >
+                *Nickname cannot longer than 50 charaters.</span
+              >
             </div>
             <input
               v-model="user.nickName"
@@ -197,7 +221,7 @@ const user = reactive({
             </div>
             <select
               v-model="user.gender"
-              class="w-44 h-10 rounded-md border border-zinc-400"
+              class="pl-4 w-44 h-10 rounded-md border border-zinc-400"
             >
               <option value="male">male</option>
               <option value="female">female</option>
@@ -214,7 +238,7 @@ const user = reactive({
             <input
               v-model="user.dateOfBirth"
               type="date"
-              class="w-44 h-10 rounded-md border border-zinc-400"
+              class="p-4 w-44 h-10 rounded-md border border-zinc-400"
             />
           </div>
           <div>
@@ -225,7 +249,7 @@ const user = reactive({
             </div>
             <select
               v-model="user.religion"
-              class="w-44 h-10 rounded-md border border-zinc-400"
+              class="pl-4 w-44 h-10 rounded-md border border-zinc-400"
             >
               <option value="Christianity">Christianity</option>
               <option value="Islam">Islam</option>
@@ -242,7 +266,19 @@ const user = reactive({
             <div
               class="ml-24 text-neutral-700 text-2xl font-normal leading-7 tracking-wide"
             >
-              เบอร์โทรศัพท์มือถือ <span class="">*</span>
+              เบอร์โทรศัพท์มือถือ
+              <span
+                v-show="user.telephoneNumber.length == 0"
+                class="text-red-500 text-base italic"
+              >
+                *Please fill out this field.</span
+              >
+              <span
+                v-show="user.telephoneNumber.length > 10"
+                class="text-red-500 text-base italic"
+              >
+                *Telephone number cannot longer than 10 number.</span
+              >
             </div>
             <input
               v-model="user.telephoneNumber"
@@ -254,7 +290,19 @@ const user = reactive({
             <div
               class="ml-18 text-neutral-700 text-2xl font-normal leading-7 tracking-wide"
             >
-              เบอร์โทรฉุกเฉิน <span class="">*</span>
+              เบอร์โทรฉุกเฉิน
+              <span
+                v-show="user.emergencyPhoneNumber.length == 0"
+                class="text-red-500 text-base italic"
+              >
+                *Please fill out this field.</span
+              >
+              <span
+                v-show="user.emergencyPhoneNumber.length > 10"
+                class="text-red-500 text-base italic"
+              >
+                *Telephone number cannot longer than 10 number.</span
+              >
             </div>
             <input
               v-model="user.emergencyPhoneNumber"
@@ -266,7 +314,19 @@ const user = reactive({
             <div
               class="ml-24 text-neutral-700 text-2xl font-normal leading-7 tracking-wide"
             >
-              ที่อยู่ของคุณ <span class="">*</span>
+              ที่อยู่ของคุณ
+              <span
+                v-show="user.address.length == 0"
+                class="text-red-500 text-base italic"
+              >
+                *Please fill out this field.</span
+              >
+              <span
+                v-show="user.address.length > 500"
+                class="text-red-500 text-base italic"
+              >
+                *Address cannot longer than 10 number.</span
+              >
             </div>
             <input
               v-model="user.address"

@@ -67,7 +67,7 @@ const validateUser = (user) => {
 const createNewRegistration = async (user) => {
   errorDetails.value = []
   console.log("createNewRegistration call");
-  user.username = user.username + "_userName"
+  user.username = user.name + "_userName"
   validateUser(user);
   if (errorDetails.value.length == 0) {
     let userJson = JSON.stringify({
