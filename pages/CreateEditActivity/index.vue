@@ -21,6 +21,14 @@ const getCategories = async () => {
     console.log("cannot get data");
   }
 };
+const validateGoogleMapLink = () => {
+  const regex = /https?:\/\/www\.google\.com\/maps\/.*@.*\/.*[z\/]/;
+  const isValid = regex.test(newActivity.value.googleMapLink);
+
+  if (!isValid) {
+    errorDetails = "Please enter a valid Google Map link.";
+  }
+};
 
 const validateLength = (string, label, length = 0) => {
   console.log("checking "+label+" "+string)
@@ -43,6 +51,7 @@ const validateActivity = (activity) => {
   validateLength(activity.activityBriefDescription, "brief description", 100);
   validateLength(activity.activityDescription, "description", 300);
   validateLength(activity.suggestionNotes, "suggestoin Note", 500);
+  validateGoogleMapLink(activity.googleMapLink);
 };
 
 const createNewActivity = async (activity) => {

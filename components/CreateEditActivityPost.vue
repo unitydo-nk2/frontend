@@ -10,7 +10,7 @@ const props = defineProps({
   },
   activity: {
     type: Object,
-    default: {},
+    default: {category : 1, activityFormat : 'onsite'},
   },
   categories: {
     type: Array,
@@ -45,7 +45,23 @@ watch(
   }
 );
 
-const newActivity = ref({});
+const newActivity = ref({
+  activityName: "",
+  activityBriefDescription: "",
+  activityDescription: "",
+  activityOwnerUserName: "",
+  category: props.activity.category, // Set the default value here
+  activityFormat: props.activity.activityFormat,
+  locationName: "",
+  googleMapLink: "",
+  amount: 0,
+  activityDate: "",
+  activityEndDate: "",
+  registerStartDate: "",
+  registerEndDate: "",
+  announcementDate: "",
+  isGamification: false,
+});
 </script>
 <template>
   <div v-if="newActivity" class="w-full m-4">
@@ -58,7 +74,7 @@ const newActivity = ref({});
           class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
           for="grid-first-name"
         >
-          หัวข้อกิจกรรม
+          หัวข้อกิจกรรม {{ newActivity.activityName.length }} / 100
         </label>
         <input
           v-model="newActivity.activityName"
@@ -67,7 +83,18 @@ const newActivity = ref({});
           type="text"
           placeholder="Jane"
         />
-        <p class="text-red-500 text-xs italic">Please fill out this field.</p>
+        <span
+          v-show="newActivity.activityName.length == 0"
+          class="text-red-500 text-xs italic"
+        >
+          *Please fill out this field.</span
+        >
+        <span
+          v-show="newActivity.activityName.length > 50"
+          class="text-red-500 text-xs italic"
+        >
+          *Name cannot longer than 50 charaters.</span
+        >
       </div>
       <div class="w-full md:w-1/2 px-3">
         <label
@@ -83,6 +110,18 @@ const newActivity = ref({});
           type="text"
           placeholder="Doe"
         />
+        <span
+          v-show="newActivity.activityBriefDescription.length == 0"
+          class="text-red-500 text-xs italic"
+        >
+          *Please fill out this field.</span
+        >
+        <span
+          v-show="newActivity.activityBriefDescription.length > 100"
+          class="text-red-500 text-xs italic"
+        >
+          *Name cannot longer than 100 charaters.</span
+        >
       </div>
     </div>
     <div class="flex flex-wrap -mx-3 mb-6">
@@ -100,6 +139,18 @@ const newActivity = ref({});
           type="text"
           placeholder="Doe"
         />
+        <span
+          v-show="newActivity.activityDescription.length == 0"
+          class="text-red-500 text-xs italic"
+        >
+          *Please fill out this field.</span
+        >
+        <span
+          v-show="newActivity.activityDescription.length > 500"
+          class="text-red-500 text-xs italic"
+        >
+          *Name cannot longer than 500 charaters.</span
+        >
       </div>
     </div>
     <div class="flex flex-wrap -mx-3 mb-6">
@@ -136,7 +187,18 @@ const newActivity = ref({});
           type="text"
           placeholder="Jane"
         />
-        <p class="text-red-500 text-xs italic">Please fill out this field.</p>
+        <span
+          v-show="newActivity.activityOwnerUserName.length == 0"
+          class="text-red-500 text-xs italic"
+        >
+          *Please fill out this field.</span
+        >
+        <span
+          v-show="newActivity.activityOwnerUserName.length > 50"
+          class="text-red-500 text-xs italic"
+        >
+          *Name cannot longer than 50 charaters.</span
+        >
       </div>
     </div>
 
@@ -209,7 +271,14 @@ const newActivity = ref({});
           id="grid-zip"
           type="number"
           placeholder="90210"
+          min="0"
         />
+        <span
+          v-show="newActivity.amount == 0"
+          class="text-red-500 text-xs italic"
+        >
+          *Please fill out this field.</span
+        >
       </div>
     </div>
 
@@ -228,7 +297,18 @@ const newActivity = ref({});
           type="text"
           placeholder="Jane"
         />
-        <p class="text-red-500 text-xs italic">Please fill out this field.</p>
+        <span
+          v-show="newActivity.locationName.length == 0"
+          class="text-red-500 text-xs italic"
+        >
+          *Please fill out this field.</span
+        >
+        <span
+          v-show="newActivity.locationName.length > 300"
+          class="text-red-500 text-xs italic"
+        >
+          *Name cannot longer than 300 charaters.</span
+        >
       </div>
       <div class="w-full md:w-1/2 px-3">
         <label

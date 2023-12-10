@@ -132,7 +132,7 @@ const user = reactive({
             <input
               v-model="user.name"
               type="text"
-              class="ml-24 w-96 h-10 rounded-md border border-zinc-400"
+              class="p-4 ml-24 w-96 h-10 rounded-md border border-zinc-400"
             />
           </div>
           <div>
@@ -144,7 +144,7 @@ const user = reactive({
             <input
               v-model="user.surName"
               type="text"
-              class="ml-18 w-96 h-10 rounded-md border border-zinc-400"
+              class="p-4 ml-18 w-96 h-10 rounded-md border border-zinc-400"
             />
           </div>
           <div>
@@ -156,7 +156,7 @@ const user = reactive({
             <input
               v-model="user.nickName"
               type="text"
-              class="ml-24 w-96 h-10 rounded-md border border-zinc-400"
+              class="p-4 ml-24 w-96 h-10 rounded-md border border-zinc-400"
             />
           </div>
           <div>
@@ -168,7 +168,7 @@ const user = reactive({
             <input
               v-model="user.email"
               type="text"
-              class="ml-18 w-96 h-10 rounded-md border border-zinc-400"
+              class="p-4 ml-18 w-96 h-10 rounded-md border border-zinc-400"
             />
           </div>
         </div>
@@ -234,7 +234,7 @@ const user = reactive({
             <input
               v-model="user.telephoneNumber"
               type="text"
-              class="ml-24 w-96 h-10 rounded-md border border-zinc-400"
+              class="p-4 ml-24 w-96 h-10 rounded-md border border-zinc-400"
             />
           </div>
           <div>
@@ -246,7 +246,7 @@ const user = reactive({
             <input
               v-model="user.emergencyPhoneNumber"
               type="text"
-              class="ml-18 w-96 h-10 rounded-md border border-zinc-400"
+              class="p-4 ml-18 w-96 h-10 rounded-md border border-zinc-400"
             />
           </div>
           <div>
@@ -258,7 +258,7 @@ const user = reactive({
             <input
               v-model="user.address"
               type="text"
-              class="ml-24 w-96 h-10 rounded-md border border-zinc-400"
+              class="p-4 ml-24 w-96 h-10 rounded-md border border-zinc-400"
             />
           </div>
         </div>
