@@ -127,8 +127,21 @@ const user = reactive({
             <div
               class="ml-24 text-neutral-700 text-2xl font-normal leading-7 tracking-wide"
             >
-              ชื่อ <span class="">*</span>
+              ชื่อ
+              <span
+                v-show="user.name.length == 0"
+                class="text-red-500 text-base italic"
+              >
+                *Please fill out this field.</span
+              >
+              <span
+                v-show="user.name.length > 50"
+                class="text-red-500 text-base italic"
+              >
+                *Name cannot longer than 50 charaters.</span
+              >
             </div>
+
             <input
               v-model="user.name"
               type="text"

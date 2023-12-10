@@ -21,20 +21,31 @@ const getCategories = async () => {
     console.log("cannot get data");
   }
 };
-const validateGoogleMapLink = () => {
-  const regex = /https?:\/\/www\.google\.com\/maps\/.*@.*\/.*[z\/]/;
-  const isValid = regex.test(newActivity.value.googleMapLink);
 
-  if (!isValid) {
-    errorDetails = "Please enter a valid Google Map link.";
+// const validateGoogleMapLink = (googleMapLink) => {
+//   const regex = /https?:\/\/www\.google\.com\/maps\/.*@.*\/.*[z\/]/;
+//   const isValid = regex.test(googleMapLink);
+//   if (!isValid) {
+//     errorDetails.value.push = "Please enter a valid Google Map link.";
+//   }
+// };
+const validateGoogleMapLink = (googleMapLink) => {
+  const regex = /^https:\/\/maps\.app\.goo\.gl\/[^\s]+$/;
+const regex1 = /^https:\/\/www\.google\.co\.th\/maps\/.*/;
+
+const isValid = googleMapLink.match(regex);
+const isValid1 = googleMapLink.match(regex1);
+
+  if (isValid || isValid1) {
+          console.log("maps is google map format");
+  } else {
+    console.log("maps is not google map format");
+      errorDetails.value.push('Invalid google link map.')
   }
 };
 
 const validateLength = (string, label, length = 0) => {
   console.log("checking "+label+" "+string)
-  if (label == "email") {
-    validateEmail(string);
-  }
   if (string.length > length) {
     errorDetails.value.push(
       label + " cannot more than " + length + " characters"
