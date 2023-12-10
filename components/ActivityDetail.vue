@@ -17,18 +17,21 @@ const props = defineProps({
         <img class="h-full w-full" src="/image/detailbig.png" alt="" />
       </div>
       <div>
-        <div class="m-4 flex gap-4">
+        <div class="m-4 flex gap-2">
           <div>
-            <img class="h-32 w-full" src="/image/detailsmall.png" alt="" />
+            <img class="h-full w-full" src="/image/detailsmall.png" alt="" />
           </div>
           <div>
-            <img class="h-32 w-full" src="/image/detailsmall.png" alt="" />
+            <img class="h-full w-full" src="/image/detailsmall.png" alt="" />
           </div>
           <div>
-            <img class="h-32 w-full" src="/image/detailsmall.png" alt="" />
+            <img class="h-full w-full" src="/image/detailsmall.png" alt="" />
           </div>
           <div>
-            <img class="h-32 w-full" src="/image/detailsmall.png" alt="" />
+            <img class="h-full w-full" src="/image/detailsmall.png" alt="" />
+          </div>
+          <div>
+            <img class="h-full w-full" src="/image/detailsmall.png" alt="" />
           </div>
         </div>
       </div>
