@@ -174,7 +174,7 @@ const user = reactive({
         </div>
         <!-- เพศ วันเดือนปี ศาสนา -->
         <div
-          class=" grid grid-cols-3 justify-items-center left-[12px] top-[2px]  "
+          class="mt-4 mb-4 grid grid-cols-3 justify-items-center left-[12px] top-[2px]  "
         >
           <div class="">
             <div
