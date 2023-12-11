@@ -10,9 +10,9 @@ const user = reactive({
   password: "passwordIsInRelease2",
   nickName: "",
   email: "",
-  gender: "",
-  dateOfBirth: "",
-  religion: "",
+  gender: "male",
+  dateOfBirth: new Date().toISOString().slice(0,10),
+  religion: "Christianity",
   telephoneNumber: "",
   address: "",
   emergencyPhoneNumber: "",
@@ -25,6 +25,7 @@ const user = reactive({
 <template>
   <div>
     <div></div>
+    {{ new Date().toISOString().slice(0,16) }}
     <div class="font-primary flex flex-col justify-center items-center">
       <div class="m-4 text-black text-3xl font-bold tracking-wide">
         สมัครเข้าร่วมกิจกรรม
