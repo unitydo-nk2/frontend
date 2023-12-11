@@ -23,7 +23,7 @@ const searchData = computed(() => {
   const filteredActivities = ref(props.activities);
   if (curNameSearch.value.length != 0) {
     filteredActivities.value = filteredActivities.value.filter((activity) => {
-      return activity.activityName.toLowerCase().includes(curNameSearch.value);
+      return activity.activityName.toLowerCase().includes(curNameSearch.value.toLowerCase());
     });
   }
   if (categoriesSelected.value.length != 0) {
