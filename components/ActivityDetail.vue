@@ -3,9 +3,9 @@
 const props = defineProps({
   activity: {
     type: Object,
-    default: {}
-  }
-})
+    default: {},
+  },
+});
 </script>
 
 <template>
@@ -58,7 +58,10 @@ const props = defineProps({
               />
             </svg>
             <span
-              v-if='activity.activityFormat == "onsite" || activity.activityFormat == "onsiteOverNight" '
+              v-if="
+                activity.activityFormat == 'onsite' ||
+                activity.activityFormat == 'onsiteOverNight'
+              "
             >
               On-site
             </span>
@@ -66,7 +69,7 @@ const props = defineProps({
           </div>
         </div>
         <div
-          v-if='activity.activityFormat == "onsiteOverNight"'
+          v-if="activity.activityFormat == 'onsiteOverNight'"
           class="m-4 w-60 h-8 px-2.5 py-1 bg-white rounded-2xl justify-center items-center gap-2.5 inline-flex"
         >
           <div class="flex text-indigo-600 text-base font-normal leading-none">
@@ -95,7 +98,7 @@ const props = defineProps({
       <div
         class="m-4 text-neutral-100 text-2xl font-bold leading-10 tracking-wide"
       >
-        {{ activity.activityName }} {{activity.format}}
+        {{ activity.activityName }} {{ activity.format }}
       </div>
       <!-- description -->
       <div
@@ -115,7 +118,7 @@ const props = defineProps({
           <div
             class="m-4 text-white text-base font-bold leading-normal tracking-wide"
           >
-            {{activity.activityOwnerUserName }}
+            {{ activity.activityOwnerUserName }}
           </div>
           <div
             class="m-4 w-36 text-violet-100 text-base font-bold leading-normal tracking-wide"
@@ -135,7 +138,7 @@ const props = defineProps({
           <div
             class="m-4 text-white text-base font-bold leading-normal tracking-wide"
           >
-            {{activity.locationName}}
+            {{ activity.locationName }}
           </div>
           <div
             class="m-4 w-24 text-violet-100 text-base font-bold leading-normal tracking-wide"
@@ -155,7 +158,7 @@ const props = defineProps({
           <div
             class="m-4 text-white text-base font-bold leading-normal tracking-wide"
           >
-            24 พฤศจิกายน 2566
+            {{ Date(activity.activityDate) }}
           </div>
           <div
             class="m-4 text-violet-100 text-base font-bold leading-normal tracking-wide"

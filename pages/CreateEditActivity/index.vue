@@ -22,13 +22,7 @@ const getCategories = async () => {
   }
 };
 
-// const validateGoogleMapLink = (googleMapLink) => {
-//   const regex = /https?:\/\/www\.google\.com\/maps\/.*@.*\/.*[z\/]/;
-//   const isValid = regex.test(googleMapLink);
-//   if (!isValid) {
-//     errorDetails.value.push = "Please enter a valid Google Map link.";
-//   }
-// };
+
 const validateGoogleMapLink = (googleMapLink) => {
   const regex = /^https:\/\/maps\.app\.goo\.gl\/[^\s]+$/;
   const regex1 = /^https:\/\/www\.google\.co\.th\/maps\/.*/;
@@ -69,16 +63,16 @@ const validateDateTime = (activityDate, activityEndDate, registrationDate, regis
   console.log(annnouncementDate +" annnouncementDate " + annnouncementDate)
   if (getActivityDate > getActivityEndDate) {
     console.log("do if getActivityDate > getActivityEndDate ")
-    errorDetails.value.push("activity date must before activity end date");
+    errorDetails.value.push("Invalid activity date!");
   } else if (getregistrationDate > getRregistrationEndDate || getregistrationDate > getAnnnouncementDate || getregistrationDate > getActivityDate || getregistrationDate > getActivityEndDate) {
     console.log("do else if getregistrationDate > getRregistrationEndDate || getregistrationDate > getAnnnouncementDate || getregistrationDate > getActivityDate || getregistrationDate > getActivityEndDate")
-    errorDetails.value.push("registration date is wrong");
+    errorDetails.value.push("Invalid registration date!");
   } else if (getRregistrationEndDate > getAnnnouncementDate || getRregistrationEndDate > getActivityDate || getRregistrationEndDate > getActivityEndDate) {
     console.log("do else if getRregistrationEndDate > getAnnnouncementDate || getRregistrationEndDate > getActivityDate || getRregistrationEndDate > getActivityEndDate")
-    errorDetails.value.push("registration end date is wrong");
+    errorDetails.value.push("Invalid registration end date!");
   } else if (getAnnnouncementDate > getActivityDate || getRregistrationEndDate > getActivityEndDate) {
     console.log("do else if getAnnnouncementDate > getActivityDate || getRregistrationEndDate > getActivityEndDate")
-    errorDetails.value.push("announcement date is after the activity date");
+    errorDetails.value.push("Invalid announcement date!");
   }
 }
 
