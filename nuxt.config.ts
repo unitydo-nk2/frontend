@@ -1,5 +1,6 @@
 // nuxt.config.{js,ts}
 export default defineNuxtConfig({
+    
     modules: [
         '@nuxtjs/tailwindcss'
     ],
@@ -12,6 +13,7 @@ export default defineNuxtConfig({
                 { rel: 'icon', type: 'image/x-icon', href: '/unityDoicologo.ico' },
             ],
             script: [{ src: 'https://unpkg.com/flowbite@1.4.5/dist/flowbite.js' }]
-        }
-    }
+        },
+        baseURL: '/nk2/',
+    },
 })
