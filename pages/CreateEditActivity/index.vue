@@ -1,10 +1,12 @@
 <!-- @format -->
 
 <script setup>
+import { uploadFile } from "../firebase/firebase";
 const errorDetails = ref([]);
 const router = useRouter();
 let formData = new FormData();
 const categories = ref([]);
+const activitiesImages = ref([]);
 
 onBeforeMount(async () => {
   await getCategories();
@@ -22,7 +24,6 @@ const getCategories = async () => {
   }
 };
 
-
 const validateGoogleMapLink = (googleMapLink) => {
   const regex = /^https:\/\/maps\.app\.goo\.gl\/[^\s]+$/;
   const regex1 = /^https:\/\/www\.google\.co\.th\/maps\/.*/;
@@ -34,12 +35,12 @@ const validateGoogleMapLink = (googleMapLink) => {
     console.log("maps is google map format");
   } else {
     console.log("maps is not google map format");
-    errorDetails.value.push('Invalid google link map.')
+    errorDetails.value.push("Invalid google link map.");
   }
 };
 
 const validateLength = (string, label, length = 0) => {
-  console.log("checking " + label + " " + string)
+  console.log("checking " + label + " " + string);
   if (string.length > length) {
     errorDetails.value.push(
       label + " cannot more than " + length + " characters"
@@ -49,50 +50,90 @@ const validateLength = (string, label, length = 0) => {
   }
 };
 
-
-const validateDateTime = (activityDate, activityEndDate, registrationDate, registrationEndDate, annnouncementDate) => {
+const validateDateTime = (
+  activityDate,
+  activityEndDate,
+  registrationDate,
+  registrationEndDate,
+  annnouncementDate
+) => {
   let getActivityDate = new Date(activityDate);
-  console.log(getActivityDate+" getActivityDate " + getActivityDate)
+  console.log(getActivityDate + " getActivityDate " + getActivityDate);
   let getActivityEndDate = new Date(activityEndDate);
-  console.log(activityEndDate+" activityEndDate " + activityEndDate)
+  console.log(activityEndDate + " activityEndDate " + activityEndDate);
   let getregistrationDate = new Date(registrationDate);
-  console.log(registrationDate +" getregistrationDate " + getregistrationDate)
+  console.log(registrationDate + " getregistrationDate " + getregistrationDate);
   let getRregistrationEndDate = new Date(registrationEndDate);
-  console.log(registrationEndDate +" registrationEndDate " + registrationEndDate)
+  console.log(
+    registrationEndDate + " registrationEndDate " + registrationEndDate
+  );
   let getAnnnouncementDate = new Date(annnouncementDate);
-  console.log(annnouncementDate +" annnouncementDate " + annnouncementDate)
+  console.log(annnouncementDate + " annnouncementDate " + annnouncementDate);
   if (getActivityDate > getActivityEndDate) {
-    console.log("do if getActivityDate > getActivityEndDate ")
+    console.log("do if getActivityDate > getActivityEndDate ");
     errorDetails.value.push("Invalid activity date!");
-  } else if (getregistrationDate > getRregistrationEndDate || getregistrationDate > getAnnnouncementDate || getregistrationDate > getActivityDate || getregistrationDate > getActivityEndDate) {
-    console.log("do else if getregistrationDate > getRregistrationEndDate || getregistrationDate > getAnnnouncementDate || getregistrationDate > getActivityDate || getregistrationDate > getActivityEndDate")
+  } else if (
+    getregistrationDate > getRregistrationEndDate ||
+    getregistrationDate > getAnnnouncementDate ||
+    getregistrationDate > getActivityDate ||
+    getregistrationDate > getActivityEndDate
+  ) {
+    console.log(
+      "do else if getregistrationDate > getRregistrationEndDate || getregistrationDate > getAnnnouncementDate || getregistrationDate > getActivityDate || getregistrationDate > getActivityEndDate"
+    );
     errorDetails.value.push("Invalid registration date!");
-  } else if (getRregistrationEndDate > getAnnnouncementDate || getRregistrationEndDate > getActivityDate || getRregistrationEndDate > getActivityEndDate) {
-    console.log("do else if getRregistrationEndDate > getAnnnouncementDate || getRregistrationEndDate > getActivityDate || getRregistrationEndDate > getActivityEndDate")
+  } else if (
+    getRregistrationEndDate > getAnnnouncementDate ||
+    getRregistrationEndDate > getActivityDate ||
+    getRregistrationEndDate > getActivityEndDate
+  ) {
+    console.log(
+      "do else if getRregistrationEndDate > getAnnnouncementDate || getRregistrationEndDate > getActivityDate || getRregistrationEndDate > getActivityEndDate"
+    );
     errorDetails.value.push("Invalid registration end date!");
-  } else if (getAnnnouncementDate > getActivityDate || getRregistrationEndDate > getActivityEndDate) {
-    console.log("do else if getAnnnouncementDate > getActivityDate || getRregistrationEndDate > getActivityEndDate")
+  } else if (
+    getAnnnouncementDate > getActivityDate ||
+    getRregistrationEndDate > getActivityEndDate
+  ) {
+    console.log(
+      "do else if getAnnnouncementDate > getActivityDate || getRregistrationEndDate > getActivityEndDate"
+    );
     errorDetails.value.push("Invalid announcement date!");
   }
-}
+};
 
 const validateActivity = (activity) => {
-  console.log('checking')
+  console.log("checking");
   validateLength(activity.activityName, "activity name", 50);
   validateLength(activity.activityOwnerUserName, "username", 50);
   validateLength(activity.activityBriefDescription, "brief description", 100);
   validateLength(activity.activityDescription, "description", 300);
-  if (activity.suggestionNotes != undefined || activity.suggestionNotes != null) {
+  if (
+    activity.suggestionNotes != undefined ||
+    activity.suggestionNotes != null
+  ) {
     validateLength(activity.suggestionNotes, "suggestoin Note", 500);
   }
-  validateDateTime(activity.activityDate, activity.activityEndDate, activity.registerStartDate, activity.registerEndDate, activity.announcementDate);
-  if (activity.activityFormat !== "online") { validateGoogleMapLink(activity.googleMapLink); }
-  validateLocation(activity.activityFormat, activity.locationName, activity.googleMapLink);
+  validateDateTime(
+    activity.activityDate,
+    activity.activityEndDate,
+    activity.registerStartDate,
+    activity.registerEndDate,
+    activity.announcementDate
+  );
+  if (activity.activityFormat !== "online") {
+    validateGoogleMapLink(activity.googleMapLink);
+  }
+  validateLocation(
+    activity.activityFormat,
+    activity.locationName,
+    activity.googleMapLink
+  );
 };
-      
+
 const validateLocation = (format, location, googleMapLink) => {
-  console.log("location " + location)
-  console.log("googleMapLink " + googleMapLink)
+  console.log("location " + location);
+  console.log("googleMapLink " + googleMapLink);
   if (format == "online") {
     if (location.length == 0 || location.length == null) {
       errorDetails.value.push("meeting platform is requied");
@@ -108,14 +149,51 @@ const validateLocation = (format, location, googleMapLink) => {
   }
 };
 
-const createNewActivity = async (activity) => {
-  errorDetails.value = []
+const imageUpload = async (images, activityId) => {
+  console.log("imageUpload is called");
+  console.log("activityId " + activityId);
+  await images.forEach(async (image) => {
+    if (image.file !== undefined || image.file !== "" || image.file !== null) {
+      let imageFormData = new FormData();
+      let getImagePath = await uploadFile(image.file);
+
+      let newImage = JSON.stringify({
+        activityId: activityId,
+        label: image.alt,
+        alt: image.alt,
+        imagePath: await getImagePath,
+      });
+
+      const imageBlob = new Blob([await newImage], {
+        type: "application/json",
+      });
+
+      imageFormData.append("image", await imageBlob);
+
+      const res = await fetch(
+        `${import.meta.env.VITE_BASE_URL}/activities/images`,
+        {
+          method: "POST",
+          body: imageFormData,
+        }
+      );
+
+      if ((await res.status) === 200) {
+        alert("your image have added!!");
+      } else {
+        console.log("cannot get data");
+      }
+    }
+  });
+};
+
+const createNewActivity = async (activity, file) => {
+  errorDetails.value = [];
   console.log("createNewRegistration call");
-  console.log(activity);
   validateActivity(activity);
-  console.log('errorDetails' + errorDetails.value)
+  console.log("errorDetails" + errorDetails.value);
   if (errorDetails.value.length == 0) {
-    let userName = JSON.stringify(activity.activityOwnerUserName);
+    let userName = activity.activityOwnerUserName;
     let newActivity = JSON.stringify({
       activityName: activity.activityName,
       activityBriefDescription: activity.activityBriefDescription,
@@ -147,6 +225,7 @@ const createNewActivity = async (activity) => {
     const newlocationBlob = new Blob([newlocation], {
       type: "application/json",
     });
+
     formData.append("user", userNameBlob);
     formData.append("location", newlocationBlob);
     formData.append("activity", newActivityBlob);
@@ -157,7 +236,10 @@ const createNewActivity = async (activity) => {
     });
     if (res.status === 200) {
       alert("you successfully create the activity !!");
-      router.push({ path: "/Activities" });
+      let data = await res.json();
+      console.log("data " + (await data));
+      await imageUpload(file, data.activityId);
+      await router.push({ path: "/Activities" });
     } else {
       console.log("cannot get data");
     }

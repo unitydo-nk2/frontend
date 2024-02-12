@@ -1,12 +1,15 @@
 <!-- @format -->
 
 <script setup>
+const emit = defineEmits(["updateRegistrationStatus"]);
+
 const props = defineProps({
   user: {
     type: Object,
     default: {},
   },
 });
+
 </script>
 
 <template>
@@ -106,7 +109,7 @@ const props = defineProps({
               ศาสนา : {{ user.religion }}
             </div>
             <div class="w-22 text-stone-500 text-sm font-normal leading-none">
-              เบอร์โทรศัพท์ : {{ user.telephoneNumeber }}
+              เบอร์โทรศัพท์ : {{ user.telephoneNumber }}
             </div>
             <div
               class="col-span-2 w-22 text-stone-500 text-sm font-normal leading-none"
@@ -241,12 +244,13 @@ const props = defineProps({
       </div> -->
       <!-- buttons -->
     </div>
-    <!-- <div
+    <div
         class="w-full h-20 bg-stone-50  border border-neutral-200"
       >
         <div class="flex justify-center gap-8 mt-4">
           <button
-            class="w-36 h-12 px-6 py-2.5 bg-green-600 rounded-xl justify-center items-center gap-2.5 inline-flex"
+            class="w-36 h-12 px-6 py-2.5 bg-green-600 rounded-xl justify-center items-center gap-2.5 inline-flex hover:bg-green-700"
+            @click="$emit('updateRegistrationStatus', user.registrationId ,'selected' )"
           >
             <div
               class="text-white text-base font-normal leading-7 tracking-wide"
@@ -255,7 +259,8 @@ const props = defineProps({
             </div>
           </button>
             <button
-              class="w-36 h-12 px-7 py-2.5 bg-red-600 rounded-xl border border-red-600 justify-center items-center gap-2.5 inline-flex"
+              class="w-36 h-12 px-7 py-2.5 bg-red-600 rounded-xl border border-red-600 justify-center items-center gap-2.5 inline-flex hover:bg-red-700"
+              @click="$emit('updateRegistrationStatus', user.registrationId ,'declined' )"
             >
               <div
                 class="text-white text-base font-normal leading-7 tracking-wide"
@@ -264,7 +269,7 @@ const props = defineProps({
               </div>
             </button>
           </div>
-        </div> -->
+        </div>
   </div>
 </template>
 

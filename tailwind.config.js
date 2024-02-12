@@ -37,6 +37,7 @@ module.exports = {
       colors: {
         "unityDo-primary": "#5628FF",
         "unityDo-primary-light": "#EDE8FF",
+        "bg-unityDo-grey":"#D9D9D9",
         "unityDo-deep-grey": "#323335",
         "unityDo-light-grey": "#ECEAE9",
         "unityDo-middle-grey": "#C0C0C0",
