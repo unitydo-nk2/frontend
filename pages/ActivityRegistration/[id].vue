@@ -93,7 +93,7 @@ const createNewRegistration = async (user) => {
     );
     if (res.status === 200) {
       alert('you successfully create the registrarion !!')
-      router.push({ path: '/Activities' });
+      router.push({ path: '/Activities/' });
     } else {
       console.log("cannot get data");
     }

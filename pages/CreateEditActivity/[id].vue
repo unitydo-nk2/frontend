@@ -262,7 +262,7 @@ const updateActivity = async (activityId, activity, file) => {
   if (res.status === 200) {
     alert("you successfully update activity !!");
     await updateImageUpload(file);
-    await router.push({ path: "/Activities" });
+    await router.push({ path: "/Activities/" });
   } else {
     console.log("cannot get data");
   }

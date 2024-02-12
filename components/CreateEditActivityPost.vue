@@ -96,10 +96,10 @@ const getImageId = (alt) => {
 };
 
 const fileUpload = ref([
-  { name: "", 
-  label: "poster", 
-  alt: "poster", 
-  file: "", 
+  { name: "",
+  label: "poster",
+  alt: "poster",
+  file: "",
   imageId: 0 },
   {
     name: "",
@@ -138,6 +138,8 @@ const fileUpload = ref([
   },
 ]);
 
+
+
 const findIndexByAlt = (arr, alt) => {
   for (let i = 0; i < arr.length; i++) {
     if (arr[i].alt === alt) {
@@ -147,16 +149,46 @@ const findIndexByAlt = (arr, alt) => {
   return -1; // Return -1 if not found
 };
 
+// const uploadImage = async (event, alt, imgId) => {
+//   const maxSize = 15 * 1024 * 1024; // 15 MB
+//   let index = findIndexByAlt(fileUpload.value, alt);
+//   console.log("index " + index);
+
+//   fileUpload.value[index].file = event.target.files[0];
+//   fileUpload.value[index].name = alt;
+//   fileUpload.value[index].imageId = imgId;
+
+//   if (fileUpload.value.size > maxSize) {
+//     console.log("File size exceeds 15 MB. Clearing file...");
+//     alert("File size exceeds 15 MB. Please select a smaller file.");
+//     clearFile();
+//     // fileUpload.value = null;
+//   } else {
+//     console.log("File size within limits.");
+//   }
+// };
+
 const uploadImage = async (event, alt, imgId) => {
   const maxSize = 15 * 1024 * 1024; // 15 MB
+  const allowedTypes = ['image/jpeg', 'image/png']; // Allowed file types
+
   let index = findIndexByAlt(fileUpload.value, alt);
   console.log("index " + index);
 
-  fileUpload.value[index].file = event.target.files[0];
-  fileUpload.value[index].name = alt;
+  const file = event.target.files[0];
+
+  // Check if file type is allowed
+  if (!allowedTypes.includes(file.type)) {
+    console.log("Invalid file type. Only JPEG and PNG files are allowed.");
+    alert("Invalid file type. Only JPEG and PNG files are allowed.");
+    return; // Stop further execution
+  }
+
+  fileUpload.value[index].file = file;
+  fileUpload.value[index].name = file.name;
   fileUpload.value[index].imageId = imgId;
 
-  if (fileUpload.value.size > maxSize) {
+  if (file.size > maxSize) {
     console.log("File size exceeds 15 MB. Clearing file...");
     alert("File size exceeds 15 MB. Please select a smaller file.");
     clearFile();
@@ -164,7 +196,7 @@ const uploadImage = async (event, alt, imgId) => {
   } else {
     console.log("File size within limits.");
   }
-};
+}
 </script>
 <template>
   <div v-if="newActivity" class="w-full m-4">
@@ -450,7 +482,7 @@ const uploadImage = async (event, alt, imgId) => {
           class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
           for="grid-first-name"
         >
-          รูปภาพโปสเตอร์
+          รูปภาพโปสเตอร์ {{ fileUpload[0].name }}
         </label>
         <div class="flex bg-grey-lighter">
           <div v-if="status == 'edit' && getImage('poster') !== undefined">
@@ -458,6 +490,7 @@ const uploadImage = async (event, alt, imgId) => {
               <img :src="getImage('poster')" />
             </div>
           </div>
+
           <label
             class="w-full flex flex-col items-center px-4 py-6 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase border border-dashed border-gray-500 relative cursor-pointer hover:bg-gray-300 hover:text-white"
           >
@@ -484,6 +517,7 @@ const uploadImage = async (event, alt, imgId) => {
               "
             />
           </label>
+          <div></div>
         </div>
       </div>
       <div class="w-full md:w-1/2 px-3"></div>
@@ -494,7 +528,7 @@ const uploadImage = async (event, alt, imgId) => {
           class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
           for="grid-first-name"
         >
-          รูปภาพรายละเอียด(1) *ถ้ามี 
+          รูปภาพรายละเอียด(1) *ถ้ามี {{ fileUpload[1].name }}
         </label>
         <div class="flex bg-grey-lighter">
           <div
@@ -549,7 +583,7 @@ const uploadImage = async (event, alt, imgId) => {
           class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
           for="grid-first-name"
         >
-          รูปภาพรายละเอียด(2) *ถ้ามี
+          รูปภาพรายละเอียด(2) *ถ้ามี {{ fileUpload[2].name }}
         </label>
         <div class="flex bg-grey-lighter">
           <label
@@ -592,7 +626,7 @@ const uploadImage = async (event, alt, imgId) => {
           class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
           for="grid-first-name"
         >
-          รูปภาพรายละเอียด(3) *ถ้ามี
+          รูปภาพรายละเอียด(3) *ถ้ามี {{ fileUpload[3].name }}
         </label>
         <div class="flex bg-grey-lighter">
           <div
@@ -640,7 +674,7 @@ const uploadImage = async (event, alt, imgId) => {
           class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
           for="grid-first-name"
         >
-          รูปภาพรายละเอียด(4) *ถ้ามี
+          รูปภาพรายละเอียด(4) *ถ้ามี {{ fileUpload[4].name }}
         </label>
         <div class="flex bg-grey-lighter">
           <div
@@ -690,7 +724,7 @@ const uploadImage = async (event, alt, imgId) => {
           class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
           for="grid-first-name"
         >
-          รูปภาพรายละเอียด(5) *ถ้ามี
+          รูปภาพรายละเอียด(5) *ถ้ามี {{ fileUpload[5].name }}
         </label>
         <div class="flex bg-grey-lighter">
           <div

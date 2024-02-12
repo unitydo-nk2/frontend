@@ -4,6 +4,7 @@
 
 const activities = ref([])
 const mainCategories = ref([])
+const activityImages = ref([]);
 
 onBeforeMount(async () => {
   await getActivities()
@@ -29,6 +30,21 @@ const getMainCategories = async () => {
     console.log('cannot get data')
   }
 }
+
+const getActivityImages = async (id) => {
+  const res = await fetch(
+    `${import.meta.env.VITE_BASE_URL}/activities/${id}/images`,
+    {
+      method: "GET",
+    }
+  );
+  if (res.status === 200) {
+    activityImages.value = await res.json();
+    console.log("value " + activity.value);
+  } else {
+    console.log("cannot get data");
+  }
+};
 </script>
 
 <template>
@@ -72,6 +88,7 @@ const getMainCategories = async () => {
             <ActivityListWithFilter
               :activities="activities"
               :mainCategories="mainCategories"
+              :activityImages="activityImages"
             />
           </div>
         </div>
