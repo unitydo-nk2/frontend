@@ -18,6 +18,8 @@
   },
   "dependencies": {
     "firebase": "^10.8.0",
-    "flowbite": "^2.2.0"
+    "flowbite": "^2.2.0",
+    "google-auth-library": "^8.7.0",
+    "nuxt-vue3-google-signin": "^0.0.8"
   }
 }
