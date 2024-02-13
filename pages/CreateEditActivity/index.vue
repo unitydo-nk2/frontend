@@ -239,7 +239,7 @@ const createNewActivity = async (activity, file) => {
       let data = await res.json();
       console.log("data " + (await data));
       await imageUpload(file, data.activityId);
-      await router.push({ path: "/Activities" });
+      await router.push({ path: "/Activities/" });
     } else {
       console.log("cannot get data");
     }

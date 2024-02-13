@@ -6,7 +6,16 @@ const props = defineProps({
     type: Array,
     default: [],
   },
+      activityImages: {
+    type: Array,
+    default: [],
+  },
 });
+
+const getImage = (alt) => {
+  const foundObject = props.activityImages.find((obj) => obj.alt === alt);
+  return foundObject ? foundObject.imagepath : undefined;
+};
 </script>
 
 <template>
@@ -21,10 +30,18 @@ const props = defineProps({
         >
           <nuxt-link :to="`/Activities/${activity.id}`">
             <img
+              v-if="activity.imagePath == null"
               class="w-full"
               src="/image/radioActiveCamp.png"
               alt="Sunset in the mountains"
             />
+            <img
+              v-else
+              class="w-full"
+              :src="activity.imagePath"
+              alt="Sunset in the mountains"
+            />
+            <!-- <img class="h-full w-full" :src="getImage('poster')" /> -->
             <div class="px-6 py-4">
               <div class="font-bold text-xl mb-2">
                 {{ activity.activityName }}

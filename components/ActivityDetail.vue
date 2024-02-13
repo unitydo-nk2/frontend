@@ -5,7 +5,18 @@ const props = defineProps({
     type: Object,
     default: {},
   },
+    activityImages: {
+    type: Array,
+    default: [],
+  },
 });
+
+const getImage = (alt) => {
+  const foundObject = props.activityImages.find((obj) => obj.alt === alt);
+  return foundObject ? foundObject.imagepath : undefined;
+};
+
+
 </script>
 
 <template>
@@ -14,24 +25,25 @@ const props = defineProps({
   >
     <div class="grid">
       <div class="m-4">
-        <img class="h-full w-full" src="/image/detailbig.png" alt="" />
+        <img class="h-full w-full" :src="getImage('poster')" />
       </div>
+
       <div>
         <div class="m-4 flex gap-2">
           <div>
-            <img class="h-full w-full" src="/image/detailsmall.png" alt="" />
+            <img class="h-full w-full" :src="getImage('activityDetail1')" />
           </div>
           <div>
-            <img class="h-full w-full" src="/image/detailsmall.png" alt="" />
+            <img class="h-full w-full" :src="getImage('activityDetail2')" />
           </div>
           <div>
-            <img class="h-full w-full" src="/image/detailsmall.png" alt="" />
+            <img class="h-full w-full" :src="getImage('activityDetail3')" />
           </div>
           <div>
-            <img class="h-full w-full" src="/image/detailsmall.png" alt="" />
+            <img class="h-full w-full" :src="getImage('activityDetail4')" />
           </div>
           <div>
-            <img class="h-full w-full" src="/image/detailsmall.png" alt="" />
+            <img class="h-full w-full" :src="getImage('activityDetail5')" />
           </div>
         </div>
       </div>

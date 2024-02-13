@@ -63,7 +63,7 @@
               >
             </li>
           </nuxt-link>
-          <nuxt-link to="/Activities">
+          <nuxt-link to="/Activities/">
             <li>
               <!-- <button
                 id="dropdownNavbarLink"
