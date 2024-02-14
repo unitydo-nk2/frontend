@@ -1,3 +1,5 @@
+<!-- @format -->
+
 <script setup>
 const props = defineProps({
   users: {
@@ -48,7 +50,8 @@ const props = defineProps({
                     <th
                       class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
                     >
-Name                    </th>
+                      Name
+                    </th>
                     <th
                       class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
                     >
@@ -62,15 +65,16 @@ Name                    </th>
                     <th
                       class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
                     >
-                status</th>
-                <th
+                      status
+                    </th>
+                    <th
                       class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
                     >
-                registration date</th>
-                <th
+                      registration date
+                    </th>
+                    <th
                       class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
-                    >
-                </th>
+                    ></th>
                   </tr>
                 </thead>
 
@@ -84,34 +88,34 @@ Name                    </th>
                     <td
                       class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
                     >
-                    {{ user.username }}
+                      {{ user.username }}
                     </td>
                     <td
                       class="border-t-0 px-6 align-center border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
                     >
-                    {{ user.gender }}
+                      {{ user.gender }}
                     </td>
                     <td
                       class="border-t-0 px-6 align-center border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
                     >
-                    {{ user.status }}
+                      {{ user.status }}
                     </td>
                     <td
                       class="border-t-0 px-6 align-center border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
                     >
-                    {{ Date(user.registrationDate) }}
+                      {{ Date(user.registrationDate) }}
                     </td>
                     <td
                       class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
                     >
-                    <nuxt-link :to="`/UserDetails/${user.registrationId}`">
-                      <button
-                        type="button"
-                        class="inline-block rounded border-2 border-primary px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-primary transition duration-150 ease-in-out hover:border-primary-600 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-primary-600 focus:border-primary-600 focus:text-primary-600 focus:outline-none focus:ring-0 active:border-primary-700 active:text-primary-700 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
-                        data-te-ripple-init
-                      >
-                      show details
-                      </button>
+                      <nuxt-link :to="`/UserDetails/${user.registrationId}`">
+                        <button
+                          type="button"
+                          class="inline-block rounded border-2 border-primary px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-primary transition duration-150 ease-in-out hover:border-primary-600 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-primary-600 focus:border-primary-600 focus:text-primary-600 focus:outline-none focus:ring-0 active:border-primary-700 active:text-primary-700 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
+                          data-te-ripple-init
+                        >
+                          show details
+                        </button>
                       </nuxt-link>
                     </td>
                   </tr>

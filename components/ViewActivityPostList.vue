@@ -1,3 +1,5 @@
+<!-- @format -->
+
 <script setup>
 const emit = defineEmits(["deleteActivity"]);
 
@@ -10,15 +12,13 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="font-primary w-full">
+  <div class="font-primary w-full ">
     <div class="px-4 grid">
       <div class="p-4 rounded-lg dark:border-gray-700">
-        <div class="text-zinc-400 text-base font-normal font-['DB Heavent']">
+        <div class="text-zinc-400 text-base font-normal ">
           Activities > Activity Detail
         </div>
-        <div
-          class="text-zinc-900 text-2xl font-bold font-['DB Heavent'] tracking-wide"
-        >
+        <div class="text-zinc-900 text-4xl font-bold tracking-wide">
           โพสต์กิจกรรรมทั้งหมด
         </div>
         <div class="w-full h-px mt-4 mb-2 border border-stone-300"></div>
@@ -43,9 +43,7 @@ const props = defineProps({
               />
             </svg>
 
-            <div
-              class="w-36 text-indigo-600 text-base font-medium font-['DB Heavent']"
-            >
+            <div class="w-36 text-indigo-600 text-2xl font-medium ">
               Create Post
             </div>
           </button>
@@ -135,7 +133,7 @@ const props = defineProps({
             <div class="rounded-t mb-0 px-4 py-3 border-0">
               <div class="flex flex-wrap items-center">
                 <div class="relative w-full px-4 max-w-full flex-grow flex-1">
-                  <h3 class="font-semibold text-base text-blueGray-700">
+                  <h3 class="font-semibold text-3xl text-blueGray-700">
                     All activities
                   </h3>
                 </div>
@@ -147,22 +145,22 @@ const props = defineProps({
                 <thead>
                   <tr>
                     <th
-                      class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+                      class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xl uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
                     >
                       Activity Name
                     </th>
                     <th
-                      class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+                      class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xl uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
                     >
                       Activity Owner
                     </th>
                     <th
-                      class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+                      class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xl uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
                     >
                       Categories
                     </th>
                     <th
-                      class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+                      class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xl uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
                     ></th>
                   </tr>
                 </thead>
@@ -170,22 +168,22 @@ const props = defineProps({
                 <tbody>
                   <tr v-for="(activity, index) in activities" :key="index">
                     <th
-                      class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700"
+                      class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-lg whitespace-nowrap p-4 text-left text-blueGray-700"
                     >
                       {{ activity.activityName }}
                     </th>
                     <td
-                      class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                      class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-lg whitespace-nowrap p-4"
                     >
                       {{ activity.activityOwnerUsername }}
                     </td>
                     <td
-                      class="border-t-0 px-6 align-center border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                      class="border-t-0 px-6 align-center border-l-0 border-r-0 text-lg whitespace-nowrap p-4"
                     >
                       {{ activity.mainCategory }} / {{ activity.category }}
                     </td>
                     <td
-                      class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 inline-flex gap-10"
+                      class="border-t-0 px-6 align-middle border-l-0 border-r-0 text- whitespace-nowrap p-4 inline-flex gap-10"
                     >
                       <div>
                         <img
@@ -197,11 +195,11 @@ const props = defineProps({
                       </div>
                       <div>
                         <nuxt-link :to="`/CreateEditActivity/${activity.id}`">
-                        <img
-                          class="cursor-pointer hover:drop-shadow-2xl"
-                          src="/image/edit.svg"
-                          alt="edit"
-                        />
+                          <img
+                            class="cursor-pointer hover:drop-shadow-2xl"
+                            src="/image/edit.svg"
+                            alt="edit"
+                          />
                         </nuxt-link>
                       </div>
                     </td>

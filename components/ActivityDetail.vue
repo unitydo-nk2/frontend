@@ -15,8 +15,6 @@ const getImage = (alt) => {
   const foundObject = props.activityImages.find((obj) => obj.alt === alt);
   return foundObject ? foundObject.imagepath : undefined;
 };
-
-
 </script>
 
 <template>
@@ -25,25 +23,57 @@ const getImage = (alt) => {
   >
     <div class="grid">
       <div class="m-4">
-        <img class="h-full w-full" :src="getImage('poster')" />
+        <!-- <img class="h-96 w-full" :src="getImage('poster')" /> -->
+        <img
+          class="h-96 w-full"
+          :src="getImage('poster')"
+          v-if="getImage('poster')"
+        />
+        <img class="h-96 w-full" src="/image/noPhoto.png" v-else />
       </div>
 
       <div>
-        <div class="m-4 flex gap-2">
+        <div class="m-4 flex gap-2 justify-center">
           <div>
-            <img class="h-full w-full" :src="getImage('activityDetail1')" />
+            <!-- <img class="h-28 w-full" :src="getImage('activityDetail1')" /> -->
+            <img
+              class="h-28 w-full"
+              :src="getImage('activityDetail1')"
+              v-if="getImage('activityDetail1')"
+            />
+            <img class="h-28 w-full" src="/image/noPhoto.png" v-else />
           </div>
           <div>
-            <img class="h-full w-full" :src="getImage('activityDetail2')" />
+            <img
+              class="h-28 w-full"
+              :src="getImage('activityDetail2')"
+              v-if="getImage('activityDetail2')"
+            />
+            <img class="h-28 w-full" src="/image/noPhoto.png" v-else />
           </div>
           <div>
-            <img class="h-full w-full" :src="getImage('activityDetail3')" />
+            <img
+              class="h-28 w-full"
+              :src="getImage('activityDetail3')"
+              v-if="getImage('activityDetail3')"
+            />
+            <img class="h-28 w-full" src="/image/noPhoto.png" v-else />
           </div>
           <div>
-            <img class="h-full w-full" :src="getImage('activityDetail4')" />
+            <img
+              class="h-28 w-full"
+              :src="getImage('activityDetail4')"
+              v-if="getImage('activityDetail4')"
+            />
+            <img class="h-28 w-full" src="/image/noPhoto.png" v-else />
           </div>
           <div>
-            <img class="h-full w-full" :src="getImage('activityDetail5')" />
+            <img
+              class="h-28 w-full"
+              :src="getImage('activityDetail5')"
+              v-if="getImage('activityDetail5')"
+            />
+            <img class="h-28 w-full" src="/image/noPhoto.png" v-else />
           </div>
         </div>
       </div>

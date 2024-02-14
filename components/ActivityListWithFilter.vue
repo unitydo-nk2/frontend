@@ -119,8 +119,7 @@ const searchData = computed(() => {
 
             <!-- Product grid -->
             <div class="lg:col-span-3">
-              <ActivityListCard :activities="searchData" 
-              />
+              <ActivityListCard :activities="searchData" />
             </div>
           </div>
         </section>

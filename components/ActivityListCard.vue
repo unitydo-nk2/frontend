@@ -31,17 +31,17 @@ const getImage = (alt) => {
           <nuxt-link :to="`/Activities/${activity.id}`">
             <img
               v-if="activity.imagePath == null"
-              class="w-full"
-              src="/image/radioActiveCamp.png"
+              src="/image/noPhoto.png"
               alt="Sunset in the mountains"
+              class="w-full h-60"
             />
             <img
               v-else
-              class="w-full"
               :src="activity.imagePath"
               alt="Sunset in the mountains"
+              class="w-full h-60"
             />
-            <!-- <img class="h-full w-full" :src="getImage('poster')" /> -->
+
             <div class="px-6 py-4">
               <div class="font-bold text-xl mb-2">
                 {{ activity.activityName }}

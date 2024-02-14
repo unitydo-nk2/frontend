@@ -149,25 +149,6 @@ const findIndexByAlt = (arr, alt) => {
   return -1; // Return -1 if not found
 };
 
-// const uploadImage = async (event, alt, imgId) => {
-//   const maxSize = 15 * 1024 * 1024; // 15 MB
-//   let index = findIndexByAlt(fileUpload.value, alt);
-//   console.log("index " + index);
-
-//   fileUpload.value[index].file = event.target.files[0];
-//   fileUpload.value[index].name = alt;
-//   fileUpload.value[index].imageId = imgId;
-
-//   if (fileUpload.value.size > maxSize) {
-//     console.log("File size exceeds 15 MB. Clearing file...");
-//     alert("File size exceeds 15 MB. Please select a smaller file.");
-//     clearFile();
-//     // fileUpload.value = null;
-//   } else {
-//     console.log("File size within limits.");
-//   }
-// };
-
 const uploadImage = async (event, alt, imgId) => {
   const maxSize = 15 * 1024 * 1024; // 15 MB
   const allowedTypes = ['image/jpeg', 'image/png']; // Allowed file types
