@@ -1,16 +1,15 @@
 // nuxt.config.{js,ts}
 export default defineNuxtConfig({
-
+    ssr: false,
     modules: [
-        '@nuxtjs/tailwindcss',
-        "nuxt-vue3-google-signin"
+        '@nuxtjs/tailwindcss'
     ],
-    // Google sign in
-    googleSignIn: {
-        clientId: "13010651370-m27hl09kfndvo81ldnmj5mmk68ai0vcs.apps.googleusercontent.com",
+    nitro: {
+    prerender: {
+      autoSubfolderIndex: true,
     },
-
-    app: {
+  },
+  app: {
         head: {
             title: 'unity Do - Uniting for a Better YOU',
             charset: 'utf-8',
