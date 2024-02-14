@@ -1,210 +1,85 @@
 <!-- @format -->
 
-<script setup></script>
+<script setup>
+const errorDetails = ref([]);
+let formData = new FormData()
+
+const validateEmail = (email) => {
+  console.log("email = " + email);
+  let validRegex =
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  if (email.match(validRegex)) {
+  } else {
+    errorDetails.value.push("email is not in email format");
+  }
+};
+
+const validateLength = (string, label, length = 0) => {
+  if (label == "email") {
+    validateEmail(string);
+  }
+  if (string.length > length) {
+    errorDetails.value.push(
+      label + " cannot more than " + length + " characters"
+    );
+  } else if (string.length == 0 || string == undefined || string == null) {
+    errorDetails.value.push(label + " is requied");
+  }
+};
+
+const validateUser = (user) => {
+  console.log("checking");
+  validateLength(user.name, "name", 50);
+  validateLength(user.surName, "surname", 50);
+  validateLength(user.email, "email", 100);
+  // validateLength(user.dateOfBirth, "date of birth");
+  validateLength(user.religion, "religion", 100);
+  validateLength(user.gender, "gender", 50);
+  validateLength(user.address, "address", 500);
+  validateLength(user.telephoneNumber, "telephone number", 10);
+  validateLength(user.emergencyPhoneNumber, "emergency phone number", 10);
+};
+
+const createUser = async (user) => {
+  // alert("hello world")
+  errorDetails.value = [];
+  validateUser(user);
+  if (errorDetails.value.length == 0) {
+    let userJson = JSON.stringify({
+      name: user.name,
+      surName: user.surName,
+      username: user.email,
+      password: user.password,
+      nickName: user.nickName,
+      email: user.email,
+      gender: user.gender,
+      dateOfBirth: user.dateOfBirth,
+      religion: user.religion,
+      telephoneNumber: user.telephoneNumber,
+      address: user.address,
+      emergencyPhoneNumber: user.emergencyPhoneNumber,
+    });
+    const blob = new Blob([userJson], { type: "application/json" });
+    formData.append("user", blob);
+    const res = await fetch(
+      `${import.meta.env.VITE_BASE_URL}/users/`,
+      { method: "POST", body: formData }
+    );
+    if (res.status === 200) {
+      alert('you successfully create user !!')
+      // router.push({ path: '/Activities/' });
+    } else {
+      console.log("cannot get data");
+    }
+}else {
+    alert(errorDetails.value);
+  }
+};
+
+</script>
 
 <template>
-  <section class="bg-white dark:bg-gray-900">
-    <div class="flex justify-center min-h-screen">
-      <div
-        class="flex items-center w-full max-w-3xl p-8 mx-auto lg:px-12 lg:w-3/5"
-      >
-        <div class="w-full">
-          <img
-            class="w-auto h-18 sm:h-16 "
-            src="../../public/unityDoicologo.ico"
-            alt=""
-          />
-          <h1
-            class="text-2xl font-semibold tracking-wider text-gray-800 capitalize dark:text-white pt-4"
-          >
-            Get your free account now.
-          </h1>
-
-          <p class="mt-4 text-gray-500 dark:text-gray-400">
-            Let’s get you all set up so you can verify your personal account and
-            begin setting up your profile.
-          </p>
-
-          <div class="mt-6">
-            <h1 class="text-unityDo-deep-grey">Select type of account</h1>
-
-            <div class="mt-3 md:flex md:items-center md:-mx-2">
-              <button
-                class="flex justify-center w-full px-6 py-3 mt-4 text-unityDo-primary border border-unityDo-primary hover:bg-unityDo-primary hover:text-white hover:border-transparent rounded-lg md:mt-0 md:w-auto md:mx-2 dark:border-blue-400 dark:text-unityDo-primary focus:outline-none"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="w-6 h-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                  />
-                </svg>
-                <span class="mx-2"> User </span>
-              </button>
-              <button
-                class="flex justify-center w-full px-6 py-3 mt-4 text-unityDo-primary border border-unityDo-primary hover:bg-unityDo-primary hover:text-white hover:border-transparent rounded-lg md:mt-0 md:w-auto md:mx-2 dark:border-unityDo-primary dark:text-unityDo-primary focus:outline-none"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="w-6 h-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                  />
-                </svg>
-
-                <span class="mx-2"> Owner Activities </span>
-              </button>
-            </div>
-          </div>
-
-          <form class="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2">
-            <div>
-              <label class="block mb-2 text-sm text-gray-600 dark:text-gray-200"
-                >First name</label
-              >
-              <input
-                type="text"
-                placeholder="John"
-                class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
-              />
-            </div>
-
-            <div>
-              <label class="block mb-2 text-sm text-gray-600 dark:text-gray-200"
-                >Last name</label
-              >
-              <input
-                type="text"
-                placeholder="Snow"
-                class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
-              />
-            </div>
-
-            <div>
-              <label class="block mb-2 text-sm text-gray-600 dark:text-gray-200"
-                >Phone number</label
-              >
-              <input
-                type="text"
-                placeholder="XXX-XX-XXXX-XXX"
-                class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
-              />
-            </div>
-
-            <div>
-              <label class="block mb-2 text-sm text-gray-600 dark:text-gray-200"
-                >Email
-              </label>
-              <input
-                type="email"
-                placeholder="johnsnow@example.com"
-                class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
-              />
-            </div>
-
-            <div>
-              <label class="block mb-2 text-sm text-gray-600 dark:text-gray-200"
-                >Password</label
-              >
-              <input
-                type="password"
-                placeholder="Enter your password"
-                class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
-              />
-            </div>
-
-            <div>
-              <label class="block mb-2 text-sm text-gray-600 dark:text-gray-200"
-                >Confirm password</label
-              >
-              <input
-                type="password"
-                placeholder="Enter your password"
-                class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
-              />
-            </div>
-            <div>
-              <label class="block mb-2 text-sm text-gray-600 dark:text-gray-200"
-                >Telephone number</label
-              >
-              <input
-                type="password"
-                placeholder="Enter your password"
-                class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
-              />
-            </div>
-
-            <div>
-              <label class="block mb-2 text-sm text-gray-600 dark:text-gray-200"
-                >Emergency phone number</label
-              >
-              <input
-                type="password"
-                placeholder="Enter your password"
-                class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
-              />
-            </div>
-            <div class="col-span-2">
-              <label class="text-sm text-gray-600 dark:text-gray-200 "
-                >Your address</label
-              >
-              <input
-                type="password"
-                placeholder="Enter your password"
-                class="block w-full px-5 py-10 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
-              />
-            </div>
-            <!-- <button
-              class="flex items-center justify-between w-full px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50 mt-4"
-            >
-            
-              <span>Sign Up </span>
-
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="w-5 h-5 rtl:-scale-x-100"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-            </button> -->
-            <div></div>
-            <div class="flex justify-end gap-3 pt-2">
-              <button
-                class=" hover:bg-unityDo-primary text-unityDo-primary hover:text-white font-semibold  font-bold py-2 px-4 border border-unityDo-primary rounded "
-              >
-                Cancel
-              </button>
-              <button
-               class=" hover:bg-unityDo-primary text-unityDo-primary hover:text-white font-semibold  font-bold py-2 px-4 border border-unityDo-primary rounded "
-              >
-                Sign Up
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
+ <UserRegistration @userRegistration="createUser"/>
 </template>
 
 <style></style>
