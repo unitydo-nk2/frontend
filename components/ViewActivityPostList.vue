@@ -24,7 +24,7 @@ const props = defineProps({
         <div class="w-full h-px mt-4 mb-2 border border-stone-300"></div>
       </div>
       <div class="flex flex-in-line px-4 gap-4 justify-between">
-        <nuxt-link to="/CreateEditActivity">
+        <a @click= "navigateTo('/Activities/')">
           <button
             class="w-44 h-9 px-2.5 py-1.5 rounded-md border border-indigo-600 justify-start items-center gap-1 inline-flex"
           >
@@ -47,7 +47,7 @@ const props = defineProps({
               Create Post
             </div>
           </button>
-        </nuxt-link>
+        </a>
         <!-- <div class="flex gap-4">
         <button
           class="w-28 border text-neutral-500 text-base font-medium font-['DB Heavent']"
