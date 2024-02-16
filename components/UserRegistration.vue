@@ -35,7 +35,7 @@ const newUser = ref({
           <div class="w-full">
             <img
               class="w-auto h-18 sm:h-16"
-              src="../unityDoicologo.ico"
+              src="../public/unityDoicologo.ico"
               alt=""
             />
             <h1
