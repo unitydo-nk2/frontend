@@ -19,17 +19,20 @@ const getImage = (alt) => {
 
 <template>
   <div
-    class="font-primary grid md:grid-cols-2 w-full h-auto bg-gradient-to-r from-slate-700 to-fuchsia-950"
+    class="font-primary grid md:grid-cols-2 w-full h-3/5 bg-gradient-to-r from-slate-700 to-fuchsia-950"
   >
-    <div class="grid">
+    <div class="">
       <div class="m-4">
-        <!-- <img class="h-96 w-full" :src="getImage('poster')" /> -->
         <img
-          class="h-96 w-full"
+          class="h-96 w-full object-cover"
           :src="getImage('poster')"
           v-if="getImage('poster')"
         />
-        <img class="h-96 w-full" src="/image/noPhoto.png" v-else />
+        <img
+          class="h-96 w-full object-cover"
+          src="../public/image/nophoto.png"
+          v-else
+        />
       </div>
 
       <div>
@@ -37,43 +40,63 @@ const getImage = (alt) => {
           <div>
             <!-- <img class="h-28 w-full" :src="getImage('activityDetail1')" /> -->
             <img
-              class="h-28 w-full"
+              class="h-36 w-36 object-cover"
               :src="getImage('activityDetail1')"
               v-if="getImage('activityDetail1')"
             />
-            <img class="h-28 w-full" src="/image/noPhoto.png" v-else />
+            <img
+              class="h-36 w-36 object-cover"
+              src="../public/image/nophoto.png"
+              v-else
+            />
           </div>
           <div>
             <img
-              class="h-28 w-full"
+              class="h-36 w-36 object-cover"
               :src="getImage('activityDetail2')"
               v-if="getImage('activityDetail2')"
             />
-            <img class="h-28 w-full" src="/image/noPhoto.png" v-else />
+            <img
+              class="h-36 w-36 object-cover"
+              src="../public/image/nophoto.png"
+              v-else
+            />
           </div>
           <div>
             <img
-              class="h-28 w-full"
+              class="h-36 w-36 object-cover"
               :src="getImage('activityDetail3')"
               v-if="getImage('activityDetail3')"
             />
-            <img class="h-28 w-full" src="/image/noPhoto.png" v-else />
+            <img
+              class="h-36 w-36 object-cover"
+              src="../public/image/nophoto.png"
+              v-else
+            />
           </div>
           <div>
             <img
-              class="h-28 w-full"
+              class="h-36 w-36 object-cover "
               :src="getImage('activityDetail4')"
               v-if="getImage('activityDetail4')"
             />
-            <img class="h-28 w-full" src="/image/noPhoto.png" v-else />
+            <img
+              class="h-36 w-36 object-cover"
+              src="../public/image/nophoto.png"
+              v-else
+            />
           </div>
           <div>
             <img
-              class="h-28 w-full"
+              class="h-36 w-36 object-cover"
               :src="getImage('activityDetail5')"
               v-if="getImage('activityDetail5')"
             />
-            <img class="h-28 w-full" src="/image/noPhoto.png" v-else />
+            <img
+              class="h-36 w-36 object-cover"
+              src="../public/image/nophoto.png"
+              v-else
+            />
           </div>
         </div>
       </div>
@@ -114,7 +137,7 @@ const getImage = (alt) => {
           v-if="activity.activityFormat == 'onsiteOverNight'"
           class="m-4 w-60 h-8 px-2.5 py-1 bg-white rounded-2xl justify-center items-center gap-2.5 inline-flex"
         >
-          <div class="flex text-indigo-600 text-base font-normal leading-none">
+          <div class="flex text-indigo-600 font-normal leading-none">
             <svg
               class="mr-4"
               width="24"
@@ -138,92 +161,97 @@ const getImage = (alt) => {
       </div>
       <!-- ชื่อ activity -->
       <div
-        class="m-4 text-neutral-100 text-2xl font-bold leading-10 tracking-wide"
+        class="m-4 text-neutral-100 text-5xl font-bold leading-10 tracking-wide"
       >
         {{ activity.activityName }} {{ activity.format }}
       </div>
       <!-- description -->
       <div
-        class="m-4 w-96 text-neutral-100 text-base font-normal leading-normal tracking-wide"
+        class="m-4 text-neutral-100 text-2xl font-normal leading-normal tracking-wide"
       >
         {{ activity.activityDescription }}
       </div>
       <!-- รายละเอียด -->
       <div>
-        <div class="m-4 w-full h-px border border-neutral-50"></div>
-        <div class="grid grid-cols-2 grid-rows-7">
+        <!-- <div class="m-4 w-full h-px border border-neutral-50"></div> -->
+        <div class="grid grid-cols-2 grid-rows-7 gap-y-0 w-4/5 ">
           <div
-            class="m-4 w-36 text-violet-100 text-base font-bold leading-normal tracking-wide"
+            class="m-4 w-36 text-violet-100 text-xl font-bold leading-normal tracking-wide"
           >
             ผู้จัดกิจกรรม
           </div>
           <div
-            class="m-4 text-white text-base font-bold leading-normal tracking-wide"
+            class="m-4  text-white text-xl font-bold leading-normal tracking-wide"
           >
             {{ activity.activityOwnerUserName }}
           </div>
           <div
-            class="m-4 w-36 text-violet-100 text-base font-bold leading-normal tracking-wide"
+            class="m-4 w-36 text-violet-100 text-xl font-bold leading-normal tracking-wide"
           >
             รูปแบบของกิจกรรม
           </div>
           <div
-            class="m-4 text-white text-base font-bold leading-normal tracking-wide"
+            class="m-4 text-white text-xl font-bold leading-normal tracking-wide"
           >
             {{ activity.mainCategory }} / {{ activity.category }}
           </div>
           <div
-            class="m-4 w-24 text-violet-100 text-base font-bold leading-normal tracking-wide"
+            class="m-4 w-24 text-violet-100 text-xl font-bold leading-normal tracking-wide"
           >
             สถานที่
           </div>
           <div
-            class="m-4 text-white text-base font-bold leading-normal tracking-wide"
+            class="m-4 text-white text-xl font-bold leading-normal tracking-wide"
           >
             {{ activity.locationName }}
           </div>
           <div
-            class="m-4 w-24 text-violet-100 text-base font-bold leading-normal tracking-wide"
+            class="m-4 w-24 text-violet-100 text-xl font-bold leading-normal tracking-wide"
           >
             จำนวนที่รับ
           </div>
           <div
-            class="m-4 text-white text-base font-bold leading-normal tracking-wide"
+            class="m-4 text-white text-xl font-bold leading-normal tracking-wide"
           >
             {{ activity.amount }} participants
           </div>
           <div
-            class="m-4 text-violet-100 text-base font-bold leading-normal tracking-wide"
+            class="m-4 text-violet-100 text-xl font-bold leading-normal tracking-wide"
           >
             วันที่จัดกิจกรรม
           </div>
           <div
-            class="m-4 text-white text-base font-bold leading-normal tracking-wide"
+            class="m-4 text-white text-xl font-bold line-clamp-1  leading-normal tracking-wide"
           >
             {{ Date(activity.activityDate) }}
           </div>
           <div
-            class="m-4 text-violet-100 text-base font-bold leading-normal tracking-wide"
+            class="m-4 text-violet-100 text-xl font-bold  leading-normal tracking-wide"
           >
             วันที่เปิดรับสมัคร
           </div>
           <div
-            class="m-4 text-white text-base font-bold leading-normal tracking-wide"
+            class="m-4 text-white text-xl font-bold line-clamp-1 leading-normal tracking-wide"
           >
             {{ Date(activity.registerStartDate) }} -
             {{ Date(activity.registerEndStartDate) }}
           </div>
         </div>
-        <div class="m-4 w-full h-px border border-neutral-50"></div>
+        <!-- <div class="m-4 w-full h-px border border-neutral-50"></div> -->
         <!-- buttons -->
-        <div class="flex">
+        <div class="flex m-4 justify-cenetr ">
           <nuxt-link :to="`/ActivityRegistration/${activity.activityId}`">
             <button
-              class="w-[196px] h-[60px] bg-white rounded-xl border border-indigo-600 text-indigo-600 text-2xl font-bold"
+              class="w-[196px] h-[60px] ml-4 bg-white rounded-xl border border-indigo-600 text-indigo-600 text-2xl font-bold"
             >
               สมัครเลย !
             </button>
           </nuxt-link>
+          <button
+            class="w-[196px] h-[60px] ml-4 bg-white rounded-xl border border-indigo-600 text-indigo-600 text-2xl font-bold"
+          >
+            รายการโปรด
+          </button>
 
           <!-- <button class="m-4 w-16 h-16 bg-white rounded-full">
             <svg width="31" height="27" viewBox="0 0 31 27" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -2,6 +2,7 @@
 <script setup>
 const activities = ref([])
 
+
 onBeforeMount(async () => {
   await getActivities()
 })
@@ -35,6 +36,7 @@ const getActivities = async () => {
     <div class="ml-16 overflow-x-scroll ">
       <Cards :activities="activities" />
     </div>
+    <Footer/>
   </div>
 </template>
 

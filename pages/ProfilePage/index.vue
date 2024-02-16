@@ -3,8 +3,21 @@
 <script setup></script>
 
 <template>
-  <div class="mx-4 max-w-screen-xl sm:mx-8 xl:mx-auto">
-    <h1 class="border-b py-6 text-4xl  font-semibold">Setting</h1>
+  <div class="mx-4 max-w-screen-xl sm:mx-8 xl:mx-auto ">
+    <!-- <h1 class="border-b py-6 text-4xl font-semibold" style="display: inline-block;">Setting</h1>
+<div style="display: inline-block; margin-left: auto;">
+  <a @click="">Sign out</a>
+</div> -->
+
+    <div class="flex justify-between">
+      <p class="text-4xl font-semibold pt-6">Setting</p>
+      <button class="pt-6 text-red-800 hover:underline dark:text-red-800">
+        Sign out
+      </button>
+    </div>
+
+    <div class="w-full h-px mt-4 mb-2 border border-stone-300"></div>
+
     <div class="grid grid-cols-8 pt-3 pb-10 pl-60 sm:grid-cols-10">
       <!-- 
     <div class="col-span-2 hidden sm:block">

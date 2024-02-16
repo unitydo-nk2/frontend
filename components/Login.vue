@@ -1,3 +1,5 @@
+<!-- @format -->
+
 <script setup lang="ts">
 import {
   GoogleSignInButton,
@@ -103,7 +105,7 @@ const handleLoginError = () => {
                 @error="handleLoginError"
               ></GoogleSignInButton>
             </div>
-
+            <!-- 
             <div class="mt-6 text-center">
               <nuxt-link to="/UserRegistration"
                 ><a
@@ -112,7 +114,16 @@ const handleLoginError = () => {
                   Don’t have an account yet? Sign up
                 </a></nuxt-link
               >
-            </div>
+            </div> -->
+            <!-- <div class="mt-6 text-center">
+              <a @click="navigateTo('/UserRegistration/')">
+                <button
+                  class="text-sm text-blue-500 hover:underline dark:text-blue-400"
+                >
+                  Don’t have an account yet? Sign up
+                </button>
+              </a>
+            </div> -->
           </div>
         </div>
       </div>

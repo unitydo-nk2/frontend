@@ -64,8 +64,8 @@
             </li>
           </nuxt-link>
           <!-- <nuxt-link to="/Activities/"> -->
-            <li>
-              <!-- <button
+          <!-- <li> -->
+          <!-- <button
                 id="dropdownNavbarLink"
                 data-dropdown-toggle="dropdownNavbar"
                 class="flex items-center justify-between w-full py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto "
@@ -73,36 +73,47 @@
                 กิจกรรม
               </button> -->
 
-              <!-- <button
+          <!-- <button
                 class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 "
               >
                 กิจกรรม
               </button> -->
-              <li>
-              <a @click= "navigateTo('/Activities/')"
-                href="#"
-                class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 "
-                >กิจกรรม</a
-              >
-            </li>
-            </li>
+          <li>
+            <a
+              @click="navigateTo('/Activities/')"
+              href="#"
+              class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 "
+              >กิจกรรม</a
+            >
+          </li>
+          <!-- </li> -->
           <!-- </nuxt-link> -->
           <!-- <nuxt-link to="/ViewAllActivityPost"> -->
-            <li>
-              <a @click= "navigateTo('/ViewAllActivityPost/')"
-                href="#"
-                class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 "
-                >ข้อมูลหลังบ้าน</a
-              >
-            </li>
+          <li>
+            <a
+              @click="navigateTo('/ViewAllActivityPost/')"
+              href="#"
+              class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 "
+              >ข้อมูลหลังบ้าน</a
+            >
+          </li>
           <!-- </nuxt-link> -->
           <li>
-              <a @click= "navigateTo('/ProfilePage/')"
-                href="#"
-                class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 "
-                >Tong suddee</a
-              >
-            </li>
+            <a
+              @click="navigateTo('/ProfilePage/')"
+              href="#"
+              class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 "
+              >Tong suddee</a
+            >
+          </li>
+          <li>
+            <a
+              @click="navigateTo('/Login/')"
+              href="#"
+              class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 "
+              >เข้าสู่ระบบ</a
+            >
+          </li>
         </ul>
       </div>
     </div>

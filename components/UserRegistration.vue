@@ -1,3 +1,5 @@
+<!-- @format -->
+
 <script setup>
 const emit = defineEmits(["userRegistration"]);
 
@@ -96,7 +98,7 @@ const newUser = ref({
                     />
                   </svg>
 
-                  <span class="mx-2"> Activity Owner </span>
+                  <span class="mx-2"> Owner Activity</span>
                 </button>
               </div>
             </div>
@@ -273,17 +275,17 @@ const newUser = ref({
                   class="block w-full resize-none h-20 px-2 py-4 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                 />
               </div>
-              <div class="flex justify-end gap-3 pt-2">
-                <!-- <button
-                  class="hover:bg-unityDo-primary text-unityDo-primary hover:text-white font-semibold font-bold py-2 px-4 border border-unityDo-primary rounded"
-                >
-                  Cancel
-                </button> -->
+              <div class="flex justify-end gap-3 pt-2 col-span-2">
                 <button
                   @click="$emit('userRegistration', newUser)"
                   class="hover:bg-unityDo-primary text-unityDo-primary hover:text-white font-semibold font-bold py-2 px-4 border border-unityDo-primary rounded"
                 >
                   Sign Up
+                </button>
+                <button
+                  class="hover:bg-unityDo-primary text-unityDo-primary hover:text-white font-semibold font-bold py-2 px-4 border border-unityDo-primary rounded"
+                >
+                  Cancel
                 </button>
               </div>
             </div>

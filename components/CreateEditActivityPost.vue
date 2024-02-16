@@ -501,9 +501,8 @@ const uploadImage = async (event, alt, imgId) => {
           <div></div>
         </div>
       </div>
-      <div class="w-full md:w-1/2 px-3"></div>
     </div>
-    <div class="flex flex-wrap -mx-3 mb-6">
+    <div class="flex flex-wrap  -mx-3 mb-6">
       <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
         <label
           class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
@@ -552,14 +551,7 @@ const uploadImage = async (event, alt, imgId) => {
           </label>
         </div>
       </div>
-      <div class="w-full md:w-1/2 px-3">
-        <div
-          v-if="status == 'edit' && getImage('activityDetail2') !== undefined"
-        >
-          <div>
-            <img :src="getImage('activityDetail2')" />
-          </div>
-        </div>
+      <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
         <label
           class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
           for="grid-first-name"
@@ -567,6 +559,13 @@ const uploadImage = async (event, alt, imgId) => {
           รูปภาพรายละเอียด(2) *ถ้ามี {{ fileUpload[2].name }}
         </label>
         <div class="flex bg-grey-lighter">
+          <div
+            v-if="status == 'edit' && getImage('activityDetail2') !== undefined"
+          >
+            <div>
+              <img :src="getImage('activityDetail2')" />
+            </div>
+          </div>
           <label
             class="w-full flex flex-col items-center px-4 py-6 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase border border-dashed border-gray-500 relative cursor-pointer hover:bg-gray-300 hover:text-white"
           >

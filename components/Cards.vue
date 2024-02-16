@@ -5,15 +5,16 @@ const props = defineProps({
   activities: {
     type: Array,
     default: []
-  }
+  },
+
 })
 </script>
 
 <template>
-  <div class=" w-full flex">
+  <div class="flex">
     <div v-for="(activity, index) in activities" :key="index">
       <div
-        class="w-[363px] h-[480px] mr-4 overflow-hidden aspect-video  cursor-pointer rounded-xl relative group"
+        class="mb-9 w-72 h-96 mr-4 ml-4 overflow-hidden aspect-video  cursor-pointer rounded-xl relative group"
       >
         <div
           class="z-50 opacity-0 group-hover:opacity-100 transition duration-300 ease-in-out cursor-pointer absolute from-black/80 to-transparent bg-gradient-to-t inset-x-0 -bottom-2 text-white"
@@ -25,7 +26,7 @@ const props = defineProps({
 
         <img
           alt=""
-          class="w-[363px] h-[480px] rounded-xl object-cover  aspect-square group-hover:scale-110 transition duration-300 ease-in-out"
+          class="h-full w-full rounded-xl aspect-square group-hover:scale-110 transition duration-300 ease-in-out"
           src="/image/commingsoon.png"
         />
       </div>
