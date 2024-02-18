@@ -1,9 +1,6 @@
 <!-- @format -->
 
 <script setup>
-const errorDetails = ref([]);
-let formData = new FormData()
-
 const validateEmail = (email) => {
   console.log("email = " + email);
   let validRegex =
@@ -53,6 +50,7 @@ const createUser = async (user) => {
       nickName: user.nickName,
       email: user.email,
       gender: user.gender,
+      role: user.role,
       dateOfBirth: user.dateOfBirth,
       religion: user.religion,
       telephoneNumber: user.telephoneNumber,
@@ -62,7 +60,7 @@ const createUser = async (user) => {
     const blob = new Blob([userJson], { type: "application/json" });
     formData.append("user", blob);
     const res = await fetch(
-      `${import.meta.env.VITE_BASE_URL}/users/`,
+      `${import.meta.env.VITE_BASE_URL}/auth/registration`,
       { method: "POST", body: formData }
     );
     if (res.status === 200) {
@@ -79,7 +77,7 @@ const createUser = async (user) => {
 </script>
 
 <template>
- <UserRegistration @userRegistration="createUser"/>
+ <UserRegistration @userRegistration="createUser" />
 </template>
 
 <style></style>

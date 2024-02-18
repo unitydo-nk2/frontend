@@ -2,10 +2,10 @@
 
 <script setup>
 const props = defineProps({
-  activities: {
+  users: {
     type: Array,
     default: [],
-  },
+  }
 });
 </script>
 
@@ -19,7 +19,7 @@ const props = defineProps({
         <div
           class="text-zinc-900 text-4xl font-bold font-['DB Heavent'] tracking-wide"
         >
-          การเข้าร่วมกิจกรรม
+          ผู้ใช้งานในระบบ
         </div>
         <div class="w-full h-px mt-4 mb-2 border border-stone-300"></div>
       </div>
@@ -33,7 +33,7 @@ const props = defineProps({
               <div class="flex flex-wrap items-center">
                 <div class="relative w-full px-4 max-w-full flex-grow flex-1">
                   <h3 class="font-semibold text-3xl text-blueGray-700">
-                    All registrations
+                    All users
                   </h3>
                 </div>
               </div>
@@ -46,17 +46,17 @@ const props = defineProps({
                     <th
                       class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-lg uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
                     >
-                      Activity Name
+                      Name
                     </th>
                     <th
                       class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-lg uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
                     >
-                      Activity Date
+                      email
                     </th>
                     <th
                       class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-lg uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
                     >
-                      User registrations
+                      role
                     </th>
                     <th
                       class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-lg uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
@@ -65,34 +65,32 @@ const props = defineProps({
                 </thead>
 
                 <tbody>
-                  <tr v-for="(activity, index) in activities" :key="index">
+                  <tr v-for="(user, index) in users" :key="index">
                     <th
                       class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-lg whitespace-nowrap p-4 text-left text-blueGray-700"
                     >
-                      {{ activity.activityName }}
+                      {{ user.name }} {{ user.surName }} 
                     </th>
                     <td
                       class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-lg whitespace-nowrap p-4"
                     >
-                      {{ Date(activity.activityDate) }} -
-                      {{ Date(activity.activityEndDate) }}
+                     {{ user.email }}
                     </td>
                     <td
                       class="border-t-0 px-6 align-center border-l-0 border-r-0 text-lg whitespace-nowrap p-4"
                     >
-                      {{ activity.userRegistration }} / {{ activity.amount }}
+                    {{ user.role }}
                     </td>
                     <td
                       class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-lg whitespace-nowrap p-4"
                     >
-                      <nuxt-link
-                        :to="`/ViewAllActivityUser/${activity.activityId}`"
+                      <nuxt-link :to="`/UserDetails/${user.userId}`"
                       >
                         <button
                           type="button"
                           class="hover:bg-unityDo-primary text-unityDo-primary hover:text-white font-semibold font-bold py-2 px-4 border border-unityDo-primary rounded"
                         >
-                          Member List
+                          details
                         </button>
                       </nuxt-link>
                     </td>

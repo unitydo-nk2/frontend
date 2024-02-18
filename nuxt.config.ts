@@ -2,7 +2,8 @@ export default defineNuxtConfig({
     ssr: false,
     modules: [
         '@nuxtjs/tailwindcss',
-        'nuxt-vue3-google-signin'
+        'nuxt-vue3-google-signin',
+        '@pinia/nuxt',
     ],
     nitro: {
     prerender: {

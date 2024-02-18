@@ -1,7 +1,28 @@
 <!-- @format -->
 
-<script></script>
+<script setup>
+import { useCounterStore } from '../stores/counter'
 
+const router = useRouter();
+
+const store = useCounterStore();
+onBeforeMount(async () => {
+  await getUserDetails()
+})
+
+const getUserDetails = () => {
+  if(store.token == '' ){
+    console.log('token is null')
+    if(localStorage.getItem('token') != null || localStorage.getItem('token') != undefined ){
+      console.log('get token')
+      store.setFromToken(localStorage.getItem('token') , localStorage.getItem('refreshToken'))
+    }else{
+      router.push({path: '/Login'})
+    }
+  }
+}
+
+</script>
 <template>
   <nav class=" reletive bg-white border-gray-200 ">
     <div
@@ -89,7 +110,7 @@
           <!-- </li> -->
           <!-- </nuxt-link> -->
           <!-- <nuxt-link to="/ViewAllActivityPost"> -->
-          <li>
+          <li v-if="store.role == 'Admin' || store.role == 'ActivityOwner'">
             <a
               @click="navigateTo('/ViewAllActivityPost/')"
               href="#"
@@ -98,15 +119,15 @@
             >
           </li>
           <!-- </nuxt-link> -->
-          <li>
+          <li v-if="store.isLogin == true">
             <a
               @click="navigateTo('/ProfilePage/')"
               href="#"
               class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 "
-              >Tong suddee</a
+              > {{ store.username }} </a
             >
           </li>
-          <li>
+          <li v-if="store.isLogin == false">
             <a
               @click="navigateTo('/Login/')"
               href="#"

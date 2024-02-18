@@ -1,6 +1,9 @@
 <!-- @format -->
 
 <script setup>
+import { useCounterStore } from '../stores/counter'
+
+const store = useCounterStore();
 const activity = ref([])
 const activityImages = ref([]);
 
@@ -15,7 +18,8 @@ const getActivityByID = async (id) => {
   const res = await fetch(`${import.meta.env.VITE_BASE_URL}/activities/${id}`, {method: 'GET'})
   if (res.status === 200) {
     activity.value = await res.json()
-    console.log('value '+activity.value)
+    store.changeActivity(activity.value)
+    // console.log('value '+activity.value)
   } else {
     console.log('cannot get data')
   }

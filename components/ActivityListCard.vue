@@ -1,21 +1,46 @@
 <!-- @format -->
 
 <script setup>
+import { useCounterStore } from "../stores/counter";
+const store = useCounterStore();
 const props = defineProps({
   activities: {
     type: Array,
     default: [],
   },
-      activityImages: {
+    activityImages: {
     type: Array,
     default: [],
   },
 });
 
+const trackHistory = async (activityId) => {
+  console.log(store.getEmail)
+  let email = store.getEmail == null || store.getEmail == "" ? 'guest' : store.getEmail
+  const res = await fetch(
+    `${import.meta.env.VITE_BASE_URL}/tracks/${activityId}`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json", // Set content type to JSON
+        Authorization: "Bearer " + store.token,
+      },
+      body: email
+    }
+  );
+  if (res.status === 200) {
+  } else {
+    console.log("cannot get data");
+  }
+}
+
+
 const getImage = (alt) => {
   const foundObject = props.activityImages.find((obj) => obj.alt === alt);
   return foundObject ? foundObject.imagepath : undefined;
 };
+
+
 </script>
 
 <template>
@@ -29,6 +54,7 @@ const getImage = (alt) => {
           class="max-w-sm rounded overflow-hidden shadow-lg"
         >
           <nuxt-link :to="`/Activities/${activity.id}`">
+            <div @click="trackHistory(activity.id)">
             <img
               v-if="activity.imagePath == null"
               src="../public/image/nophoto.png"
@@ -64,6 +90,7 @@ const getImage = (alt) => {
               >
                 {{ activity.category }}</span
               >
+            </div>
             </div>
           </nuxt-link>
           <!-- <button

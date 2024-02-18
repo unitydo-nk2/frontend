@@ -1,6 +1,9 @@
 <!-- @format -->
 
 <script setup>
+import { useCounterStore } from "../stores/counter";
+
+const store = useCounterStore();
 const activities = ref([]);
 
 onBeforeMount(async () => {
@@ -8,7 +11,7 @@ onBeforeMount(async () => {
 });
 
 const getActivities = async () => {
-  const res = await fetch(`${import.meta.env.VITE_BASE_URL}/activities/list`, {
+  const res = await fetch(`${import.meta.env.VITE_BASE_URL}/activities/management`, {
     method: "GET",
   });
   if (res.status === 200) {
@@ -30,17 +33,22 @@ const deleteActivity = async (deleteActivityId) => {
       `${import.meta.env.VITE_BASE_URL}/activities/${deleteActivityId}`,
       {
         method: "DELETE",
+        headers: {
+        "Content-Type": "application/json", // Set content type to JSON
+        Authorization: "Bearer " + store.token,
+      },
       }
     );
     if (res.status === 200) {
       alert("delete successfully");
+      await getActivities();
     } else {
-      alert("fail to delete");
+      alert("fail to delete" + res.status);
     }
   } else {
-    alert("no event to delete");
   }
 };
+
 </script>
 
 <template>

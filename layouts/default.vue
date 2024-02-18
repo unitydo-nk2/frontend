@@ -3,10 +3,10 @@
 <template>
   <div>
     <NavBar class="drop-shadow-xl" />
-    <main>
+    <main class="flex flex-col min-h-screen">
     <slot></slot>
     </main>
-    <LayOutFooter/>
+    <LayOutFooter class="mt-auto"/>
   </div>
 </template>
 

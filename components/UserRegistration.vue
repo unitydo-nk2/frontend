@@ -1,10 +1,28 @@
 <!-- @format -->
 
 <script setup>
+import { useCounterStore } from "../stores/counter";
 const emit = defineEmits(["userRegistration"]);
+
+const props = defineProps({
+  user: {
+    type: Object,
+    default: {},
+  },
+  editSuccess: {
+    type: Boolean,
+    default: false,
+  },
+});
+
+const store = useCounterStore();
+const router = useRouter();
+console.log(router.query);
 
 const setRole = (role) => {
   newUser.value.role = role;
+  console.log(role);
+  console.log("new user " + newUser.value.role);
 };
 
 const newUser = ref({
@@ -13,7 +31,7 @@ const newUser = ref({
   name: "",
   surName: "",
   nickName: "",
-  email: "",
+  email: store.email,
   gender: "male",
   dateOfBirth: "",
   religion: "Christianity",
@@ -41,7 +59,7 @@ const newUser = ref({
             <h1
               class="text-2xl font-semibold tracking-wider text-gray-800 capitalize dark:text-white pt-4"
             >
-              Join UnityDo !
+              Join UnityDo ! {{ props.username }}
             </h1>
 
             <p class="mt-4 text-gray-500 dark:text-gray-400">
@@ -57,7 +75,7 @@ const newUser = ref({
                   :class="{
                     'bg-unityDo-primary text-white': newUser.role === 'User',
                   }"
-                  class="flex justify-center w-full px-6 py-3 mt-4 text-unityDo-primary border border-unityDo-primary hover:bg-unityDo-primary hover:text-white hover:border-transparent rounded-lg md:mt-0 md:w-auto md:mx-2 dark:border-unityDo-primary dark:text-unityDo-primary focus:outline-none"
+                  class="flex justify-center w-full px-6 py-3 mt-4 text-unityDo-primary border border-unityDo-primary hover:bg-unityDo-primary hover:text-white hover:border-transparent rounded-lg md:mt-0 md:w-auto md:mx-2 dark:border-unityDo-primary focus:outline-none"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -81,7 +99,7 @@ const newUser = ref({
                     'bg-unityDo-primary text-white':
                       newUser.role === 'ActivityOwner',
                   }"
-                  class="flex justify-center w-full px-6 py-3 mt-4 text-unityDo-primary border border-unityDo-primary hover:bg-unityDo-primary hover:text-white hover:border-transparent rounded-lg md:mt-0 md:w-auto md:mx-2 dark:border-unityDo-primary dark:text-unityDo-primary focus:outline-none"
+                  class="flex justify-center w-full px-6 py-3 mt-4 text-unityDo-primary border border-unityDo-primary hover:bg-unityDo-primary hover:text-white hover:border-transparent rounded-lg md:mt-0 md:w-auto md:mx-2 dark:border-unityDo-primary focus:outline-none"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -98,7 +116,7 @@ const newUser = ref({
                     />
                   </svg>
 
-                  <span class="mx-2"> Owner Activity</span>
+                  <span class="mx-2"> Activity Owner</span>
                 </button>
               </div>
             </div>
@@ -283,6 +301,7 @@ const newUser = ref({
                   Sign Up
                 </button>
                 <button
+                  @click="navigateTo('/login/')"
                   class="hover:bg-unityDo-primary text-unityDo-primary hover:text-white font-semibold font-bold py-2 px-4 border border-unityDo-primary rounded"
                 >
                   Cancel

@@ -16,32 +16,8 @@ onBeforeMount(async () => {
   await getUserByID(id);
 });
 
-
-const deleteUserById = async (id) => {
-    if (
-    confirm("Are you sure you want to delete this user ?") == true
-  ){
-    const res = await fetch(`${import.meta.env.VITE_BASE_URL}/users/${id}`, {
-    method: "DELETE",
-    headers: {
-        "Content-Type": "application/json", // Set content type to JSON
-        Authorization: "Bearer " + store.token,
-      },
-  });
-  if (res.status === 200) {
-    user.value = await res.json();
-    const router = useRoute();
-    router.push({ path: '/UserLists' });   
-    console.log("value " + user.value);
-  } else {
-    console.log("cannot get data");
-  }
-  }
-};
-
-
 const getUserByID = async (id) => {
-  const res = await fetch(`${import.meta.env.VITE_BASE_URL}/users/${id}`, {
+  const res = await fetch(`${import.meta.env.VITE_BASE_URL}/users/registration/${id}`, {
     method: "GET",
     headers: {
         "Content-Type": "application/json", // Set content type to JSON
@@ -56,14 +32,36 @@ const getUserByID = async (id) => {
   }
 };
 
+const updateRegistrationStatus = async (id, status) => {
+  if (
+    confirm(
+      "Are you sure to update registration id" + id + " to " + status + "."
+    ) == true
+  ) {
+    let updatedStatus = new FormData();
+    updatedStatus.append("status", status);
+    const res = await fetch(
+      `${import.meta.env.VITE_BASE_URL}/users/registration/${id}`,
+      {
+        method: "PATCH",
+        body: updatedStatus,
+      }
+    );
+    if (res.status === 200) {
+      alert("you successfully update registration !!");
+    } else {
+      console.log("cannot get data");
+    }
+  }
+};
 </script>
 
 <template>
   <div class="flex flex-row">
     <SideBareDemo />
-    <UserDetail
+    <ManageUserDetail
       :user="user"
-      @deleteUser="deleteUserById"
+      @updateRegistrationStatus="updateRegistrationStatus"
     />
   </div>
 </template>

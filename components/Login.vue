@@ -1,23 +1,65 @@
 <!-- @format -->
-
 <script setup lang="ts">
 import {
   GoogleSignInButton,
   type CredentialResponse,
 } from "vue3-google-signin";
+import { tokenUtil } from '../functions/jwtTokenUtils'
+import { useCounterStore } from '../stores/counter'
 
+const store = useCounterStore();
+const emit = defineEmits(["userLogInClick"]);
+const router = useRouter();
+const usercredential = ref();
 // const emit = defineEmits(["success", "error"]);
+
+const getTokenbyEmail = async (email: string) => {
+    let emailValidate = new FormData();
+    emailValidate.append("email", email);
+
+    const res = await fetch(
+      `${import.meta.env.VITE_BASE_URL}/auth/getGoogleToken`,
+      {
+        method: "POST",
+        body: emailValidate,
+      }
+    );
+    if (res.status === 200 || res.status === 201) {
+      const jwttoken = await res.json();
+      console.log("jwt " + jwttoken.accessToken);
+      store.googleLogin(tokenUtil.paresJWT(jwttoken.accessToken).role,jwttoken.accessToken,jwttoken.refreshToken)
+    } else if (res.status == 204) {
+      alert(`no data go to registration`);
+      console.log('usercredentia '+ usercredential.value)
+      store.changeEmail(tokenUtil.paresJWT(usercredential.value).email )
+      router.push({path: '/UserRegistration'})
+    } else {
+      alert(`error loging in unityDo with google`);
+    }
+};
 
 // handle success event
 const handleLoginSuccess = (response: CredentialResponse) => {
   const { credential } = response;
   console.log("Access Token", credential);
+  let parseToken = tokenUtil.paresJWT(credential);
+  usercredential.value = credential;
+  console.log("parse jwt " + parseToken.email);
+  getTokenbyEmail(parseToken.email);
 };
 
 // handle an error event
 const handleLoginError = () => {
   console.error("Login failed");
 };
+
+const userLogin = computed(() => {
+  return {
+    email: "",
+    password: "",
+  };
+});
+
 </script>
 
 <template>
@@ -58,6 +100,7 @@ const handleLoginError = () => {
             </span>
 
             <input
+              v-model="userLogin.email"
               type="email"
               class="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
               placeholder="Email address"
@@ -83,6 +126,7 @@ const handleLoginError = () => {
             </span>
 
             <input
+              v-model="userLogin.password"
               type="password"
               class="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
               placeholder="Password"
@@ -91,6 +135,7 @@ const handleLoginError = () => {
 
           <div class="mt-6">
             <button
+              @click="$emit('userLogInClick', userLogin)"
               class="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
             >
               Sign in
@@ -99,23 +144,13 @@ const handleLoginError = () => {
             <p class="mt-4 text-center text-gray-600 dark:text-gray-400">
               or sign in with
             </p>
-            <div>
+            <div class="relative flex items-center mt-4">
               <GoogleSignInButton
                 @success="handleLoginSuccess"
                 @error="handleLoginError"
               ></GoogleSignInButton>
             </div>
-            <!-- 
             <div class="mt-6 text-center">
-              <nuxt-link to="/UserRegistration"
-                ><a
-                  class="text-sm text-blue-500 hover:underline dark:text-blue-400"
-                >
-                  Don’t have an account yet? Sign up
-                </a></nuxt-link
-              >
-            </div> -->
-            <!-- <div class="mt-6 text-center">
               <a @click="navigateTo('/UserRegistration/')">
                 <button
                   class="text-sm text-blue-500 hover:underline dark:text-blue-400"
@@ -123,7 +158,7 @@ const handleLoginError = () => {
                   Don’t have an account yet? Sign up
                 </button>
               </a>
-            </div> -->
+            </div>
           </div>
         </div>
       </div>

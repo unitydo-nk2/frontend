@@ -1,11 +1,36 @@
 <!-- @format -->
 
 <script setup>
+import { localStorageUtil } from "~/functions/localStorageUtils";
+
 const activity = ref([]);
-const errorDetails = ref([]);
 const router = useRouter();
-let formData = new FormData()
 let activityId;
+
+onBeforeMount(async () => {
+  await getUser();
+});
+
+const errorDetails = ref([]);
+let formData = new FormData();
+const user = ref({});
+
+const getUser = async () => {
+  console.log("Bearer " + localStorageUtil.get("token"));
+
+  const res = await fetch(`${import.meta.env.VITE_BASE_URL}/users`, {
+    method: "GET",
+    headers: {
+      Authorization: "Bearer " + localStorageUtil.get("token"),
+    },
+  });
+  if (res.status === 200) {
+    user.value = await res.json();
+    // router.push({ path: '/Activities/' });
+  } else {
+    console.log("cannot get data");
+  }
+};
 
 onBeforeMount(async () => {
   const route = useRoute();
@@ -15,10 +40,9 @@ onBeforeMount(async () => {
 });
 
 const getActivityByID = async (id) => {
-  const res = await fetch(
-    `${import.meta.env.VITE_BASE_URL}/activities/registration/${id}`,
-    { method: "GET" }
-  );
+  const res = await fetch(`${import.meta.env.VITE_BASE_URL}/activities/${id}`, {
+    method: "GET",
+  });
   if (res.status === 200) {
     activity.value = await res.json();
     console.log("value " + activity.value);
@@ -65,42 +89,35 @@ const validateUser = (user) => {
 };
 
 const createNewRegistration = async (user) => {
-  errorDetails.value = []
-  console.log("createNewRegistration call");
-  user.username = user.name + "_userName"
-  validateUser(user);
-  if (errorDetails.value.length == 0) {
-    let userJson = JSON.stringify({
-      name: user.name,
-      surName: user.surName,
-      username: user.username,
-      password: user.password,
-      nickName: user.nickName,
-      email: user.email,
-      gender: user.gender,
-      dateOfBirth: user.dateOfBirth,
-      religion: user.religion,
-      telephoneNumber: user.telephoneNumber,
-      address: user.address,
-      emergencyPhoneNumber: user.emergencyPhoneNumber,
-    });
-    const blob = new Blob([userJson], { type: "application/json" });
-    formData.append("user", blob);
-    console.log("activityId "+ activityId)
-    const res = await fetch(
-      `${import.meta.env.VITE_BASE_URL}/activities/${activityId}/registration`,
-      { method: "POST", body: formData }
-    );
-    if (res.status === 200) {
-      alert('you successfully create the registrarion !!')
-      router.push({ path: '/Activities/' });
-    } else {
-      console.log("cannot get data");
-    }
-  } else {
-    alert(errorDetails.value);
+  console.log('id '+ user.userId);
+  console.log("Bearer " + localStorageUtil.get("token"));
+
+  const formData = new FormData();
+  formData.append("userId", user.userId); // Make sure the name matches the expected name on the backend
+  console.log("activityId " + activityId);
+  console.log("formData "+formData)
+  const res = await fetch(
+    `${import.meta.env.VITE_BASE_URL}/activities/${activityId}/registration`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json", // Set content type to JSON
+        Authorization: "Bearer " + localStorageUtil.get("token"),
+      },
+      body: user.userId
+        }
+  );
+
+  if (res.ok) { // Checking for a successful response
+    alert("You have successfully registered!");
+    router.push({ path: "/Activities/" });
+  } else if(res.status == 400) {
+    alert("You have registered to this activity already!");
+    console.log("cannot get data " + await res.json());
   }
 };
+
+
 </script>
 
 <template>
@@ -124,7 +141,7 @@ const createNewRegistration = async (user) => {
         ผู้จัดกิจกรรม : {{ activity.activityOwnerUserName }}
       </div>
     </div>
-    <RegisterForm @createNewRegistration="createNewRegistration" />
+    <RegisterForm @createNewRegistration="createNewRegistration" :user="user" />
   </div>
 </template>
 

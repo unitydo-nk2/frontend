@@ -1,6 +1,8 @@
 <!-- @format -->
 
 <script setup>
+import { useCounterStore } from "../stores/counter";
+const store = useCounterStore();
 const emit = defineEmits(["updateRegistrationStatus"]);
 
 const props = defineProps({
@@ -36,7 +38,7 @@ const props = defineProps({
             />
           </svg>
 
-          <div class="ml-4 w-48 text-zinc-900 text-4xl font-bold">
+          <div class="ml-4 w-full text-zinc-900 text-4xl font-bold">
             {{ user.name }} {{ user.surName }}
           </div>
         </div>
@@ -44,7 +46,7 @@ const props = defineProps({
       </div>
       <!-- content -->
       <div class="flex justify-center">
-        <div class="m-4 w-96 rounded-lg border border-neutral-200">
+        <div class="m-4 w-full rounded-lg border border-neutral-200">
           <!-- icon and topic -->
           <div class="">
             <div
@@ -79,7 +81,7 @@ const props = defineProps({
 
               ข้อมูลส่วนตัว
             </div>
-            <div class="w-96 h-px border border-neutral-200"></div>
+            <div class="w-full h-px border border-neutral-200"></div>
           </div>
           <!-- info -->
           <div class="grid grid-cols-3 h-52 p-4">
@@ -245,6 +247,7 @@ const props = defineProps({
       <!-- buttons -->
     </div>
     <div
+        v-if="store.role == 'ActivityOwner'"
         class="w-full h-20 bg-stone-50  border border-neutral-200"
       >
         <div class="flex justify-center gap-8 mt-4">

@@ -1,102 +1,118 @@
-<!-- @format -->
-
 <script setup>
-const emit = defineEmits(["createNewRegistration"]);
+const emit = defineEmits(["signOut", "updateUser"]);
 
 const props = defineProps({
   user: {
     type: Object,
     default: {},
   },
+  editSuccess: {
+    type: Boolean,
+    default: false,
+  },
 });
+
+const isEdit = ref(false);
+const iseditSuccess = ref(props.editSuccess);
+
+const editSuccess = computed(() => {
+  if (iseditSuccess.value == true) {
+    isEdit.value = false;
+    props.editSuccess = false;
+  }
+});
+
+const editToggle = () => {
+  isEdit.value ? (isEdit.value = false) : (isEdit.value = true);
+};
 
 const userDetails = computed(() => {
-  return {
-    userId: props.user.userId,
-    username: props.user.username,
-    name: props.user.name,
-    surName: props.user.surName,
-    nickName: props.user.nickName,
-    gender: props.user.gender,
-    role: props.user.role,
-    religion: props.user.religion,
-    email: props.user.email,
-    telephoneNumber: props.user.telephoneNumber,
-    emergencyPhoneNumber: props.user.emergencyPhoneNumber,
-    address: props.user.address,
-    dateOfBirth: props.user.dateOfBirth,
-  };
+  if (!isEdit.value) {
+    return {
+      userId: props.user.userId,
+      username: props.user.username,
+      name: props.user.name,
+      surName: props.user.surName,
+      nickName: props.user.nickName,
+      gender: props.user.gender,
+      role: props.user.role,
+      religion: props.user.religion,
+      email: props.user.email,
+      telephoneNumber: props.user.telephoneNumber,
+      emergencyPhoneNumber: props.user.emergencyPhoneNumber,
+      address: props.user.address,
+      dateOfBirth: props.user.dateOfBirth,
+    };
+  } else {
+    // Return current user details if isEdit.value is true
+    return {
+      userId: userDetails.value.userId,
+      username: userDetails.value.username,
+      name: userDetails.value.name,
+      surName: userDetails.value.surName,
+      nickName: userDetails.value.nickName,
+      gender: userDetails.value.gender,
+      role: userDetails.value.role,
+      religion: userDetails.value.religion,
+      email: userDetails.value.email,
+      telephoneNumber: userDetails.value.telephoneNumber,
+      emergencyPhoneNumber: userDetails.value.emergencyPhoneNumber,
+      address: userDetails.value.address,
+      dateOfBirth: userDetails.value.dateOfBirth,
+    };
+  }
 });
 
+// const userDetails = computed(() => {
+//   return {
+//     userId: props.user.userId,
+//     username: props.user.username,
+//     name: props.user.name,
+//     surName: props.user.surName,
+//     nickName: props.user.nickName,
+//     gender: props.user.gender,
+//     role: props.user.role,
+//     religion: props.user.religion,
+//     email: props.user.email,
+//     telephoneNumber: props.user.telephoneNumber,
+//     emergencyPhoneNumber: props.user.emergencyPhoneNumber,
+//     address: props.user.address,
+//     dateOfBirth: props.user.dateOfBirth,
+//   };
+// });
 </script>
 
 <template>
-  <div>
-    <div class="font-primary flex flex-col justify-center items-center">
-      <div class="m-4 text-black text-3xl font-bold tracking-wide">
-        สมัครเข้าร่วมกิจกรรม
-      </div>
-      <!-- ลูกชิ้น 3 ลูก -->
-      <div
-        class="gap-44 w-9/12 h-24 px-3 py-3 bg-white rounded-xl shadow justify-center items-center inline-flex"
+  <div class="mx-4 max-w-screen-xl sm:mx-8 xl:mx-auto">
+    <!-- <h1 class="border-b py-6 text-4xl font-semibold" style="display: inline-block;">Setting</h1>
+<div style="display: inline-block; margin-left: auto;">
+  <a @click="">Sign out</a>
+</div> -->
+    <div class="flex justify-between">
+      <p class="text-4xl font-semibold pt-6">Profile</p>
+      <button
+        @click="$emit('signOut')"
+        class="pt-6 text-red-800 hover:underline dark:text-red-800"
       >
-        <!-- ลูกแรก -->
-        <div class="justify-start items-center flex">
-          <div class="w-12 h-12 relative">
-            <div
-              class="w-8 h-8 left-0 top-0 absolute bg-indigo-600 rounded-full"
-            ></div>
-            <div
-              class="w-2.5 h-8 left-[12px] top-[2px] absolute text-white text-xl font-bold tracking-wide"
-            >
-              1
-            </div>
-          </div>
-          <div
-            class="w-32 flex text-indigo-600 text-xl font-bold leading-7 tracking-wide"
-          >
-            ข้อมูลส่วนตัว
-          </div>
-        </div>
-        <!-- ลูกสอง -->
-        <!-- <div class="justify-start items-center flex">
-          <div class="w-12 h-12 relative">
-            <div
-              class="w-8 h-8 left-0 top-0 absolute bg-slate-300 rounded-full"
-            ></div>
-            <div
-              class="w-2.5 h-8 left-[12px] top-[2px]  absolute text-white text-xl font-bold tracking-wide"
-            >
-              2
-            </div>
-          </div>
-          <div
-            class="w-32 flex text-neutral-500  text-xl font-bold leading-7 tracking-wide"
-          >
-            ตอบคำถาม
-          </div>
-        </div> -->
-        <!-- ลูกสาม -->
-        <!-- <div class="justify-start items-center flex">
-          <div class="w-12 h-12 relative">
-            <div
-              class="w-8 h-8 left-0 top-0 absolute bg-slate-300 rounded-full"
-            ></div>
-            <div
-              class="w-2.5 h-8 left-[12px] top-[2px]  absolute text-white text-xl font-bold tracking-wide"
-            >
-              3
-            </div>
-          </div>
-          <div
-            class="w-32 flex text-neutral-500  text-xl font-bold leading-7 tracking-wide"
-          >
-            สำเร็จ !
-          </div>
-        </div> -->
-      </div>
-      <div class="space-y-1 w-9/12 mt-8 mb-8">
-        <div class="rounded-md border bg-white">
+        Sign out
+      </button>
+    </div>
+
+    <div class="w-full h-px mt-4 mb-2 border border-stone-300"></div>
+
+    <div class="grid grid-cols-8 pt-3 pb-10 pl-60 sm:grid-cols-10">
+      <!-- 
+    <div class="col-span-2 hidden sm:block">
+      <ul>
+        <li class="mt-5 cursor-pointer border-l-2 border-transparent px-2 py-2 font-semibold transition hover:border-l-blue-700 hover:text-blue-700">Profile</li>
+        <li class="mt-5 cursor-pointer border-l-2 border-transparent px-2 py-2 font-semibold transition hover:border-l-blue-700 hover:text-blue-700">Favorite</li>
+      </ul>
+    </div> -->
+      <div class="col-span-8 overflow-hidden rounded-xl pb-20">
+        <p class="py-2 pt-5 text-xl text-unityDo-primary font-semibold">
+          {{ userDetails.name }} {{ userDetails.surName }}
+        </p>
+        <div class="space-y-1">
           <div class="rounded-md border bg-white">
             <div class="flex w-full items-center px-6 py-2 pt-8">
               <svg
@@ -112,7 +128,23 @@ const userDetails = computed(() => {
                 />
               </svg>
               <span> ข้อมูลส่วนตัว</span>
-              
+              <svg
+                v-if="!isEdit"
+                @click="editToggle"
+                xmlns="http://www.w3.org/2000/svg"
+                class="ml-auto h-5 w-5 cursor-pointer text-gray-400 active:scale-95"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                />
+              </svg>
+              <span v-if="!isEdit">edit</span>
             </div>
             <div class="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2 m-4">
               <div>
@@ -248,34 +280,39 @@ const userDetails = computed(() => {
                   class="block w-full resize-none h-20 px-2 py-4 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                 />
               </div>
-              <div class="flex justify-end gap-3 pt-2 col-span-2">
+              <div
+                v-if="isEdit == true"
+                class="flex justify-end gap-3 pt-2 col-span-2"
+              >
                 <button
-                  @click="$emit('createNewRegistration', user)"
-                  class="font-primary w-56 h-14 px-5 py-3 bg-indigo-600  hover:bg-indigo-800 rounded-xl justify-start items-center gap-5 inline-flex"
+                  @click="$emit('updateUser', userDetails)"
+                  class="hover:bg-unityDo-primary text-unityDo-primary hover:text-white font-semibold font-bold py-2 px-4 border border-unityDo-primary rounded"
                 >
-                  <div
-                    class="flex justify-center items-center w-60 text-center text-white text-base font-normal font-['DB Heavent'] leading-7 tracking-wide"
-                  >
-                    บันทึกข้อมูลและไปต่อ
-                    <svg
-                      class="ml-4"
-                      width="15"
-                      height="15"
-                      viewBox="0 0 15 15"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M8.293 2.29279C8.48053 2.10532 8.73484 2 9 2C9.26516 2 9.51947 2.10532 9.707 2.29279L14.207 6.79279C14.3945 6.98031 14.4998 7.23462 14.4998 7.49979C14.4998 7.76495 14.3945 8.01926 14.207 8.20679L9.707 12.7068C9.5184 12.8889 9.2658 12.9897 9.0036 12.9875C8.7414 12.9852 8.49059 12.88 8.30518 12.6946C8.11977 12.5092 8.0146 12.2584 8.01233 11.9962C8.01005 11.734 8.11084 11.4814 8.293 11.2928L11 8.49979H1.5C1.23478 8.49979 0.98043 8.39443 0.792893 8.20689C0.605357 8.01936 0.5 7.765 0.5 7.49979C0.5 7.23457 0.605357 6.98022 0.792893 6.79268C0.98043 6.60514 1.23478 6.49979 1.5 6.49979H11L8.293 3.70679C8.10553 3.51926 8.00021 3.26495 8.00021 2.99979C8.00021 2.73462 8.10553 2.48031 8.293 2.29279Z"
-                        fill="white"
-                      />
-                    </svg>
-                  </div>
+                  submit
+                </button>
+                <button
+                  @click="editToggle"
+                  class="hover:bg-unityDo-primary text-unityDo-primary hover:text-white font-semibold font-bold py-2 px-4 border border-unityDo-primary rounded"
+                >
+                  Cancel
                 </button>
               </div>
             </div>
           </div>
         </div>
+        <p class="py-2 pt-5 text-xl text-unityDo-primary font-semibold">
+          Favorite Activity
+        </p>
+        <div class="space-y-1">
+          <div class="rounded-md border bg-white">
+            <div class="flex w-full items-center px-6 py-2 pt-8">
+              <span> กิจกรรมที่คุณชื่นชอบ</span>
+            </div>
+            <div></div>
+          </div>
+        </div>
+
+        <!-- <hr class="mt-4 mb-8" /> -->
       </div>
     </div>
   </div>

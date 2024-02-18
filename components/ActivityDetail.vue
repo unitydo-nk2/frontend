@@ -1,5 +1,8 @@
 <!-- @format -->
 <script setup>
+import { useCounterStore } from "../stores/counter";
+const store = useCounterStore();
+
 const props = defineProps({
   activity: {
     type: Object,
@@ -19,7 +22,7 @@ const getImage = (alt) => {
 
 <template>
   <div
-    class="font-primary grid md:grid-cols-2 w-full h-3/5 bg-gradient-to-r from-slate-700 to-fuchsia-950"
+    class="font-primary grid md:grid-cols-2 w-full min-h-screen bg-gradient-to-r from-slate-700 to-fuchsia-950"
   >
     <div class="">
       <div class="m-4">
@@ -239,8 +242,8 @@ const getImage = (alt) => {
         </div>
         <!-- <div class="m-4 w-full h-px border border-neutral-50"></div> -->
         <!-- buttons -->
-        <div class="flex m-4 justify-cenetr ">
-          <nuxt-link :to="`/ActivityRegistration/${activity.activityId}`">
+        <div class="flex m-4 justify-cenetr " v-if="store.role == 'User'">
+          <nuxt-link :to="`/ActivityRegistration/${activity.activityId}`" >
             <button
               class="w-[196px] h-[60px] ml-4 bg-white rounded-xl border border-indigo-600 text-indigo-600 text-2xl font-bold"
             >
@@ -248,10 +251,16 @@ const getImage = (alt) => {
             </button>
           </nuxt-link>
           <button
+           @click="setFavorite"
             class="w-[196px] h-[60px] ml-4 bg-white rounded-xl border border-indigo-600 text-indigo-600 text-2xl font-bold"
           >
             รายการโปรด
           </button>
+          <button
+    class="relative align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] text-xs border border-gray-900 text-gray-900 hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85] rounded-full"
+    type="button">
+    <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"><i class="fas fa-heart"
+        aria-hidden="true"></i></span></button>
 
           <!-- <button class="m-4 w-16 h-16 bg-white rounded-full">
             <svg width="31" height="27" viewBox="0 0 31 27" fill="none" xmlns="http://www.w3.org/2000/svg">

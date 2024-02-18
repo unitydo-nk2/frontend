@@ -17,9 +17,12 @@
     "vue-router": "^4.2.5"
   },
   "dependencies": {
+    "@pinia/nuxt": "^0.5.1",
     "firebase": "^10.8.0",
     "flowbite": "^2.2.0",
     "google-auth-library": "^8.7.0",
-    "nuxt-vue3-google-signin": "^0.0.8"
+    "nuxt-storage": "^1.2.2",
+    "nuxt-vue3-google-signin": "^0.0.8",
+    "pinia": "^2.1.7"
   }
 }
