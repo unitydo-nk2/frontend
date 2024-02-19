@@ -302,6 +302,7 @@ const uploadImage = async (event, alt, imgId) => {
           ผู้จัดกิจกรรม
         </label>
         <input
+         v-if="state.role=='Admin'"
           disabled
           class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
           id="grid-first-name"
@@ -395,7 +396,7 @@ const uploadImage = async (event, alt, imgId) => {
           id="grid-zip"
           type="number"
           placeholder="กรุณากรอก"
-          min="0"
+          min="1"
         />
         <span
           v-show="newActivity.amount == 0"

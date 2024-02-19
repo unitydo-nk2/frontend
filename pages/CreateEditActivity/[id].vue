@@ -2,6 +2,7 @@
 
 <script setup>
 import { uploadFile } from "../firebase/firebase";
+
 const activity = ref([]);
 const categories = ref([]);
 const activityImages = ref([]);
@@ -196,8 +197,12 @@ const updateImageUpload = async (images) => {
       const downloadUrl = await uploadFile(image.file);
       console.log("downloadUrl : " + (await downloadUrl));
       console.log("imageId : " + image.imageId);
-
-      imageFormData.append("updateImage", await downloadUrl);
+      
+      imageFormData.append(
+        "updateImage",
+        new Blob([JSON.stringify(downloadUrl)], { type: "application/json" })
+      );
+      // imageFormData.append("updateImage", await downloadUrl);
 
       const res = await fetch(
         `${import.meta.env.VITE_BASE_URL}/activities/images/${image.imageId}`,

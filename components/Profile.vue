@@ -131,6 +131,7 @@ const updateUser = async (updatedUser) => {
     if (res.status === 200) {
       userDetails.value = await res.json();
       alert("Edit success");
+      store.changeUserName(updatedUser.name+" "+updatedUser.surName)
     } else {
       alert("Edit failed");
       console.log("cannot get data");
@@ -193,7 +194,7 @@ const updateUser = async (updatedUser) => {
         </li>
       </div>
       <div v-if="(store.role == 'User')">
-        <li v-if="store.role == 'ActivityOwner'" class="mr-1">
+        <li class="mr-1">
           <a
             @click="setStatus('Registerd Activity')"
             v-if="status == 'Registerd Activity'"

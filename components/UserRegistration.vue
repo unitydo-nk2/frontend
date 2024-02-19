@@ -217,7 +217,7 @@ const newUser = ref({
                 <input
                   v-model="newUser.telephoneNumber"
                   type="text"
-                  placeholder="XXX-XX-XXXX-XXX"
+                  placeholder="XX-XXX-XXXX"
                   class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                 />
               </div>
@@ -229,7 +229,7 @@ const newUser = ref({
                 <input
                   type="text"
                   v-model="newUser.emergencyPhoneNumber"
-                  placeholder="Enter your password"
+                  placeholder="XX-XXX-XXXX"
                   class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                 />
               </div>
@@ -242,7 +242,7 @@ const newUser = ref({
                 <input
                   type="email"
                   v-model="newUser.email"
-                  placeholder="johnsnow@example.com"
+                  placeholder="unityDo@example.com"
                   class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                 />
               </div>
@@ -263,12 +263,12 @@ const newUser = ref({
               <div>
                 <label
                   class="block mb-2 text-sm text-gray-600 dark:text-gray-200"
-                  >Confirm password
+                  >Confirm password <span class="text-red-600" v-if="newUser.password != newUser.confirmedPassword"> password not match</span>
                 </label>
                 <input
                   v-model="newUser.confirmedPassword"
                   type="password"
-                  placeholder="Enter your password"
+                  placeholder="Confirmed your password"
                   class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                 />
               </div>
@@ -289,7 +289,7 @@ const newUser = ref({
                 >
                 <textarea
                   v-model="newUser.address"
-                  placeholder="Enter your password"
+                  placeholder="Enter your address"
                   class="block w-full resize-none h-20 px-2 py-4 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                 />
               </div>

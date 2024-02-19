@@ -1,7 +1,7 @@
 <!-- @format -->
 
 <script setup>
-let errorDetails = ref([])
+let errorDetails = ref([]);
 let formData = new FormData();
 
 const validateEmail = (email) => {
@@ -32,12 +32,21 @@ const validateUser = (user) => {
   validateLength(user.name, "name", 50);
   validateLength(user.surName, "surname", 50);
   validateLength(user.email, "email", 100);
-  // validateLength(user.dateOfBirth, "date of birth");
   validateLength(user.religion, "religion", 100);
   validateLength(user.gender, "gender", 50);
   validateLength(user.address, "address", 500);
   validateLength(user.telephoneNumber, "telephone number", 10);
   validateLength(user.emergencyPhoneNumber, "emergency phone number", 10);
+  validatePassWord(user.password, user.confirmedPassword);
+};
+
+const validatePassWord = (password, confirmedPassword) => {
+  if (password.length < 8 || password.length > 14) {
+    errorDetails.value.push("password must be between 8 - 14 characters");
+  }
+  if (password == confirmedPassword) {
+    errorDetails.value.push("confirmed password miss match");
+  }
 };
 
 const createUser = async (user) => {
@@ -66,21 +75,21 @@ const createUser = async (user) => {
       `${import.meta.env.VITE_BASE_URL}/auth/registration`,
       { method: "POST", body: formData }
     );
-    if (res.status === 200) {
-      alert('you successfully create user !!')
+    if (res.status === 200 || res.status === 201) {
+      alert("you successfully create user !!");
       // router.push({ path: '/Activities/' });
-    } else {
+    } else if (res.status === 400) {
+      alert("this email have been registered in unitydo !!");
       console.log("cannot get data");
     }
-}else {
+  } else {
     alert(errorDetails.value);
   }
 };
-
 </script>
 
 <template>
- <UserRegistration @userRegistration="createUser" />
+  <UserRegistration @userRegistration="createUser" />
 </template>
 
 <style></style>
