@@ -2,16 +2,21 @@
 
 <script setup>
 import { localStorageUtil } from "~/functions/localStorageUtils";
+import { useCounterStore } from '../stores/counter'
 
+const store = useCounterStore();
 const activity = ref([]);
 const router = useRouter();
 let activityId;
 
 onBeforeMount(async () => {
+  if(store.role=='Guest'){
+    alert('To register the activity, please login !')
+    router.push({ path: "/login" });
+  }
   await getUser();
 });
 
-let formData = new FormData();
 const user = ref({});
 
 const getUser = async () => {
@@ -75,7 +80,8 @@ const createNewRegistration = async (user) => {
     router.push({ path: "/Activities/" });
   } else if(res.status == 400) {
     alert(JSON.parse(await res.text()).detail);
-    // console.log("cannot get data " + JSON.parse(await res.text()).detail);
+  } else {
+    alert('can not creat the registeration due to the status '+res.status)
   }
 };
 

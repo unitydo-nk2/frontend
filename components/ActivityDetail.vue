@@ -172,12 +172,6 @@ const getImage = (alt) => {
             รายการโปรด
           </button>
           </div>
-          <button
-            class="relative align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] text-xs border border-gray-900 text-gray-900 hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85] rounded-full"
-            type="button">
-            <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"><i class="fas fa-heart"
-                aria-hidden="true"></i></span></button>
-
           <!-- <button class="m-4 w-16 h-16 bg-white rounded-full">
             <svg width="31" height="27" viewBox="0 0 31 27" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M30 13.5L18.4 1V7.25C12.6 7.25 1 11 1 26C1 23.9161 4.48 19.75 18.4 19.75V26L30 13.5Z"

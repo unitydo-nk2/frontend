@@ -74,7 +74,7 @@ const newActivity = ref({
 });
 
 const clearFile = (ElementId) => {
-  fileUpload.value = null;
+  setFileUploadDefault();
   document.getElementById(ElementId).value = "";
   // isFileSelected.value = false;
 };
@@ -95,6 +95,50 @@ const getImageId = (alt) => {
   const foundObject = props.activityImages.find((obj) => obj.alt === alt);
   return foundObject ? foundObject.id : 0;
 };
+
+
+const setFileUploadDefault =(()=>{
+  fileUpload.value = [{ name: "",
+  label: "poster",
+  alt: "poster",
+  file: "",
+  imageId: 0 },
+  {
+    name: "",
+    label: "activityDetail1",
+    alt: "activityDetail1",
+    file: "",
+    imageId: 0,
+  },
+  {
+    name: "",
+    label: "activityDetail2",
+    alt: "activityDetail2",
+    file: "",
+    imageId: 0,
+  },
+  {
+    name: "",
+    label: "activityDetail3",
+    alt: "activityDetail3",
+    file: "",
+    imageId: 0,
+  },
+  {
+    name: "",
+    label: "activityDetail4",
+    alt: "activityDetail4",
+    file: "",
+    imageId: 0,
+  },
+  {
+    name: "",
+    label: "activityDetail5",
+    alt: "activityDetail5",
+    file: "",
+    imageId: 0,
+  },
+]})
 
 const fileUpload = ref([
   { name: "",
