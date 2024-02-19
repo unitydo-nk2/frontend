@@ -2,6 +2,9 @@
 
 <script setup>
 import { uploadFile } from "../firebase/firebase";
+import { useCounterStore } from "../stores/counter";
+
+const store = useCounterStore();
 const errorDetails = ref([]);
 const router = useRouter();
 let formData = new FormData();
@@ -157,23 +160,25 @@ const imageUpload = async (images, activityId) => {
       let imageFormData = new FormData();
       let getImagePath = await uploadFile(image.file);
 
-      let newImage = JSON.stringify({
+      let newImage = {
         activityId: activityId,
         label: image.alt,
         alt: image.alt,
         imagePath: await getImagePath,
-      });
+      };
 
-      const imageBlob = new Blob([await newImage], {
-        type: "application/json",
-      });
-
-      imageFormData.append("image", await imageBlob);
+      imageFormData.append(
+        "image",
+        new Blob([JSON.stringify(newImage)], { type: "application/json" })
+      );
 
       const res = await fetch(
         `${import.meta.env.VITE_BASE_URL}/activities/images`,
         {
           method: "POST",
+          headers: {
+            Authorization: "Bearer " + store.token,
+          },
           body: imageFormData,
         }
       );
@@ -193,8 +198,9 @@ const createNewActivity = async (activity, file) => {
   validateActivity(activity);
   console.log("errorDetails" + errorDetails.value);
   if (errorDetails.value.length == 0) {
-    let userName = activity.activityOwnerUserName;
-    let newActivity = JSON.stringify({
+    const formData = new FormData();
+
+    const newActivity = {
       activityName: activity.activityName,
       activityBriefDescription: activity.activityBriefDescription,
       activityDescription: activity.activityDescription,
@@ -209,39 +215,40 @@ const createNewActivity = async (activity, file) => {
       categoryId: activity.category,
       activityFormat: activity.activityFormat,
       activityEndDate: activity.activityEndDate,
-    });
+    };
 
-    let newlocation = JSON.stringify({
+    const newLocation = {
       locationName: activity.locationName,
       googleMapLink: activity.googleMapLink,
       locationLongitude: 0,
       locationLatitude: 0,
-    });
+    };
 
-    const userNameBlob = new Blob([userName], { type: "application/json" });
-    const newActivityBlob = new Blob([newActivity], {
-      type: "application/json",
-    });
-    const newlocationBlob = new Blob([newlocation], {
-      type: "application/json",
-    });
-
-    formData.append("user", userNameBlob);
-    formData.append("location", newlocationBlob);
-    formData.append("activity", newActivityBlob);
+    formData.append(
+      "activity",
+      new Blob([JSON.stringify(newActivity)], { type: "application/json" })
+    );
+    formData.append(
+      "location",
+      new Blob([JSON.stringify(newLocation)], { type: "application/json" })
+    );
 
     const res = await fetch(`${import.meta.env.VITE_BASE_URL}/activities`, {
       method: "POST",
+      headers: {
+        Authorization: "Bearer " + store.token,
+      },
       body: formData,
     });
-    if (res.status === 200) {
-      alert("you successfully create the activity !!");
+
+    if (res.ok) {
+      alert("You successfully created the activity!");
       let data = await res.json();
-      console.log("data " + (await data));
+      console.log("data " + JSON.stringify(data));
       await imageUpload(file, data.activityId);
       await router.push({ path: "/Activities/" });
     } else {
-      console.log("cannot get data");
+      console.log("Cannot get data");
     }
   } else {
     alert(errorDetails.value);

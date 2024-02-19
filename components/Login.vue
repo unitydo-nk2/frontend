@@ -27,7 +27,8 @@ const getTokenbyEmail = async (email: string) => {
     if (res.status === 200 || res.status === 201) {
       const jwttoken = await res.json();
       console.log("jwt " + jwttoken.accessToken);
-      store.googleLogin(tokenUtil.paresJWT(jwttoken.accessToken).role,jwttoken.accessToken,jwttoken.refreshToken)
+      store.googleLogin(tokenUtil.paresJWT(jwttoken.accessToken).role,jwttoken.accessToken,jwttoken.refreshToken);
+      router.push({path: '/'})
     } else if (res.status == 204) {
       alert(`no data go to registration`);
       console.log('usercredentia '+ usercredential.value)

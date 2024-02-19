@@ -2,8 +2,14 @@
 
 <script setup>
 import { tokenUtil } from '../../functions/jwtTokenUtils'
-import { validateUtil } from '../../functions/validateUtils'
+import { validateUtil } from '../../functions/ValidateUtils'
 import { useCounterStore } from '../../stores/counter'
+
+onBeforeMount(async () => {
+  console.log('b4 mounted')
+  const store = useCounterStore();
+  store.logout();
+})
 
 const router = useRouter();
 const store = useCounterStore();
@@ -25,23 +31,12 @@ const userLoginAuthentication = async (user) => {
       const jwttoken = await res.json()
       console.log(jwttoken.accessToken);
       store.systemLogin(tokenUtil.paresJWT(jwttoken.accessToken).role,jwttoken.accessToken,jwttoken.refreshToken)
-      // localStorageUtil.set('loginByMicrosoft', false)
-      // localStorageUtil.set('token', jwttoken.accessToken)
-      // localStorageUtil.set('refreshToken', jwttoken.refreshToken)
-      // localStorageUtil.set('role', tokenUtil.paresJWT(jwttoken.accessToken).role)
-      // localStorageUtil.set('isLogin', true)
       alert('login success')
       router.push({ path: '/' });
     } else if (res.status == 401) {
-      const jwttoken = await res.json()
-      // alert(jwttoken.message)
-            // clearError()
-      errorDetail.value.push(`Password Incorrect`)
-      errorStatus.value = true
+      alert(`Password Incorrect`)
     } else if (res.status == 404) {
-      clearError()
-      errorDetail.value.push(`A user with the specified email DOES NOT exist`)
-      errorStatus.value = true
+      alert(`A user with the specified email DOES NOT exist`)
     }
   }else{
     alert("please insert email format")

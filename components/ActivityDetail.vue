@@ -14,6 +14,24 @@ const props = defineProps({
   },
 });
 
+const setFavorite = async (activityId) => {
+  const res = await fetch(
+    `${import.meta.env.VITE_BASE_URL}/tracks/favorite/${activityId}`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json", // Set content type to JSON
+        Authorization: "Bearer " + store.token,
+      },
+      body : store.getEmail
+    }
+  );
+  if (res.status === 200) {
+    alert('added favorite')
+  } else {
+    console.log("cannot get data");
+  }
+};
 const getImage = (alt) => {
   const foundObject = props.activityImages.find((obj) => obj.alt === alt);
   return foundObject ? foundObject.imagepath : undefined;
@@ -251,7 +269,7 @@ const getImage = (alt) => {
             </button>
           </nuxt-link>
           <button
-           @click="setFavorite"
+           @click="setFavorite(activity.activityId)"
             class="w-[196px] h-[60px] ml-4 bg-white rounded-xl border border-indigo-600 text-indigo-600 text-2xl font-bold"
           >
             รายการโปรด

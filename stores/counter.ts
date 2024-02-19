@@ -69,6 +69,12 @@ export const useCounterStore = defineStore("counter", {
       this.isGoogleLogin = false;
       this.token = "";
       this.refreshToken = "";
+      this.username = '';
+      localStorageUtil.set('role',this.role)   
+      localStorageUtil.set('isLogin',this.isLogin)   
+      localStorageUtil.set('token',this.token)   
+      localStorageUtil.set('refreshToken',this.refreshToken)   
+      localStorageUtil.set('username',this.username)   
     },
   },
 });

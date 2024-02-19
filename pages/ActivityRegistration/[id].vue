@@ -11,7 +11,6 @@ onBeforeMount(async () => {
   await getUser();
 });
 
-const errorDetails = ref([]);
 let formData = new FormData();
 const user = ref({});
 
@@ -51,43 +50,6 @@ const getActivityByID = async (id) => {
   }
 };
 
-const validateEmail = (email) => {
-  console.log("email = " + email);
-  let validRegex =
-    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  if (email.match(validRegex)) {
-  } else {
-    errorDetails.value.push("email is not in email format");
-  }
-};
-
-const validateLength = (string, label, length = 0) => {
-  if (label == "email") {
-    validateEmail(string);
-  }
-  if (string.length > length) {
-    errorDetails.value.push(
-      label + " cannot more than " + length + " characters"
-    );
-  } else if (string.length == 0 || string == undefined || string == null) {
-    errorDetails.value.push(label + " is requied");
-  }
-};
-
-const validateUser = (user) => {
-  console.log("checking");
-  validateLength(user.name, "name", 50);
-  validateLength(user.surName, "surname", 50);
-  validateLength(user.username, "username", 50);
-  validateLength(user.email, "email", 100);
-  // validateLength(user.dateOfBirth, "date of birth");
-  validateLength(user.religion, "religion", 100);
-  validateLength(user.gender, "gender", 50);
-  validateLength(user.address, "address", 500);
-  validateLength(user.telephoneNumber, "telephone number", 10);
-  validateLength(user.emergencyPhoneNumber, "emergency phone number", 10);
-};
-
 const createNewRegistration = async (user) => {
   console.log('id '+ user.userId);
   console.log("Bearer " + localStorageUtil.get("token"));
@@ -112,8 +74,8 @@ const createNewRegistration = async (user) => {
     alert("You have successfully registered!");
     router.push({ path: "/Activities/" });
   } else if(res.status == 400) {
-    alert("You have registered to this activity already!");
-    console.log("cannot get data " + await res.json());
+    alert(JSON.parse(await res.text()).detail);
+    // console.log("cannot get data " + JSON.parse(await res.text()).detail);
   }
 };
 

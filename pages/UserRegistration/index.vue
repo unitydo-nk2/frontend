@@ -1,6 +1,9 @@
 <!-- @format -->
 
 <script setup>
+let errorDetails = ref([])
+let formData = new FormData();
+
 const validateEmail = (email) => {
   console.log("email = " + email);
   let validRegex =

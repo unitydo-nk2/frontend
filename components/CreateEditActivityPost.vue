@@ -59,7 +59,7 @@ const newActivity = ref({
   activityName: "",
   activityBriefDescription: "",
   activityDescription: "",
-  activityOwnerUserName: "",
+  activityOwnerUserName: store.getEmail,
   category: props.activity.category, // Set the default value here
   activityFormat: props.activity.activityFormat,
   locationName: "",
@@ -193,7 +193,7 @@ const uploadImage = async (event, alt, imgId) => {
           class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
           for="grid-first-name"
         >
-          หัวข้อกิจกรรม
+          หัวข้อกิจกรรม 
         </label>
         <input
           :disabled="!(store.role == 'ActivityOwner')"
@@ -302,8 +302,7 @@ const uploadImage = async (event, alt, imgId) => {
           ผู้จัดกิจกรรม
         </label>
         <input
-          :disabled="status == 'edit' || !(store.role == 'ActivityOwner')"
-          v-model="newActivity.activityOwnerUserName"
+          disabled
           class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
           id="grid-first-name"
           type="text"

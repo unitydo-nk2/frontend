@@ -1,4 +1,7 @@
 <script setup>
+import { useCounterStore } from '../stores/counter'
+
+const store = useCounterStore();
 const props = defineProps({
   status: {
     type: String,
@@ -173,6 +176,7 @@ const newActivity = computed(() => {
             </div>
           </div>
           <textarea
+            :value="store.email"
             v-model="newActivity.activityOwnerUserName"
             class="mt-10 w-80 h-11 rounded border border-neutral-200"
           ></textarea>
