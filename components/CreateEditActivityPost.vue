@@ -73,20 +73,18 @@ const newActivity = ref({
   isGamification: false,
 });
 
-const clearFile = () => {
+const clearFile = (ElementId) => {
   fileUpload.value = null;
-  document.getElementById("fileUpload").value = "";
-  isFileSelected.value = false;
+  document.getElementById(ElementId).value = "";
+  // isFileSelected.value = false;
 };
 
-const clearAll = () => {
-  fileUpload.value = null;
-  document.getElementById("fileUpload").value = "";
-  isFileSelected.value = false;
-  selectedCourseName.value = "";
-  fileDescription.value = "";
-  title.value = "";
-};
+// const clearAll = () => {
+//   fileUpload.value = null;
+//   document.getElementById("fileUpload").value = "";
+//   fileDescription.value = "";
+//   title.value = "";
+// };
 
 const getImage = (alt) => {
   const foundObject = props.activityImages.find((obj) => obj.alt === alt);
@@ -165,6 +163,7 @@ const uploadImage = async (event, alt, imgId) => {
   if (!allowedTypes.includes(file.type)) {
     console.log("Invalid file type. Only JPEG and PNG files are allowed.");
     alert("Invalid file type. Only JPEG and PNG files are allowed.");
+    clearFile(alt)
     return; // Stop further execution
   }
 
@@ -175,8 +174,8 @@ const uploadImage = async (event, alt, imgId) => {
   if (file.size > maxSize) {
     console.log("File size exceeds 15 MB. Clearing file...");
     alert("File size exceeds 15 MB. Please select a smaller file.");
-    clearFile();
-    // fileUpload.value = null;
+    clearFile(alt)
+    return; // Stop further execution
   } else {
     console.log("File size within limits.");
   }
@@ -184,7 +183,6 @@ const uploadImage = async (event, alt, imgId) => {
 </script>
 <template>
   <div v-if="newActivity" class="w-full m-4">
-    {{  store.role }}
     <div>
       <p>เนื้อหากิจกรรม</p>
     </div>
@@ -504,6 +502,7 @@ const uploadImage = async (event, alt, imgId) => {
             >
             <input
             :disabled="!(store.role == 'ActivityOwner')"
+              id="poster"
               type="file"
               multiple
               class="cursor-pointer relative block opacity-0"
@@ -553,6 +552,7 @@ const uploadImage = async (event, alt, imgId) => {
             :disabled="!(store.role == 'ActivityOwner')"
               type="file"
               multiple
+              id="activityDetail1"
               class="cursor-pointer relative block opacity-0"
               @change="
                 (event) =>
@@ -602,6 +602,7 @@ const uploadImage = async (event, alt, imgId) => {
             :disabled="!(store.role == 'ActivityOwner')"
               type="file"
               multiple
+              id="activityDetail2"
               class="cursor-pointer relative block opacity-0"
               @change="
                 (event) =>
@@ -652,6 +653,7 @@ const uploadImage = async (event, alt, imgId) => {
             <input
             :disabled="!(store.role == 'ActivityOwner')"
               type="file"
+              id="activityDetail3"
               multiple
               class="cursor-pointer relative block opacity-0"
               @change="
@@ -702,6 +704,7 @@ const uploadImage = async (event, alt, imgId) => {
             :disabled="!(store.role == 'ActivityOwner')"
               type="file"
               multiple
+              id="activityDetail4"
               class="cursor-pointer relative block opacity-0"
               @change="
                 (event) =>
@@ -753,6 +756,7 @@ const uploadImage = async (event, alt, imgId) => {
             :disabled="!(store.role == 'ActivityOwner')"
               type="file"
               multiple
+              id="activityDetail5"
               class="cursor-pointer relative block opacity-0"
               @change="
                 (event) =>

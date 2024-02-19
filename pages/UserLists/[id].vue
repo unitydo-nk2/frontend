@@ -48,7 +48,6 @@ const updateRegistrationStatus = async (id, status) => {
       {
         method: "PATCH",
         headers: {
-          "Content-Type": "application/json", // Set content type to JSON
           Authorization: "Bearer " + store.token,
         },
         body: updatedStatus,
