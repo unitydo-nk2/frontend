@@ -44,7 +44,7 @@ const validatePassWord = (password, confirmedPassword) => {
   if (password.length < 8 || password.length > 14) {
     errorDetails.value.push("password must be between 8 - 14 characters");
   }
-  if (password == confirmedPassword) {
+  if (password != confirmedPassword) {
     errorDetails.value.push("confirmed password miss match");
   }
 };
