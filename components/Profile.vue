@@ -196,18 +196,18 @@ const updateUser = async (updatedUser) => {
       <div v-if="(store.role == 'User')">
         <li class="mr-1">
           <a
-            @click="setStatus('Registerd Activity')"
-            v-if="status == 'Registerd Activity'"
+            @click="setStatus('Registered Activity')"
+            v-if="status == 'Registered Activity'"
             class="bg-white inline-block rounded-t py-2 px-4 text-blue-700 font-semibold border-l border-t border-r"
           >
-            Registerd Activity
+            Registered Activity
           </a>
           <a
-            @click="setStatus('Registerd Activity')"
+            @click="setStatus('Registered Activity')"
             v-else
             class="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold"
           >
-            Registerd Activity
+            Registered Activity
           </a>
         </li>
       </div>
@@ -227,7 +227,7 @@ const updateUser = async (updatedUser) => {
         <div v-else-if="status == 'Favorite'">
           <ActivityFavorite :activities="favActivities" />
         </div>
-        <div v-else-if="status == 'Registerd Activity'">
+        <div v-else-if="status == 'Registered Activity'">
           <ActivityFavorite
             :activities="registeredActivity"
             :isRegistered="true"
