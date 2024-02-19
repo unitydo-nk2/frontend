@@ -184,6 +184,7 @@ const uploadImage = async (event, alt, imgId) => {
 </script>
 <template>
   <div v-if="newActivity" class="w-full m-4">
+    {{  store.role }}
     <div>
       <p>เนื้อหากิจกรรม</p>
     </div>
@@ -302,7 +303,7 @@ const uploadImage = async (event, alt, imgId) => {
           ผู้จัดกิจกรรม
         </label>
         <input
-         v-if="state.role=='Admin'"
+         v-if="store.role=='Admin'"
           disabled
           class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
           id="grid-first-name"

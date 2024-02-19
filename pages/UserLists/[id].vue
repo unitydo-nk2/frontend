@@ -17,13 +17,16 @@ onBeforeMount(async () => {
 });
 
 const getUserByID = async (id) => {
-  const res = await fetch(`${import.meta.env.VITE_BASE_URL}/users/registration/${id}`, {
-    method: "GET",
-    headers: {
+  const res = await fetch(
+    `${import.meta.env.VITE_BASE_URL}/users/registration/${id}`,
+    {
+      method: "GET",
+      headers: {
         "Content-Type": "application/json", // Set content type to JSON
         Authorization: "Bearer " + store.token,
       },
-  });
+    }
+  );
   if (res.status === 200) {
     user.value = await res.json();
     console.log("value " + user.value);
@@ -44,6 +47,10 @@ const updateRegistrationStatus = async (id, status) => {
       `${import.meta.env.VITE_BASE_URL}/users/registration/${id}`,
       {
         method: "PATCH",
+        headers: {
+          "Content-Type": "application/json", // Set content type to JSON
+          Authorization: "Bearer " + store.token,
+        },
         body: updatedStatus,
       }
     );

@@ -2,11 +2,12 @@
 
 <script setup>
 import { uploadFile } from "../firebase/firebase";
+import { useCounterStore } from "../../stores/counter";
 
+const store = useCounterStore();
 const activity = ref([]);
 const categories = ref([]);
 const activityImages = ref([]);
-let formData = new FormData();
 const router = useRouter();
 const errorDetails = ref([]);
 
@@ -197,10 +198,10 @@ const updateImageUpload = async (images) => {
       const downloadUrl = await uploadFile(image.file);
       console.log("downloadUrl : " + (await downloadUrl));
       console.log("imageId : " + image.imageId);
-      
+
       imageFormData.append(
         "updateImage",
-        new Blob([JSON.stringify(downloadUrl)], { type: "application/json" })
+        new Blob([downloadUrl], { type: "application/json" })
       );
       // imageFormData.append("updateImage", await downloadUrl);
 
@@ -208,6 +209,9 @@ const updateImageUpload = async (images) => {
         `${import.meta.env.VITE_BASE_URL}/activities/images/${image.imageId}`,
         {
           method: "PATCH",
+          headers: {
+            Authorization: "Bearer " + store.token,
+          },
           body: imageFormData,
         }
       );
@@ -221,11 +225,15 @@ const updateImageUpload = async (images) => {
   });
 };
 
-//PATCH
 const updateActivity = async (activityId, activity, file) => {
   errorDetails.value = [];
   validateActivity(activity);
-  let updatedActivity = JSON.stringify({
+
+  // Create a new FormData object to handle multipart form data
+  const formData = new FormData();
+
+  // Append JSON data for updatedActivity
+  const updateActivity = {
     activityName: activity.activityName,
     activityBriefDescription: activity.activityBriefDescription,
     activityDescription: activity.activityDescription,
@@ -239,35 +247,41 @@ const updateActivity = async (activityId, activity, file) => {
     categoryId: activity.category,
     activityFormat: activity.activityFormat,
     activityEndDate: activity.activityEndDate,
-  });
-  let newlocation = JSON.stringify({
+  };
+
+  // Append JSON data for newlocation
+  const updateLocation = {
     locationName: activity.locationName,
     googleMapLink: activity.googleMapLink,
     locationLongitude: 0,
     locationLatitude: 0,
-  });
+  };
 
-  const newActivityBlob = new Blob([updatedActivity], {
-    type: "application/json",
-  });
-  const newlocationBlob = new Blob([newlocation], {
-    type: "application/json",
-  });
+  formData.append(
+    "updateActivity",
+    new Blob([JSON.stringify(updateActivity)], { type: "application/json" })
+  );
+  formData.append(
+    "updateLocation",
+    new Blob([JSON.stringify(updateLocation)], { type: "application/json" })
+  );
 
-  formData.append("updateLocation", newlocationBlob);
-  formData.append("updateActivity", newActivityBlob);
-
+  console.log("Token : Bearer " + store.token);
   const res = await fetch(
     `${import.meta.env.VITE_BASE_URL}/activities/${activityId}`,
     {
       method: "PATCH",
+      headers: {
+        Authorization: "Bearer " + store.token,
+      },
       body: formData,
     }
   );
+
   if (res.status === 200) {
     alert("you successfully update activity !!");
     await updateImageUpload(file);
-    await router.push({ path: "/Activities/" });
+    router.push({ path: "/Activities/" });
   } else {
     console.log("cannot get data");
   }
