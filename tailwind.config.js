@@ -1,16 +1,3 @@
-/**
- * @format
- * @type {import('tailwindcss').Config}
- */
-
-// export default {
-//   content: [],
-//   theme: {
-//     extend: {},
-//   },
-//   plugins: [],
-// }
-
 module.exports = {
   content: [
     './components/**/*.{js,vue,ts}',
@@ -18,9 +5,8 @@ module.exports = {
     './pages/**/*.vue',
     './plugins/**/*.{js,ts}',
     './nuxt.config.{js,ts}',
-    './node_modules/flowbite/**/*.{js,ts}'
   ],
-  plugins: [require('flowbite/plugin')],
+  plugins: [require('daisyui')],  
   theme: {
     extend: {
       height: {
@@ -51,5 +37,4 @@ module.exports = {
       },
     },
   },
-  plugins: []
 }

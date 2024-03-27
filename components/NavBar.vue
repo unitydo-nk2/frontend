@@ -80,7 +80,7 @@ const getUserDetails = () => {
               <a
                 href="#"
                 class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 "
-                >หน้าหลัก</a
+                >Home page</a
               >
             </li>
           </nuxt-link>
@@ -101,10 +101,10 @@ const getUserDetails = () => {
               </button> -->
           <li>
             <a
-              @click="navigateTo('/Activities/')"
+              @click="navigateTo('/Activities')"
               href="#"
               class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 "
-              >กิจกรรม</a
+              >Activities</a
             >
           </li>
           <!-- </li> -->
@@ -112,16 +112,16 @@ const getUserDetails = () => {
           <!-- <nuxt-link to="/ViewAllActivityPost"> -->
           <li v-if="store.role == 'Admin' || store.role == 'ActivityOwner'">
             <a
-              @click="navigateTo('/ViewAllActivityPost/')"
+              @click="navigateTo('/ViewAllActivityPost')"
               href="#"
               class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 "
-              >ข้อมูลหลังบ้าน</a
+              >Management</a
             >
           </li>
           <!-- </nuxt-link> -->
           <li v-if="store.isLogin == true">
             <a
-              @click="navigateTo('/ProfilePage/')"
+              @click="navigateTo('/ProfilePage')"
               href="#"
               class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 "
               > {{ store.username }} </a
@@ -129,10 +129,10 @@ const getUserDetails = () => {
           </li>
           <li v-if="store.isLogin == false">
             <a
-              @click="navigateTo('/Login/')"
+              @click="navigateTo('/Login')"
               href="#"
               class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 "
-              >เข้าสู่ระบบ</a
+              >Login</a
             >
           </li>
         </ul>

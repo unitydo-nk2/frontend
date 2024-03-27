@@ -6,13 +6,25 @@ import { useCounterStore } from '../stores/counter'
 const store = useCounterStore();
 const activity = ref([])
 const activityImages = ref([]);
+const similarActivies = ref([]);
 
 onBeforeMount(async () => {
   const route = useRoute()
   const id = route.params.id
   await getActivityByID(id)
   await getActivityImages(id);
+  await getSimilarActivities(id);
 })
+
+const getSimilarActivities = async (id) => {
+  const res = await fetch(`${import.meta.env.VITE_BASE_URL}/activities/similar/${id}`, {method: 'GET'})
+  if (res.status === 200) {
+    similarActivies.value = await res.json()
+    // console.log('value '+activity.value)
+  } else {
+    console.log('cannot get data')
+  }
+}
 
 const getActivityByID = async (id) => {
   const res = await fetch(`${import.meta.env.VITE_BASE_URL}/activities/${id}`, {method: 'GET'})
@@ -43,7 +55,7 @@ const getActivityImages = async (id) => {
 
 <template>
   <div>
-    <ActivityDetail :activity="activity" :activityImages="activityImages" />
+    <ActivityDetail :activity="activity" :activityImages="activityImages" :similarActivities="similarActivies"/>
   </div>
 </template>
 

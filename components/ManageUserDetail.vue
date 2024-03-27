@@ -79,22 +79,22 @@ const props = defineProps({
                 </g>
               </svg>
 
-              ข้อมูลส่วนตัว
+              Personal Information
             </div>
             <div class="w-full h-px border border-neutral-200"></div>
           </div>
           <!-- info -->
           <div class="grid grid-cols-3 h-52 p-4">
             <div class="w-22 text-stone-500 text-sm font-normal leading-none">
-              ชื่อ : {{ user.name }}
+              First name : {{ user.name }}
             </div>
             <div
               class="col-span-2 w-22 text-stone-500 text-sm font-normal leading-none"
             >
-              นามสกุล : {{ user.surName }}
+              Last name : {{ user.surName }}
             </div>
             <div class="w-22 text-stone-500 text-sm font-normal leading-none">
-              ชื่อเล่น : {{ user.nickName }}
+              Nickname : {{ user.nickName }}
             </div>
             <div
               class="col-span-2 w-22 text-stone-500 text-sm font-normal leading-none"
@@ -102,24 +102,24 @@ const props = defineProps({
               E-mail : {{ user.email }}
             </div>
             <div class="w22 text-stone-500 text-sm font-normal leading-none">
-              เพศ : {{ user.gender }}
+              Gender : {{ user.gender }}
             </div>
             <div class="w-22 text-stone-500 text-sm font-normal leading-none">
-              วันเดือนปีเกิด : {{ user.dateOfBirth }}
+              Date of birth : {{ user.dateOfBirth }}
             </div>
             <div class="w-22 text-stone-500 text-sm font-normal leading-none">
-              ศาสนา : {{ user.religion }}
+              Religion : {{ user.religion }}
             </div>
             <div class="w-22 text-stone-500 text-sm font-normal leading-none">
-              เบอร์โทรศัพท์ : {{ user.telephoneNumber }}
+              Phone number : {{ user.telephoneNumber }}
             </div>
             <div
               class="col-span-2 w-22 text-stone-500 text-sm font-normal leading-none"
             >
-              เบอร์ฉุกเฉิน : {{ user.emergencyPhoneNumber }}
+              Emergency Number : {{ user.emergencyPhoneNumber }}
             </div>
             <div class="w-22 text-stone-500 text-sm font-normal leading-none">
-              ที่อยู่ของคุณ : {{ user.address }}
+              Address : {{ user.address }}
             </div>
           </div>
         </div>

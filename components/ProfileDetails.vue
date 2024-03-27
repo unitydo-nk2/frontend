@@ -91,7 +91,7 @@ const userDetails = computed(() => {
 <template>
   <div class="">
     <div class="col-span-8 overflow-hidden rounded-xl pb-20 ">
-        <p class="py-2 pt-5 text-xl text-unityDo-primary font-semibold">
+        <p class="py-2 pt-5 text-xl text-unityDo-primary font-semibold uppercase">
           {{ userDetails.name }} {{ userDetails.surName }}
         </p>
         <div class="space-y-1">
@@ -109,7 +109,7 @@ const userDetails = computed(() => {
                   clip-rule="evenodd"
                 />
               </svg>
-              <span> ข้อมูลส่วนตัว</span>
+              <span> Personal Information</span>
               <svg
                 v-if="!isEdit"
                 @click="editToggle"
@@ -283,6 +283,9 @@ const userDetails = computed(() => {
           </div>
         </div>
       </div>
+
+      
+      
   </div>
 </template>
 

@@ -15,15 +15,15 @@ const props = defineProps({
 });
 
 const trackHistory = async (activityId) => {
-  console.log(store.getEmail)
-  let email = store.getEmail == null || store.getEmail == "" ? 'guest' : store.getEmail
+  console.log("track history")
+  console.log("getEmail : "+store.getUserEmail())
+  let email = store.getUserEmail() == null || store.getUserEmail() == "" ? 'guest' : store.getUserEmail()
   const res = await fetch(
     `${import.meta.env.VITE_BASE_URL}/tracks/${activityId}`,
     {
       method: "POST",
       headers: {
         "Content-Type": "application/json", // Set content type to JSON
-        Authorization: "Bearer " + store.token,
       },
       body: email
     }

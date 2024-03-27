@@ -3,7 +3,7 @@
 </script>
  
 <template>
-<div class="w-screen h-screen overflow-x-hidden">
+<div class="">
         <NuxtLayout>
             <NuxtPage />
         </NuxtLayout>

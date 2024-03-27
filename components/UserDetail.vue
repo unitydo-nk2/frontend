@@ -44,7 +44,7 @@ const props = defineProps({
                   clip-rule="evenodd"
                 />
               </svg>
-              <span> ข้อมูลส่วนตัว</span>
+              <span> Personal Information</span>
 
             </div>
             <div class="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2 m-4">

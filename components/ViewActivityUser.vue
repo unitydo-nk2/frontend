@@ -19,7 +19,7 @@ const props = defineProps({
         <div
           class="text-zinc-900 text-4xl font-bold font-['DB Heavent'] tracking-wide"
         >
-          การเข้าร่วมกิจกรรม
+          Manage registration
         </div>
         <div class="w-full h-px mt-4 mb-2 border border-stone-300"></div>
       </div>

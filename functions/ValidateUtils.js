@@ -9,10 +9,4 @@ export const validateUtil = {
       return false;
     }
   },
-  //   getEmail: function (token) {
-  //     return paresJWT(token).sub;
-  //   },
-  //   getName: function (token) {
-  //     return paresJWT(token).name;
-  //   },
 };

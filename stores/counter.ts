@@ -18,6 +18,13 @@ export const useCounterStore = defineStore("counter", {
     getEmail: (state) => tokenUtil.paresJWT(state.token).sub,
   },
   actions: {
+    getUserEmail(){
+      if(this.role == "Guest"){
+        return null;
+      }else{
+        return tokenUtil.paresJWT(this.token).sub;
+      } 
+    },
     setFromToken(token:string, refreshToken:string){
       this.role = tokenUtil.paresJWT(token).role;
       this.isLogin = true;
@@ -36,6 +43,10 @@ export const useCounterStore = defineStore("counter", {
     changeActivity(activity: Object) {
       this.activityLookUp = activity;
       console.log(activity);
+    },
+    changeIsGoogleLogin(status: boolean) {
+      this.isGoogleLogin = status;
+      console.log(status);
     },
     systemLogin(role: string, token: string, refreshToken: string) {
       this.role = role;

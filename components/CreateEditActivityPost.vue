@@ -1,7 +1,7 @@
 <!-- @format -->
 
 <script setup>
-import { useCounterStore } from '../stores/counter'
+import { useCounterStore } from "../stores/counter";
 
 const store = useCounterStore();
 const emit = defineEmits(["createActivity", "updateActivity"]);
@@ -64,7 +64,7 @@ const newActivity = ref({
   activityFormat: props.activity.activityFormat,
   locationName: "",
   googleMapLink: "",
-  amount: 0,
+  amount: 1,
   activityDate: "",
   activityEndDate: "",
   registerStartDate: "",
@@ -96,56 +96,49 @@ const getImageId = (alt) => {
   return foundObject ? foundObject.id : 0;
 };
 
-
-const setFileUploadDefault =(()=>{
-  fileUpload.value = [{ name: "",
-  label: "poster",
-  alt: "poster",
-  file: "",
-  imageId: 0 },
-  {
-    name: "",
-    label: "activityDetail1",
-    alt: "activityDetail1",
-    file: "",
-    imageId: 0,
-  },
-  {
-    name: "",
-    label: "activityDetail2",
-    alt: "activityDetail2",
-    file: "",
-    imageId: 0,
-  },
-  {
-    name: "",
-    label: "activityDetail3",
-    alt: "activityDetail3",
-    file: "",
-    imageId: 0,
-  },
-  {
-    name: "",
-    label: "activityDetail4",
-    alt: "activityDetail4",
-    file: "",
-    imageId: 0,
-  },
-  {
-    name: "",
-    label: "activityDetail5",
-    alt: "activityDetail5",
-    file: "",
-    imageId: 0,
-  },
-]})
+const setFileUploadDefault = () => {
+  fileUpload.value = [
+    { name: "", label: "poster", alt: "poster", file: "", imageId: 0 },
+    {
+      name: "",
+      label: "activityDetail1",
+      alt: "activityDetail1",
+      file: "",
+      imageId: 0,
+    },
+    {
+      name: "",
+      label: "activityDetail2",
+      alt: "activityDetail2",
+      file: "",
+      imageId: 0,
+    },
+    {
+      name: "",
+      label: "activityDetail3",
+      alt: "activityDetail3",
+      file: "",
+      imageId: 0,
+    },
+    {
+      name: "",
+      label: "activityDetail4",
+      alt: "activityDetail4",
+      file: "",
+      imageId: 0,
+    },
+    {
+      name: "",
+      label: "activityDetail5",
+      alt: "activityDetail5",
+      file: "",
+      imageId: 0,
+    },
+  ];
+};
 
 const fileUpload = ref([
-  { name: "",
-  label: "poster",
-  alt: "poster",
-  file: "",
-  imageId: 0 },
+  { name: "", label: "poster", alt: "poster", file: "", imageId: 0 },
   {
     name: "",
     label: "activityDetail1",
@@ -183,8 +176,6 @@ const fileUpload = ref([
   },
 ]);
 
-
-
 const findIndexByAlt = (arr, alt) => {
   for (let i = 0; i < arr.length; i++) {
     if (arr[i].alt === alt) {
@@ -196,7 +187,7 @@ const findIndexByAlt = (arr, alt) => {
 
 const uploadImage = async (event, alt, imgId) => {
   const maxSize = 15 * 1024 * 1024; // 15 MB
-  const allowedTypes = ['image/jpeg', 'image/png']; // Allowed file types
+  const allowedTypes = ["image/jpeg", "image/png"]; // Allowed file types
 
   let index = findIndexByAlt(fileUpload.value, alt);
   console.log("index " + index);
@@ -207,7 +198,7 @@ const uploadImage = async (event, alt, imgId) => {
   if (!allowedTypes.includes(file.type)) {
     console.log("Invalid file type. Only JPEG and PNG files are allowed.");
     alert("Invalid file type. Only JPEG and PNG files are allowed.");
-    clearFile(alt)
+    clearFile(alt);
     return; // Stop further execution
   }
 
@@ -218,17 +209,17 @@ const uploadImage = async (event, alt, imgId) => {
   if (file.size > maxSize) {
     console.log("File size exceeds 15 MB. Clearing file...");
     alert("File size exceeds 15 MB. Please select a smaller file.");
-    clearFile(alt)
+    clearFile(alt);
     return; // Stop further execution
   } else {
     console.log("File size within limits.");
   }
-}
+};
 </script>
 <template>
   <div v-if="newActivity" class="w-full m-4">
     <div>
-      <p>เนื้อหากิจกรรม</p>
+      <p>Activity Details</p>
     </div>
     <div class="flex flex-wrap -mx-3 mb-6">
       <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -236,7 +227,7 @@ const uploadImage = async (event, alt, imgId) => {
           class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
           for="grid-first-name"
         >
-          หัวข้อกิจกรรม 
+          Activity Name
         </label>
         <input
           :disabled="!(store.role == 'ActivityOwner')"
@@ -244,7 +235,7 @@ const uploadImage = async (event, alt, imgId) => {
           class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
           id="grid-first-name"
           type="text"
-          placeholder="กรุณากรอก"
+          placeholder="Activity's name"
         />
         <span
           v-show="newActivity.activityName.length == 0"
@@ -264,15 +255,15 @@ const uploadImage = async (event, alt, imgId) => {
           class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
           for="grid-last-name"
         >
-          เนื้อหากิจกรรม (แบบย่อ)
+          Activity Description(brief)
         </label>
         <input
-        :disabled="!(store.role == 'ActivityOwner')"
+          :disabled="!(store.role == 'ActivityOwner')"
           v-model="newActivity.activityBriefDescription"
           class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           id="grid-last-name"
           type="text"
-          placeholder="กรุณากรอก"
+          placeholder="Activity's brief description"
         />
         <span
           v-show="newActivity.activityBriefDescription.length == 0"
@@ -284,7 +275,7 @@ const uploadImage = async (event, alt, imgId) => {
           v-show="newActivity.activityBriefDescription.length > 100"
           class="text-red-500 text-xs italic"
         >
-          *Name cannot longer than 100 charaters.</span
+          *Activity Description(brief) cannot longer than 100 charaters.</span
         >
       </div>
     </div>
@@ -294,15 +285,15 @@ const uploadImage = async (event, alt, imgId) => {
           class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
           for="grid-last-name"
         >
-          เนื้อหากิจกรรม
+          Activity description
         </label>
         <textarea
-        :disabled="!(store.role == 'ActivityOwner')"
+          :disabled="!(store.role == 'ActivityOwner')"
           v-model="newActivity.activityDescription"
           class="resize-none h-24 appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           id="grid-last-name"
           type="text"
-          placeholder="กรุณากรอก"
+          placeholder="Activity's Description"
         />
         <span
           v-show="newActivity.activityDescription.length == 0"
@@ -314,7 +305,7 @@ const uploadImage = async (event, alt, imgId) => {
           v-show="newActivity.activityDescription.length > 500"
           class="text-red-500 text-xs italic"
         >
-          *Name cannot longer than 500 charaters.</span
+          *Activity description cannot longer than 500 charaters.</span
         >
       </div>
     </div>
@@ -324,15 +315,15 @@ const uploadImage = async (event, alt, imgId) => {
           class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
           for="grid-last-name"
         >
-          ข้อเสนอแนะ (option)
+          Activity Suggestion (option)
         </label>
         <input
-        :disabled="!(store.role == 'ActivityOwner')"
+          :disabled="!(store.role == 'ActivityOwner')"
           v-model="newActivity.suggestionNotes"
           class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           id="grid-last-name"
           type="text"
-          placeholder="กรุณากรอก"
+          placeholder="Activity's suggestion"
         />
       </div>
     </div>
@@ -342,15 +333,15 @@ const uploadImage = async (event, alt, imgId) => {
           class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
           for="grid-first-name"
         >
-          ผู้จัดกิจกรรม
+          Activity Owner
         </label>
         <input
-         v-if="store.role=='Admin'"
+          v-if="store.role == 'Admin'"
           disabled
           class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
           id="grid-first-name"
           type="text"
-          placeholder="กรุณากรอก"
+          placeholder="Activity's owner"
         />
         <span
           v-show="newActivity.activityOwnerUserName.length == 0"
@@ -362,7 +353,7 @@ const uploadImage = async (event, alt, imgId) => {
           v-show="newActivity.activityOwnerUserName.length > 50"
           class="text-red-500 text-xs italic"
         >
-          *Name cannot longer than 50 charaters.</span
+          *Activity Owner cannot longer than 50 charaters.</span
         >
       </div>
     </div>
@@ -373,15 +364,14 @@ const uploadImage = async (event, alt, imgId) => {
           class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
           for="grid-city"
         >
-          หมวดหมู่กิจกรรม
+          Categories
         </label>
         <select
-        :disabled="!(store.role == 'ActivityOwner')"
+          :disabled="!(store.role == 'ActivityOwner')"
           v-model="newActivity.category"
           class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           id="grid-city"
           type="text"
-          placeholder="กรุณากรอก"
         >
           <option
             v-for="(category, index) in categories"
@@ -397,7 +387,7 @@ const uploadImage = async (event, alt, imgId) => {
           class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
           for="grid-state"
         >
-          รูปแบบการจัดกิจกรรม
+          Activity Format
         </label>
         <div class="relative">
           <select
@@ -430,15 +420,14 @@ const uploadImage = async (event, alt, imgId) => {
           class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
           for="grid-zip"
         >
-          จำนวนคนเข้าร่วม
+          Amount
         </labelf>
         <input
-        :disabled="!(store.role == 'ActivityOwner')"
+          :disabled="!(store.role == 'ActivityOwner')"
           v-model="newActivity.amount"
           class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           id="grid-zip"
           type="number"
-          placeholder="กรุณากรอก"
           min="1"
         />
         <span
@@ -457,22 +446,22 @@ const uploadImage = async (event, alt, imgId) => {
           class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
           for="grid-first-name"
         >
-          ช่องทางเข้าร่วมกิจกรรม เช่น zoom
+          Platform
         </label>
         <label
           v-else
           class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
           for="grid-first-name"
         >
-          สถานที่
+          Location
         </label>
         <input
-        :disabled="!(store.role == 'ActivityOwner')"
+          :disabled="!(store.role == 'ActivityOwner')"
           v-model="newActivity.locationName"
           class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
           id="grid-first-name"
           type="text"
-          placeholder="กรุณากรอก"
+          placeholder="Activity's location"
         />
         <span
           v-show="newActivity.locationName.length == 0"
@@ -493,7 +482,7 @@ const uploadImage = async (event, alt, imgId) => {
           class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
           for="grid-last-name"
         >
-          ลิงก์เข้าร่วมกิจกรรม
+          activity meeting link
         </label>
         <label
           v-else
@@ -503,12 +492,12 @@ const uploadImage = async (event, alt, imgId) => {
           google map link
         </label>
         <input
-        :disabled="!(store.role == 'ActivityOwner')"
+          :disabled="!(store.role == 'ActivityOwner')"
           v-model="newActivity.googleMapLink"
           class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           id="grid-last-name"
           type="text"
-          placeholder="กรุณากรอก"
+          placeholder="google map or meeting link : https://maps.app.goo.gl/***"
         />
       </div>
     </div>
@@ -518,7 +507,7 @@ const uploadImage = async (event, alt, imgId) => {
           class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
           for="grid-first-name"
         >
-          รูปภาพโปสเตอร์ {{ fileUpload[0].name }}
+          activities poster {{ fileUpload[0].name }}
         </label>
         <div class="flex bg-grey-lighter">
           <div v-if="status == 'edit' && getImage('poster') !== undefined">
@@ -540,12 +529,11 @@ const uploadImage = async (event, alt, imgId) => {
                 d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z"
               />
             </svg>
-            <span class="mt-2 text-base text-center leading-normal"
-              >Drop files anywhere to upload <br />
-              Select files</span
-            >
+            <span class="mt-2 text-base text-center leading-normal">
+              Select file to upload
+            </span>
             <input
-            :disabled="!(store.role == 'ActivityOwner')"
+              :disabled="!(store.role == 'ActivityOwner')"
               id="poster"
               type="file"
               multiple
@@ -559,13 +547,13 @@ const uploadImage = async (event, alt, imgId) => {
         </div>
       </div>
     </div>
-    <div class="flex flex-wrap  -mx-3 mb-6">
+    <div class="flex flex-wrap -mx-3 mb-6">
       <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
         <label
           class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
           for="grid-first-name"
         >
-          รูปภาพรายละเอียด(1) *ถ้ามี {{ fileUpload[1].name }}
+          Activity images(1) *option {{ fileUpload[1].name }}
         </label>
         <div class="flex bg-grey-lighter">
           <div
@@ -588,12 +576,11 @@ const uploadImage = async (event, alt, imgId) => {
                 d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z"
               />
             </svg>
-            <span class="mt-2 text-base text-center leading-normal"
-              >Drop files anywhere to upload <br />
-              Select files</span
-            >
+            <span class="mt-2 text-base text-center leading-normal">
+              Select file to upload
+            </span>
             <input
-            :disabled="!(store.role == 'ActivityOwner')"
+              :disabled="!(store.role == 'ActivityOwner')"
               type="file"
               multiple
               id="activityDetail1"
@@ -615,7 +602,7 @@ const uploadImage = async (event, alt, imgId) => {
           class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
           for="grid-first-name"
         >
-          รูปภาพรายละเอียด(2) *ถ้ามี {{ fileUpload[2].name }}
+          Activity images(2) *option {{ fileUpload[2].name }}
         </label>
         <div class="flex bg-grey-lighter">
           <div
@@ -638,12 +625,11 @@ const uploadImage = async (event, alt, imgId) => {
                 d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z"
               />
             </svg>
-            <span class="mt-2 text-base text-center leading-normal"
-              >Drop files anywhere to upload <br />
-              Select files</span
-            >
+            <span class="mt-2 text-base text-center leading-normal">
+              Select file to upload
+            </span>
             <input
-            :disabled="!(store.role == 'ActivityOwner')"
+              :disabled="!(store.role == 'ActivityOwner')"
               type="file"
               multiple
               id="activityDetail2"
@@ -667,7 +653,7 @@ const uploadImage = async (event, alt, imgId) => {
           class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
           for="grid-first-name"
         >
-          รูปภาพรายละเอียด(3) *ถ้ามี {{ fileUpload[3].name }}
+          Activity images(3) *option {{ fileUpload[3].name }}
         </label>
         <div class="flex bg-grey-lighter">
           <div
@@ -690,12 +676,11 @@ const uploadImage = async (event, alt, imgId) => {
                 d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z"
               />
             </svg>
-            <span class="mt-2 text-base text-center leading-normal"
-              >Drop files anywhere to upload <br />
-              Select files</span
-            >
+            <span class="mt-2 text-base text-center leading-normal">
+              Select file to upload
+            </span>
             <input
-            :disabled="!(store.role == 'ActivityOwner')"
+              :disabled="!(store.role == 'ActivityOwner')"
               type="file"
               id="activityDetail3"
               multiple
@@ -717,7 +702,7 @@ const uploadImage = async (event, alt, imgId) => {
           class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
           for="grid-first-name"
         >
-          รูปภาพรายละเอียด(4) *ถ้ามี {{ fileUpload[4].name }}
+          Activity images(4) *option {{ fileUpload[4].name }}
         </label>
         <div class="flex bg-grey-lighter">
           <div
@@ -740,12 +725,11 @@ const uploadImage = async (event, alt, imgId) => {
                 d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z"
               />
             </svg>
-            <span class="mt-2 text-base text-center leading-normal"
-              >Drop files anywhere to upload <br />
-              Select files</span
-            >
+            <span class="mt-2 text-base text-center leading-normal">
+              Select file to upload
+            </span>
             <input
-            :disabled="!(store.role == 'ActivityOwner')"
+              :disabled="!(store.role == 'ActivityOwner')"
               type="file"
               multiple
               id="activityDetail4"
@@ -769,7 +753,7 @@ const uploadImage = async (event, alt, imgId) => {
           class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
           for="grid-first-name"
         >
-          รูปภาพรายละเอียด(5) *ถ้ามี {{ fileUpload[5].name }}
+          Activity images(5) *option {{ fileUpload[5].name }}
         </label>
         <div class="flex bg-grey-lighter">
           <div
@@ -792,12 +776,11 @@ const uploadImage = async (event, alt, imgId) => {
                 d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z"
               />
             </svg>
-            <span class="mt-2 text-base text-center leading-normal"
-              >Drop files anywhere to upload <br />
-              Select files</span
-            >
+            <span class="mt-2 text-base text-center leading-normal">
+              Select file to upload
+            </span>
             <input
-            :disabled="!(store.role == 'ActivityOwner')"
+              :disabled="!(store.role == 'ActivityOwner')"
               type="file"
               multiple
               id="activityDetail5"
@@ -814,39 +797,21 @@ const uploadImage = async (event, alt, imgId) => {
           </label>
         </div>
       </div>
-      <!-- <div class="w-full md:w-1/2 px-3">
-        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-          รูปภาพ
-        </label>
-        <div class="flex bg-grey-lighter">
-        <label
-          class="w-full flex flex-col items-center px-4 py-6 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase border border-dashed border-gray-500 relative cursor-pointer hover:bg-gray-300 hover:text-white">
-          <svg class="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-            <path
-              d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
-          </svg>
-          <span class="mt-2 text-base text-center leading-normal">Drop files anywhere to upload <br> Select files</span>
-          <input type='file' multiple class="cursor-pointer relative block opacity-0 " />
-        </label>
-      </div> 
-      </div> -->
     </div>
-
     <div class="flex flex-wrap -mx-3 mb-6">
       <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
         <label
           class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
           for="grid-first-name"
         >
-          วันจัดกิจกรรม
+          Activity Date (start)
         </label>
         <input
-        :disabled="!(store.role == 'ActivityOwner')"
+          :disabled="!(store.role == 'ActivityOwner')"
           v-model="newActivity.activityDate"
           class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
           id="grid-first-name"
           type="datetime-local"
-          placeholder="กรุณากรอก"
         />
       </div>
       <div class="w-full md:w-1/2 px-3">
@@ -854,15 +819,14 @@ const uploadImage = async (event, alt, imgId) => {
           class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
           for="grid-last-name"
         >
-          วันสิ้นสุดกิจกรรม
+          Activity Date (End)
         </label>
         <input
-        :disabled="!(store.role == 'ActivityOwner')"
+          :disabled="!(store.role == 'ActivityOwner')"
           v-model="newActivity.activityEndDate"
           class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           id="grid-last-name"
           type="datetime-local"
-          placeholder="กรุณากรอก"
         />
       </div>
     </div>
@@ -873,15 +837,14 @@ const uploadImage = async (event, alt, imgId) => {
           class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
           for="grid-first-name"
         >
-          วันเปิดรับสมัคร
+          Application Date (start)
         </label>
         <input
-        :disabled="!(store.role == 'ActivityOwner')"
+          :disabled="!(store.role == 'ActivityOwner')"
           v-model="newActivity.registerStartDate"
           class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
           id="grid-first-name"
           type="datetime-local"
-          placeholder="กรุณากรอก"
         />
       </div>
       <div class="w-full md:w-1/2 px-3">
@@ -889,15 +852,14 @@ const uploadImage = async (event, alt, imgId) => {
           class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
           for="grid-last-name"
         >
-          วันปิดรับสมัคร
+          Application Date (end)
         </label>
         <input
-        :disabled="!(store.role == 'ActivityOwner')"
+          :disabled="!(store.role == 'ActivityOwner')"
           v-model="newActivity.registerEndDate"
           class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           id="grid-last-name"
           type="datetime-local"
-          placeholder="กรุณากรอก"
         />
       </div>
     </div>
@@ -908,15 +870,14 @@ const uploadImage = async (event, alt, imgId) => {
           class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
           for="grid-first-name"
         >
-          วันประกาศผลผู้เข้าร่วม
+          Announcement Date
         </label>
         <input
-        :disabled="!(store.role == 'ActivityOwner')"
+          :disabled="!(store.role == 'ActivityOwner')"
           v-model="newActivity.announcementDate"
           class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
           id="grid-first-name"
           type="datetime-local"
-          placeholder="กรุณากรอก"
         />
       </div>
       <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -933,7 +894,10 @@ const uploadImage = async (event, alt, imgId) => {
         </label>
       </div>
     </div>
-    <div class="flex justify-center w-full" v-if="(store.role == 'ActivityOwner')">
+    <div
+      class="flex justify-center w-full"
+      v-if="store.role == 'ActivityOwner'"
+    >
       <button
         v-if="props.status == 'create'"
         @click="$emit('createActivity', newActivity, fileUpload)"

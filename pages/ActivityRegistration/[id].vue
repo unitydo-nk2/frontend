@@ -106,7 +106,7 @@ const createNewRegistration = async (user) => {
       <div
         class="m-4 text-white text-base font-bold leading-normal tracking-wide"
       >
-        ผู้จัดกิจกรรม : {{ activity.activityOwnerUserName }}
+        This activity owned by {{ activity.activityOwnerUserName }}
       </div>
     </div>
     <RegisterForm @createNewRegistration="createNewRegistration" :user="user" />

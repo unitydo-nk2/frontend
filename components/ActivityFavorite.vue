@@ -50,15 +50,11 @@ const trackHistory = async (activityId) => {
   </p>
   <div class="space-y-1">
     <div class="rounded-md border bg-white">
-      <div class="flex w-full items-center px-6 py-2 pt-8">
-        <span v-if="isRegistered"  >  กิจกรรมที่ลงทะเบียน </span>
-        <span v-else> กิจกรรมที่คุณชื่นชอบ </span>
-      </div>
       <div>
         <div v-if="activities.length == 0">no activity</div>
         <div v-else>
           <div class="container mx-auto">
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 px-6 py-2 pt-8 pb-8">
               <div
                 v-for="(activity, index) in activities"
                 :key="index"

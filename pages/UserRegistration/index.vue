@@ -1,8 +1,32 @@
 <!-- @format -->
 
 <script setup>
+import { useCounterStore } from "../stores/counter";
+
+const router = useRouter();
+const store = useCounterStore();
+const step = ref(0);
+const categories = ref([]);
+
 let errorDetails = ref([]);
 let formData = new FormData();
+
+onBeforeMount(async () => {
+  await getCategories();
+});
+
+const getCategories = async () => {
+  const res = await fetch(
+    `${import.meta.env.VITE_BASE_URL}/categories`,
+    { method: "GET" }
+  );
+  if (res.status === 200) {
+    categories.value = await res.json();
+    console.log("categories value " + categories.value);
+  } else {
+    console.log("cannot get data");
+  }
+};
 
 const validateEmail = (email) => {
   console.log("email = " + email);
@@ -41,11 +65,13 @@ const validateUser = (user) => {
 };
 
 const validatePassWord = (password, confirmedPassword) => {
-  if (password.length < 8 || password.length > 14) {
-    errorDetails.value.push("password must be between 8 - 14 characters");
-  }
-  if (password != confirmedPassword) {
-    errorDetails.value.push("confirmed password miss match");
+  if (store.isGoogleLogin == false) {
+    if (password.length < 8 || password.length > 14) {
+      errorDetails.value.push("password must be between 8 - 14 characters");
+    }
+    if (password != confirmedPassword) {
+      errorDetails.value.push("confirmed password miss match");
+    }
   }
 };
 
@@ -69,27 +95,93 @@ const createUser = async (user) => {
       address: user.address,
       emergencyPhoneNumber: user.emergencyPhoneNumber,
     });
+
     const blob = new Blob([userJson], { type: "application/json" });
     formData.append("user", blob);
     const res = await fetch(
       `${import.meta.env.VITE_BASE_URL}/auth/registration`,
       { method: "POST", body: formData }
     );
-    if (res.status === 200 || res.status === 201) {
+
+    if(user.role == "ActivityOwner"){
+      if (res.status === 200 || res.status === 201) {
       alert("you successfully create user !!");
-      // router.push({ path: '/Activities/' });
+      store.changeIsGoogleLogin(false);
+      router.push({ path: "/Login" });
     } else if (res.status === 400) {
       alert("this email have been registered in unitydo !!");
       console.log("cannot get data");
     }
+    }else if(user.role=='User'){
+      if (res.status === 200 || res.status === 201) {
+      alert("you successfully create user !!");
+      store.changeIsGoogleLogin(false);
+      store.email = user.email;
+      step.value = 1;
+    } else if (res.status === 400) {
+      alert("this email have been registered in unitydo !!");
+      console.log("cannot get data");
+    }
+    }
+
   } else {
     alert(errorDetails.value);
   }
 };
+
+const setUserFavoriteCategory = async (categories) => {
+
+  await categories.forEach(async (category, index) => {
+    const formData = new FormData();
+
+    console.log(index + ') category '+category)
+    console.log('email '+store.email)
+
+    let userJson = JSON.stringify({
+      userEmail: store.email,
+      mainCategoryId: category.id,
+      categoryRank: index + 1
+    });
+
+    const blob = new Blob([userJson], { type: "application/json" });
+    formData.append("favoriteCategory", blob);
+
+    try {
+    const res = await fetch(
+      `${import.meta.env.VITE_BASE_URL}/auth/favoriteCategory`,
+      { method: "POST", body: formData }
+    );
+
+    if (res.ok) {
+      alert("You have successfully set your favorite category!");
+      router.push({ path: "/Login" });
+    } else if (res.status === 400) {
+      const data = await res.json();
+      alert(data.message || "Bad request");
+    } else {
+      throw new Error("Failed to fetch");
+    }
+  } catch (error) {
+    console.error("Error:", error);
+    alert("An error occurred. Please try again later.");
+  }
+  
+  });
+
+};
+
+
 </script>
 
 <template>
-  <UserRegistration @userRegistration="createUser" />
+  <div>
+    <div v-if="step == 0">
+      <UserRegistration @userRegistration="createUser" />
+    </div>
+    <div v-else-if="step == 1">
+      <UserFavoriteCategoriesSelector :categories="categories" @sendFavoriteCategory="setUserFavoriteCategory"/>
+    </div>
+  </div>
 </template>
 
 <style></style>

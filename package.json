@@ -12,15 +12,17 @@
   "devDependencies": {
     "@nuxt/devtools": "latest",
     "@nuxtjs/tailwindcss": "^6.10.1",
+    "daisyui": "^4.7.3",
     "nuxt": "^3.8.1",
     "vue": "^3.3.8",
     "vue-router": "^4.2.5"
   },
   "dependencies": {
+    "@nuxtjs/tailwindcss": "^6",
     "@pinia/nuxt": "^0.5.1",
     "firebase": "^10.8.0",
-    "flowbite": "^2.2.0",
     "google-auth-library": "^8.7.0",
+    "nuxt": "^3",
     "nuxt-storage": "^1.2.2",
     "nuxt-vue3-google-signin": "^0.0.8",
     "pinia": "^2.1.7"

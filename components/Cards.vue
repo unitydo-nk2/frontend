@@ -6,7 +6,6 @@ const props = defineProps({
     type: Array,
     default: []
   },
-
 })
 </script>
 
@@ -14,7 +13,7 @@ const props = defineProps({
   <div class="flex">
     <div v-for="(activity, index) in activities" :key="index">
       <div
-        class="mb-9 w-72 h-96 mr-4 ml-4 overflow-hidden aspect-video  cursor-pointer rounded-xl relative group"
+        class="mb-9 w-72 h-96 mr-4 ml-4 overflow-hidden aspect-video cursor-pointer rounded-xl relative group"
       >
         <div
           class="z-50 opacity-0 group-hover:opacity-100 transition duration-300 ease-in-out cursor-pointer absolute from-black/80 to-transparent bg-gradient-to-t inset-x-0 -bottom-2 text-white"

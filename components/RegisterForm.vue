@@ -34,7 +34,7 @@ const userDetails = computed(() => {
   <div>
     <div class="font-primary flex flex-col justify-center items-center">
       <div class="m-4 text-black text-3xl font-bold tracking-wide">
-        สมัครเข้าร่วมกิจกรรม
+        Activity Registration
       </div>
       <!-- ลูกชิ้น 3 ลูก -->
       <div
@@ -53,9 +53,9 @@ const userDetails = computed(() => {
             </div>
           </div>
           <div
-            class="w-32 flex text-indigo-600 text-xl font-bold leading-7 tracking-wide"
+            class="w-fit flex text-indigo-600 text-xl font-bold leading-7 tracking-wide"
           >
-            ข้อมูลส่วนตัว
+            Personal Information
           </div>
         </div>
         <!-- ลูกสอง -->
@@ -111,7 +111,7 @@ const userDetails = computed(() => {
                   clip-rule="evenodd"
                 />
               </svg>
-              <span> ข้อมูลส่วนตัว</span>
+              <span> Personal Information</span>
               
             </div>
             <div class="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2 m-4">
@@ -256,7 +256,7 @@ const userDetails = computed(() => {
                   <div
                     class="flex justify-center items-center w-60 text-center text-white text-base font-normal font-['DB Heavent'] leading-7 tracking-wide"
                   >
-                    บันทึกข้อมูลและไปต่อ
+                    Save and Continue
                     <svg
                       class="ml-4"
                       width="15"

@@ -23,7 +23,7 @@ const store = useCounterStore();
           Activities > Activity Detail
         </div>
         <div class="text-zinc-900 text-4xl font-bold tracking-wide">
-          โพสต์กิจกรรรมทั้งหมด
+          Manage Activity
         </div>
         <div class="w-full h-px mt-4 mb-2 border border-stone-300"></div>
       </div>
@@ -138,7 +138,7 @@ const store = useCounterStore();
               <div class="flex flex-wrap items-center">
                 <div class="relative w-full px-4 max-w-full flex-grow flex-1">
                   <h3 class="font-semibold text-3xl text-blueGray-700">
-                    All activities
+                    Activity List
                   </h3>
                 </div>
               </div>

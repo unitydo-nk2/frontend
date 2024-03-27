@@ -11,11 +11,20 @@ onBeforeMount(async () => {
   store.logout();
 })
 
+let errorDetails = ref([]);
 const router = useRouter();
 const store = useCounterStore();
+
+const validatePassWord = (password) => {
+    if (password.length < 8 || password.length > 14) {
+      errorDetails.value.push("Password Incorrect");
+    }
+};
+
 const userLoginAuthentication = async (user) => {
+  validatePassWord(user.password)
   // const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/login`, {
-  if (validateUtil.email(user.email)) {
+  if (errorDetails.value.length == 0) {
     const res = await fetch(`${import.meta.env.VITE_BASE_URL}/auth/login`, {
       // const res = await fetch(`http://localhost:8080/api/login`, {
       method: 'POST',
@@ -39,7 +48,7 @@ const userLoginAuthentication = async (user) => {
       alert(`A user with the specified email DOES NOT exist`)
     }
   }else{
-    alert("please insert email format")
+    alert(errorDetails.value)
   }
 }
 </script>

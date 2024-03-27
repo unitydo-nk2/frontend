@@ -131,7 +131,7 @@ const updateUser = async (updatedUser) => {
     if (res.status === 200) {
       userDetails.value = await res.json();
       alert("Edit success");
-      store.changeUserName(updatedUser.name+" "+updatedUser.surName)
+      store.changeUserName(updatedUser.name + " " + updatedUser.surName);
     } else {
       alert("Edit failed");
       console.log("cannot get data");
@@ -143,13 +143,10 @@ const updateUser = async (updatedUser) => {
 </script>
 
 <template>
-  <div class="mx-4 max-w-screen-xl sm:mx-8 xl:mx-auto">
-    <!-- <h1 class="border-b py-6 text-4xl font-semibold" style="display: inline-block;">Setting</h1>
-<div style="display: inline-block; margin-left: auto;">
-  <a @click="">Sign out</a>
-</div> -->
-    <div class="flex justify-between">
-      <p class="text-4xl font-semibold pt-6">{{ status }}</p>
+  <div>
+    <div class="mx-4 max-w-screen-xl sm:mx-8 xl:mx-auto">
+      <div class="flex justify-between border-b">
+        <h1 class=" py-6 text-4xl font-semibold">Profile</h1>
       <button
         @click="$emit('signOut')"
         class="pt-6 text-red-800 hover:underline dark:text-red-800"
@@ -157,81 +154,94 @@ const updateUser = async (updatedUser) => {
         Sign out
       </button>
     </div>
-    <div class="w-full h-px mt-4 mb-2 border border-stone-300"></div>
-    <ul class="flex border-b">
-      <li class="-mb-px mr-1">
-        <a
-          @click="setStatus('Profile')"
-          v-if="status == 'Profile'"
-          class="bg-white inline-block rounded-t py-2 px-4 text-blue-700 font-semibold border-l border-t border-r"
-        >
-          Profile 
-        </a>
-        <a
-          @click="setStatus('Profile')"
-          v-else
-          class="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold"
-        >
-          Profile
-        </a>
-      </li>
-      <div v-if="(store.role == 'User')">
-        <li  class="mr-1">
-          <a
-            @click="setStatus('Favorite')"
-            v-if="status == 'Favorite'"
-            class="bg-white inline-block rounded-t py-2 px-4 text-blue-700 font-semibold border-l border-t border-r"
-          >
-            Favorite
-          </a>
-          <a
-            @click="setStatus('Favorite')"
-            v-else
-            class="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold"
-          >
-            Favorite
-          </a>
-        </li>
-      </div>
-      <div v-if="(store.role == 'User')">
-        <li class="mr-1">
-          <a
-            @click="setStatus('Registered Activity')"
-            v-if="status == 'Registered Activity'"
-            class="bg-white inline-block rounded-t py-2 px-4 text-blue-700 font-semibold border-l border-t border-r"
-          >
-            Registered Activity
-          </a>
-          <a
-            @click="setStatus('Registered Activity')"
-            v-else
-            class="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold"
-          >
-            Registered Activity
-          </a>
-        </li>
-      </div>
-    </ul>
-    <div class="grid grid-cols-8 pt-3 pb-10 pl-60 sm:grid-cols-10">
-      <!-- 
-    <div class="col-span-2 hidden sm:block">
-      <ul>
-        <li class="mt-5 cursor-pointer border-l-2 border-transparent px-2 py-2 font-semibold transition hover:border-l-blue-700 hover:text-blue-700">Profile</li>
-        <li class="mt-5 cursor-pointer border-l-2 border-transparent px-2 py-2 font-semibold transition hover:border-l-blue-700 hover:text-blue-700">Favorite</li>
-      </ul>
-    </div> -->
-      <div class="col-span-8 overflow-hidden rounded-xl pb-20">
-        <div v-if="status == 'Profile'">
-          <ProfileDetails :user="userDetails" @updateUser="updateUser" />
-        </div>
-        <div v-else-if="status == 'Favorite'">
-          <ActivityFavorite :activities="favActivities" />
-        </div>
-        <div v-else-if="status == 'Registered Activity'">
-          <ActivityFavorite
-            :activities="registeredActivity"
-            :isRegistered="true"
+      <div class="grid grid-cols-8 pt-3 pb-10 ">
+        <div class="relative my-4 w-56 sm:hidden">
+          <input
+            class="peer hidden"
+            type="checkbox"
+            name="select-1"
+            id="select-1"
           />
+          <label
+            for="select-1"
+            class="flex w-full cursor-pointer select-none rounded-lg border p-2 px-3 text-sm text-gray-700 ring-blue-700 peer-checked:ring"
+            >Teams
+          </label>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="pointer-events-none absolute right-0 top-3 ml-auto mr-5 h-4 text-slate-700 transition peer-checked:rotate-180"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M19 9l-7 7-7-7"
+            />
+          </svg>
+        </div>
+
+        <div class="col-span-2 hidden sm:block">
+          <ul>
+            <li
+              v-if="status == 'Profile'"
+              @click="setStatus('Profile')"
+              class="mt-5 cursor-pointer border-l-2 border-l-unityDo-primary px-2 py-2 font-semibold text-unityDo-primary transition hover:border-l-unityDo-primary hover:text-unityDo-primary"
+            >
+              Profile
+            </li>
+            <li
+              v-else
+              @click="setStatus('Profile')"
+              class="mt-5 cursor-pointer border-l-2 border-transparent px-2 py-2 font-semibold transition hover:border-l-unityDo-primary hover:text-unityDo-primary"
+            >
+              Profile
+            </li>
+            <li
+              v-if="status == 'Favorite'"
+              @click="setStatus('Favorite')"
+              class="mt-5 cursor-pointer border-l-2 border-l-unityDo-primary px-2 py-2 font-semibold text-unityDo-primary transition hover:border-l-unityDo-primary hover:text-unityDo-primary"
+            >
+              Favorite
+            </li>
+            <li
+              v-else
+              @click="setStatus('Favorite')"
+              class="mt-5 cursor-pointer border-l-2 border-transparent px-2 py-2 font-semibold transition hover:border-l-unityDo-primary hover:text-unityDo-primary"
+            >
+              Favorite
+            </li>
+            <li
+              v-if="status == 'Registered Activity'"
+              @click="setStatus('Registered Activity')"
+              class="mt-5 cursor-pointer border-l-2 border-l-unityDo-primary px-2 py-2 font-semibold text-unityDo-primary transition hover:border-l-unityDo-primary hover:text-unityDo-primary"
+            >
+              Registered Activity
+            </li>
+            <li
+              v-else
+              @click="setStatus('Registered Activity')"
+              class="mt-5 cursor-pointer border-l-2 border-transparent px-2 py-2 font-semibold transition hover:border-l-unityDo-primary hover:text-unityDo-primary"
+            >
+              Registered Activity
+            </li>
+          </ul>
+        </div>
+        <div class="col-span-6">
+          <div v-if="status == 'Profile'">
+            <ProfileDetails :user="userDetails" @updateUser="updateUser" />
+          </div>
+          <div v-else-if="status == 'Favorite'">
+            <ActivityFavorite :activities="favActivities" />
+          </div>
+          <div v-else-if="status == 'Registered Activity'">
+            <ActivityFavorite
+              :activities="registeredActivity"
+              :isRegistered="true"
+            />
+          </div>
         </div>
       </div>
     </div>
