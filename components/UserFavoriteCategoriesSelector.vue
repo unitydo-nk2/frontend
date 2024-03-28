@@ -38,7 +38,7 @@ const setFavoriteCategories = (category) => {
               <div class="w-full">
                 <img
                   class="w-auto h-18 sm:h-16"
-                  src="../unityDoicologo.ico"
+                  src="/image/unityDoLogo.png"
                   alt=""
                 />
                 <h1
