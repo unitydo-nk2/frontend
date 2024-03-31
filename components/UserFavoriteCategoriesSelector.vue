@@ -11,7 +11,7 @@ const favCategories = ref([]);
 
 const removeObjectFromArray = (object) => {
   const index = favCategories.value.findIndex((item) => item === object);
-  if (index !== -1) {
+  if (index !== -1 ) {
     favCategories.value.splice(index, 1);
     return true; // Object found and removed
   }
@@ -19,8 +19,10 @@ const removeObjectFromArray = (object) => {
 };
 
 const setFavoriteCategories = (category) => {
-  if (!removeObjectFromArray(category) && favCategories.value.length <= 3) {
+  if (!removeObjectFromArray(category) && favCategories.value.length <= 2) {
     favCategories.value.push(category);
+  }else{
+    alert('you can only choose 3 categories')
   }
 };
 

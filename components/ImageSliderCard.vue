@@ -9,7 +9,7 @@ const props = defineProps({
  
 <template>
     <div>
-        <nuxt-link :to="`/Activities/${activity.id}`">
+        <nuxt-link :to="`/Activities/${activity.activityId}`">
         <div class="overflow-hidden aspect-video bg-red-400 cursor-pointer rounded-xl relative group"
          style="width: 378px; height: 354px; ">
              <div class="rounded-xl z-50 opacity-0 group-hover:opacity-100 transition duration-300 ease-in-out cursor-pointer absolute from-black/80 to-transparent bg-gradient-to-t inset-x-0 -bottom-2 pt-30 text-white flex items-end"
