@@ -106,6 +106,7 @@ const createUser = async (user) => {
     if(user.role == "activityOwner"){
       if (res.status === 200 || res.status === 201) {
       alert("you successfully create user !!");
+      store.email = user.email;
       store.changeIsGoogleLogin(false);
       router.push({ path: "/Login" });
     } else if (res.status === 400) {

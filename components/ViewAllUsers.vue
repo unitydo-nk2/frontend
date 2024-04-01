@@ -1,6 +1,9 @@
 <!-- @format -->
 
 <script setup>
+const emit = defineEmits(["deleteUser"]);
+
+
 const props = defineProps({
   users: {
     type: Array,
@@ -61,6 +64,9 @@ const props = defineProps({
                     <th
                       class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-lg uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
                     ></th>
+                    <th
+                      class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-lg uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+                    ></th>
                   </tr>
                 </thead>
 
@@ -80,6 +86,16 @@ const props = defineProps({
                       class="border-t-0 px-6 align-center border-l-0 border-r-0 text-lg whitespace-nowrap p-4"
                     >
                     {{ user.role }}
+                    </td>
+                    <td>
+                      <div>
+                        <img
+                          @click="emit('deleteUser', user.userId)"
+                          class="cursor-pointer hover:drop-shadow-2xl"
+                          src="/image/delete.svg"
+                          alt="delete"
+                        />
+                      </div>
                     </td>
                     <td
                       class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-lg whitespace-nowrap p-4"

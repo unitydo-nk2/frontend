@@ -68,9 +68,9 @@ const newUser = ref({
 
               <div class="mt-3 md:flex md:items-center md:-mx-2">
                 <button
-                  @click="setRole('User')"
+                  @click="setRole('user')"
                   :class="{
-                    'bg-unityDo-primary text-white': newUser.role === 'User',
+                    'bg-unityDo-primary text-white': newUser.role === 'user',
                   }"
                   class="flex justify-center w-full px-6 py-3 mt-4 text-unityDo-primary border border-unityDo-primary hover:bg-unityDo-primary hover:text-white hover:border-transparent rounded-lg md:mt-0 md:w-auto md:mx-2 dark:border-unityDo-primary focus:outline-none"
                 >

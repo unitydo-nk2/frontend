@@ -1,11 +1,15 @@
 <!-- @format -->
 <script setup>
+import { useCounterStore } from "../stores/counter";
+
+const store = useCounterStore();
 const activities = ref([]);
 const comingSoonActivities = ref([]);
 onBeforeMount(async () => {
-  await getActivities();
+  if(store.role == 'user'){
+    await getActivities();
+  }
   await getcomingSoonActivities();
-  
 });
 
 const getcomingSoonActivities = async () => {
@@ -38,26 +42,53 @@ const getActivities = async () => {
 <template>
   <div class="font-primary">
     <div class="bg-[url('/image/gradientBg.png')] content-none bg-cover">
-      <Carousel :activities="comingSoonActivities"/>
+      <Carousel :activities="comingSoonActivities" />
     </div>
-   
 
-   <div class="my-8">
-    <div class="ml-16 mb-8">
-      <div class="w-60 text-neutral-500 text-xl font-medium leading-7 tracking-wide">
-        Activities you might like
+    <div class="my-8">
+      <div class="ml-16 mb-8">
+        <div
+          class="w-60 text-neutral-500 text-xl font-medium leading-7 tracking-wide"
+        >
+          Activities you might like
+        </div>
+        <div
+          class="text-indigo-600 text-3xl font-bold leading-10 tracking-wide"
+        >
+          Recommended Activities
+        </div>
       </div>
-      <div class="text-indigo-600 text-3xl font-bold leading-10 tracking-wide">
-        Recommended Activities
+      <div v-if="store.getRole == 'user'">
+        <div class="ml-16 overflow-x-scroll hide-scrollbar">
+          <ImageSlider :activities="activities" />
+        </div>
+      </div>
+      <div v-else-if="store.role == 'activityOwner' || store.role == 'admin'">
+        <div
+          class="text-center text-gray-400 text-2xl font-bold pb-4 leading-10 tracking-wide"
+        >
+          This features is for user only !
+        </div>
+      </div>
+      <div v-if="store.role == 'Guest'">
+        <div
+          class="text-center text-gray-400 text-2xl font-bold p-12 leading-10 tracking-wide"
+        >
+          Please register to unity do to get speacial recommendation activities
+          
+        </div>
+        <div class="flex justify-center w-full">
+          <button @click="navigateTo('/login')"
+          class=" bg-white drop-shadow-lg mr-16 hover:bg-indigo-600 text-indigo-600 hover:text-white font-bold py-4 px-8 rounded-full">
+          login to Unitydo
+        </button>
+        </div>
+      </div>
+
+      <div class="flex justify-end">
+        <ViewAllActivityButton />
       </div>
     </div>
-    <div class="ml-16 overflow-x-scroll hide-scrollbar">
-      <ImageSlider :activities="activities" />
-    </div>
-    <div class="flex justify-end">
-        <ViewAllActivityButton/>
-      </div>
-   </div>
 
     <div>
       <Footer />
