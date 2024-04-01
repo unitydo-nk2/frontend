@@ -166,7 +166,7 @@ const newActivity = computed(() => {
         class="left-[700px] top-[195px] absolute flex-col justify-start items-start gap-9 inline-flex"
       >
         <div class="relative">
-          <div v-if="state.role=='Admin'"
+          <div v-if="state.role=='admin'"
             class="w-28 h-6 left-0 top-0 absolute justify-start items-center gap-1.5 inline-flex"
           >
             <div
@@ -176,7 +176,7 @@ const newActivity = computed(() => {
             </div>
           </div>
           <textarea
-            v-if="state.role=='Admin'"
+            v-if="state.role=='admin'"
             v-model="newActivity.activityOwnerUserName"
             class="mt-10 w-80 h-11 rounded border border-neutral-200"
           ></textarea>

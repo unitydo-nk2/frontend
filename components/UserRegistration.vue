@@ -34,7 +34,7 @@ const newUser = ref({
   religion: "Christianity",
   telephoneNumber: "",
   address: "",
-  role: "User",
+  role: "user",
   emergencyPhoneNumber: "",
   confirmedPassword: store.isGoogleLogin == true ? "*" : "",
 });
@@ -91,10 +91,10 @@ const newUser = ref({
                   <span class="mx-2"> User </span>
                 </button>
                 <button
-                  @click="setRole('ActivityOwner')"
+                  @click="setRole('activiatyOwner')"
                   :class="{
                     'bg-unityDo-primary text-white':
-                      newUser.role === 'ActivityOwner',
+                      newUser.role === 'activiatyOwner',
                   }"
                   class="flex justify-center w-full px-6 py-3 mt-4 text-unityDo-primary border border-unityDo-primary hover:bg-unityDo-primary hover:text-white hover:border-transparent rounded-lg md:mt-0 md:w-auto md:mx-2 dark:border-unityDo-primary focus:outline-none"
                 >

@@ -175,7 +175,7 @@ const getImage = (alt) => {
           <!-- <div class="m-4 w-full h-px border border-neutral-50"></div> -->
           <!-- buttons -->
           <div class="flex m-4 justify-cenetr">
-            <div v-if="store.role == 'User' || store.role == 'Guest'">
+            <div v-if="store.role == 'user' || store.role == 'Guest'">
               <nuxt-link :to="`/ActivityRegistration/${activity.activityId}`">
                 <button
                   class="w-[196px] h-[60px] ml-4 bg-white rounded-xl border border-indigo-600 text-indigo-600 text-2xl font-bold">
@@ -184,7 +184,7 @@ const getImage = (alt) => {
               </nuxt-link>
             </div>
 
-            <div v-if="store.role == 'User'">
+            <div v-if="store.role == 'user'">
               <button @click="setFavorite(activity.activityId)"
                 class="w-[196px] h-[60px] ml-4 bg-white rounded-xl border border-indigo-600 text-indigo-600 text-2xl font-bold">
                 Save as favorite

@@ -110,7 +110,7 @@ const getUserDetails = () => {
           <!-- </li> -->
           <!-- </nuxt-link> -->
           <!-- <nuxt-link to="/ViewAllActivityPost"> -->
-          <li v-if="store.role == 'Admin' || store.role == 'ActivityOwner'">
+          <li v-if="store.role == 'admin' || store.role == 'activityOwner'">
             <a
               @click="navigateTo('/ViewAllActivityPost')"
               href="#"

@@ -27,7 +27,7 @@ const store = useCounterStore();
         </div>
         <div class="w-full h-px mt-4 mb-2 border border-stone-300"></div>
       </div>
-      <div v-if="store.role == 'ActivityOwner'" class="flex flex-in-line px-4 gap-4 justify-between">
+      <div v-if="store.role == 'activityOwner'" class="flex flex-in-line px-4 gap-4 justify-between">
         <a @click="navigateTo('/CreateEditActivity/')">
           <button
             class="w-44 h-9 px-2.5 py-1.5 rounded-md border border-indigo-600 justify-start items-center gap-1 inline-flex"

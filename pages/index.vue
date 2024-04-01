@@ -2,10 +2,10 @@
 <script setup>
 const activities = ref([]);
 const comingSoonActivities = ref([]);
-
 onBeforeMount(async () => {
   await getActivities();
   await getcomingSoonActivities();
+  
 });
 
 const getcomingSoonActivities = async () => {

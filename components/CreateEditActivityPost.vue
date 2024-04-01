@@ -230,7 +230,7 @@ const uploadImage = async (event, alt, imgId) => {
           Activity Name
         </label>
         <input
-          :disabled="!(store.role == 'ActivityOwner')"
+          :disabled="!(store.role == 'activityOwner')"
           v-model="newActivity.activityName"
           class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
           id="grid-first-name"
@@ -258,7 +258,7 @@ const uploadImage = async (event, alt, imgId) => {
           Activity Description(brief)
         </label>
         <input
-          :disabled="!(store.role == 'ActivityOwner')"
+          :disabled="!(store.role == 'activityOwner')"
           v-model="newActivity.activityBriefDescription"
           class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           id="grid-last-name"
@@ -288,7 +288,7 @@ const uploadImage = async (event, alt, imgId) => {
           Activity description
         </label>
         <textarea
-          :disabled="!(store.role == 'ActivityOwner')"
+          :disabled="!(store.role == 'activityOwner')"
           v-model="newActivity.activityDescription"
           class="resize-none h-24 appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           id="grid-last-name"
@@ -318,7 +318,7 @@ const uploadImage = async (event, alt, imgId) => {
           Activity Suggestion (option)
         </label>
         <input
-          :disabled="!(store.role == 'ActivityOwner')"
+          :disabled="!(store.role == 'activityOwner')"
           v-model="newActivity.suggestionNotes"
           class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           id="grid-last-name"
@@ -336,7 +336,7 @@ const uploadImage = async (event, alt, imgId) => {
           Activity Owner
         </label>
         <input
-          v-if="store.role == 'Admin'"
+          v-if="store.role == 'admin'"
           disabled
           class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
           id="grid-first-name"
@@ -367,7 +367,7 @@ const uploadImage = async (event, alt, imgId) => {
           Categories
         </label>
         <select
-          :disabled="!(store.role == 'ActivityOwner')"
+          :disabled="!(store.role == 'activityOwner')"
           v-model="newActivity.category"
           class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           id="grid-city"
@@ -391,7 +391,7 @@ const uploadImage = async (event, alt, imgId) => {
         </label>
         <div class="relative">
           <select
-            :disabled="!(store.role == 'ActivityOwner')"
+            :disabled="!(store.role == 'activityOwner')"
             v-model="newActivity.activityFormat"
             class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
             id="grid-state"
@@ -423,7 +423,7 @@ const uploadImage = async (event, alt, imgId) => {
           Amount
         </labelf>
         <input
-          :disabled="!(store.role == 'ActivityOwner')"
+          :disabled="!(store.role == 'activityOwner')"
           v-model="newActivity.amount"
           class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           id="grid-zip"
@@ -456,7 +456,7 @@ const uploadImage = async (event, alt, imgId) => {
           Location
         </label>
         <input
-          :disabled="!(store.role == 'ActivityOwner')"
+          :disabled="!(store.role == 'activityOwner')"
           v-model="newActivity.locationName"
           class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
           id="grid-first-name"
@@ -492,7 +492,7 @@ const uploadImage = async (event, alt, imgId) => {
           google map link
         </label>
         <input
-          :disabled="!(store.role == 'ActivityOwner')"
+          :disabled="!(store.role == 'activityOwner')"
           v-model="newActivity.googleMapLink"
           class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           id="grid-last-name"
@@ -533,7 +533,7 @@ const uploadImage = async (event, alt, imgId) => {
               Select file to upload
             </span>
             <input
-              :disabled="!(store.role == 'ActivityOwner')"
+              :disabled="!(store.role == 'activityOwner')"
               id="poster"
               type="file"
               multiple
@@ -580,7 +580,7 @@ const uploadImage = async (event, alt, imgId) => {
               Select file to upload
             </span>
             <input
-              :disabled="!(store.role == 'ActivityOwner')"
+              :disabled="!(store.role == 'activityOwner')"
               type="file"
               multiple
               id="activityDetail1"
@@ -629,7 +629,7 @@ const uploadImage = async (event, alt, imgId) => {
               Select file to upload
             </span>
             <input
-              :disabled="!(store.role == 'ActivityOwner')"
+              :disabled="!(store.role == 'activityOwner')"
               type="file"
               multiple
               id="activityDetail2"
@@ -680,7 +680,7 @@ const uploadImage = async (event, alt, imgId) => {
               Select file to upload
             </span>
             <input
-              :disabled="!(store.role == 'ActivityOwner')"
+              :disabled="!(store.role == 'activityOwner')"
               type="file"
               id="activityDetail3"
               multiple
@@ -729,7 +729,7 @@ const uploadImage = async (event, alt, imgId) => {
               Select file to upload
             </span>
             <input
-              :disabled="!(store.role == 'ActivityOwner')"
+              :disabled="!(store.role == 'activityOwner')"
               type="file"
               multiple
               id="activityDetail4"
@@ -780,7 +780,7 @@ const uploadImage = async (event, alt, imgId) => {
               Select file to upload
             </span>
             <input
-              :disabled="!(store.role == 'ActivityOwner')"
+              :disabled="!(store.role == 'activityOwner')"
               type="file"
               multiple
               id="activityDetail5"
@@ -807,7 +807,7 @@ const uploadImage = async (event, alt, imgId) => {
           Activity Date (start)
         </label>
         <input
-          :disabled="!(store.role == 'ActivityOwner')"
+          :disabled="!(store.role == 'activityOwner')"
           v-model="newActivity.activityDate"
           class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
           id="grid-first-name"
@@ -822,7 +822,7 @@ const uploadImage = async (event, alt, imgId) => {
           Activity Date (End)
         </label>
         <input
-          :disabled="!(store.role == 'ActivityOwner')"
+          :disabled="!(store.role == 'activityOwner')"
           v-model="newActivity.activityEndDate"
           class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           id="grid-last-name"
@@ -840,7 +840,7 @@ const uploadImage = async (event, alt, imgId) => {
           Application Date (start)
         </label>
         <input
-          :disabled="!(store.role == 'ActivityOwner')"
+          :disabled="!(store.role == 'activityOwner')"
           v-model="newActivity.registerStartDate"
           class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
           id="grid-first-name"
@@ -855,7 +855,7 @@ const uploadImage = async (event, alt, imgId) => {
           Application Date (end)
         </label>
         <input
-          :disabled="!(store.role == 'ActivityOwner')"
+          :disabled="!(store.role == 'activityOwner')"
           v-model="newActivity.registerEndDate"
           class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           id="grid-last-name"
@@ -873,7 +873,7 @@ const uploadImage = async (event, alt, imgId) => {
           Announcement Date
         </label>
         <input
-          :disabled="!(store.role == 'ActivityOwner')"
+          :disabled="!(store.role == 'activityOwner')"
           v-model="newActivity.announcementDate"
           class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
           id="grid-first-name"
@@ -886,7 +886,7 @@ const uploadImage = async (event, alt, imgId) => {
           for="grid-first-name"
         >
           <input
-            :disabled="status == 'edit' || !(store.role == 'ActivityOwner')"
+            :disabled="status == 'edit' || !(store.role == 'activityOwner')"
             type="checkbox"
             v-model="newActivity.isGamification"
           />
@@ -896,7 +896,7 @@ const uploadImage = async (event, alt, imgId) => {
     </div>
     <div
       class="flex justify-center w-full"
-      v-if="store.role == 'ActivityOwner'"
+      v-if="store.role == 'activityOwner'"
     >
       <button
         v-if="props.status == 'create'"

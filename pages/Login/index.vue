@@ -2,7 +2,6 @@
 
 <script setup>
 import { tokenUtil } from '../../functions/jwtTokenUtils'
-import { validateUtil } from '../../functions/ValidateUtils'
 import { useCounterStore } from '../../stores/counter'
 
 onBeforeMount(async () => {

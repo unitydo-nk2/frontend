@@ -103,7 +103,7 @@ const createUser = async (user) => {
       { method: "POST", body: formData }
     );
 
-    if(user.role == "ActivityOwner"){
+    if(user.role == "activityOwner"){
       if (res.status === 200 || res.status === 201) {
       alert("you successfully create user !!");
       store.changeIsGoogleLogin(false);
@@ -112,7 +112,7 @@ const createUser = async (user) => {
       alert("this email have been registered in unitydo !!");
       console.log("cannot get data");
     }
-    }else if(user.role=='User'){
+    }else if(user.role=='user'){
       if (res.status === 200 || res.status === 201) {
       alert("you successfully create user !!");
       store.changeIsGoogleLogin(false);
