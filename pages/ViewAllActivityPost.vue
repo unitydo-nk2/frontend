@@ -11,9 +11,16 @@ onBeforeMount(async () => {
 });
 
 const getActivities = async () => {
-  const res = await fetch(`${import.meta.env.VITE_BASE_URL}/activities/management`, {
-    method: "GET",
-  });
+  const res = await fetch(
+    `${import.meta.env.VITE_BASE_URL}/activities/management`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json", // Set content type to JSON
+        Authorization: "Bearer " + store.token,
+      },
+    }
+  );
   if (res.status === 200) {
     activities.value = await res.json();
     console.log("value " + activities.value);
@@ -34,9 +41,9 @@ const deleteActivity = async (deleteActivityId) => {
       {
         method: "DELETE",
         headers: {
-        "Content-Type": "application/json", // Set content type to JSON
-        Authorization: "Bearer " + store.token,
-      },
+          "Content-Type": "application/json", // Set content type to JSON
+          Authorization: "Bearer " + store.token,
+        },
       }
     );
     if (res.status === 200) {
@@ -48,7 +55,6 @@ const deleteActivity = async (deleteActivityId) => {
   } else {
   }
 };
-
 </script>
 
 <template>

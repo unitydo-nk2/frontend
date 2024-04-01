@@ -186,10 +186,11 @@ const userDetails = computed(() => {
                   v-model="userDetails.gender"
                   class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                 >
-                  <option value="male">male</option>
-                  <option value="female">female</option>
-                  <option value="lgbtq">lgbtq+</option>
-                  <option value="reatherNotToSay">rather not to say</option>
+                  <option value="Male">male</option>
+                  <option value="Female">female</option>
+                  <option value="LGBTQ+">lgbtq+</option>
+                  <option value="Other">other</option>
+                  <option value="Rather not say">rather not to say</option>
                 </select>
               </div>
 
@@ -206,7 +207,7 @@ const userDetails = computed(() => {
                   <option value="Buddhism">Buddhism</option>
                   <option value="Sikhism">Sikhism</option>
                   <option value="Judaism">Judaism</option>
-                  <option value="etc">etc</option>
+                  <option value="Etc">etc</option>
                 </select>
               </div>
 

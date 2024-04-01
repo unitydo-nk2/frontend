@@ -199,7 +199,8 @@ const updateUser = async (updatedUser) => {
             >
               Profile
             </li>
-            <li
+            <div v-show="store.role == 'user'">
+              <li
               v-if="status == 'Favorite'"
               @click="setStatus('Favorite')"
               class="mt-5 cursor-pointer border-l-2 border-l-unityDo-primary px-2 py-2 font-semibold text-unityDo-primary transition hover:border-l-unityDo-primary hover:text-unityDo-primary"
@@ -227,6 +228,7 @@ const updateUser = async (updatedUser) => {
             >
               Registered Activity
             </li>
+            </div>
           </ul>
         </div>
         <div class="col-span-6">
