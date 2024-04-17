@@ -10,9 +10,12 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  categories: {
+    type: Array,
+    default: [],
+  },
 });
 
-let formData = new FormData();
 const status = ref("Profile");
 const store = useCounterStore();
 const favActivities = ref([]);
@@ -103,6 +106,7 @@ const getFavorite = async () => {
 const updateUser = async (updatedUser) => {
   validateUser(updatedUser);
   if (errorDetails.value.length == 0) {
+    let formData = new FormData();
     let userJson = JSON.stringify({
       name: updatedUser.name,
       surName: updatedUser.surName,
@@ -116,8 +120,6 @@ const updateUser = async (updatedUser) => {
     });
     const blob = new Blob([userJson], { type: "application/json" });
     formData.append("updateUser", blob);
-
-    console.log("Bearer " + store.token);
     const res = await fetch(
       `${import.meta.env.VITE_BASE_URL}/users/${updatedUser.userId}`,
       {
@@ -140,21 +142,96 @@ const updateUser = async (updatedUser) => {
     alert("Validation errors :" + errorDetails.value);
   }
 };
+
+const updateFavoriteCategories = async (favoriteCategories) => {
+  let checkSum = 0;
+  await favoriteCategories.forEach(async (category, index) => {
+    let formData = new FormData();
+    if (category.id == 0) {
+      if (category.mainCategoryId != null) {
+        let favoriteCategoryJson = JSON.stringify({
+          userEmail: store.getUserEmail(),
+          mainCategoryId: category.mainCategoryId,
+          categoryRank: category.categoryRank,
+        });
+        const blob = new Blob([favoriteCategoryJson], {
+          type: "application/json",
+        });
+        formData.append("favoriteCategory", blob);
+        //create new favorite categories
+        const res = await fetch(
+          `${import.meta.env.VITE_BASE_URL}/auth/favoriteCategory`,
+          { method: "POST", body: formData }
+        );
+        if (res.ok) {
+          checkSum++;
+        } else if (res.status === 400) {
+          const data = await res.json();
+          alert(data.message || "Bad request");
+        } else {
+          alert(res.status + " error");
+        }
+      }
+    } else {
+      alert(
+        "!categoryValue.id == 0 update " +
+          category.id +
+          " to " +
+          category.mainCategoryId
+      );
+
+      //update existing favorite categories
+      let favoriteCategoryJson = JSON.stringify({
+        id: category.id,
+        mainCategoryId: category.mainCategoryId,
+        categoryRank: category.categoryRank,
+      });
+
+      const blob = new Blob([favoriteCategoryJson], {
+        type: "application/json",
+      });
+
+      formData.append("favoriteCategory", blob);
+
+      const res = await fetch(
+        `${import.meta.env.VITE_BASE_URL}/categories/favoriteCategory/${
+          category.id
+        }`,
+        {
+          method: "PATCH",
+          headers: {
+            Authorization: "Bearer " + store.token,
+          },
+          body: formData,
+        }
+      );
+      if (res.ok) {
+        checkSum++;
+      } else {
+        alert("Edit failed with error " + res.status);
+        console.log("cannot get data");
+      }
+    }
+  });
+  if (checkSum == 3) {
+    alert("FavoriteCategories updated");
+  }
+};
 </script>
 
 <template>
   <div>
     <div class="mx-4 max-w-screen-xl sm:mx-8 xl:mx-auto">
       <div class="flex justify-between border-b">
-        <h1 class=" py-6 text-4xl font-semibold">Profile</h1>
-      <button
-        @click="$emit('signOut')"
-        class="pt-6 text-red-800 hover:underline dark:text-red-800"
-      >
-        Sign out
-      </button>
-    </div>
-      <div class="grid grid-cols-8 pt-3 pb-10 ">
+        <h1 class="py-6 text-4xl font-semibold">Profile</h1>
+        <button
+          @click="$emit('signOut')"
+          class="pt-6 text-red-800 hover:underline dark:text-red-800"
+        >
+          Sign out
+        </button>
+      </div>
+      <div class="grid grid-cols-8 pt-3 pb-10">
         <div class="relative my-4 w-56 sm:hidden">
           <input
             class="peer hidden"
@@ -201,39 +278,44 @@ const updateUser = async (updatedUser) => {
             </li>
             <div v-show="store.role == 'user'">
               <li
-              v-if="status == 'Favorite'"
-              @click="setStatus('Favorite')"
-              class="mt-5 cursor-pointer border-l-2 border-l-unityDo-primary px-2 py-2 font-semibold text-unityDo-primary transition hover:border-l-unityDo-primary hover:text-unityDo-primary"
-            >
-              Favorite
-            </li>
-            <li
-              v-else
-              @click="setStatus('Favorite')"
-              class="mt-5 cursor-pointer border-l-2 border-transparent px-2 py-2 font-semibold transition hover:border-l-unityDo-primary hover:text-unityDo-primary"
-            >
-              Favorite
-            </li>
-            <li
-              v-if="status == 'Registered Activity'"
-              @click="setStatus('Registered Activity')"
-              class="mt-5 cursor-pointer border-l-2 border-l-unityDo-primary px-2 py-2 font-semibold text-unityDo-primary transition hover:border-l-unityDo-primary hover:text-unityDo-primary"
-            >
-              Registered Activity
-            </li>
-            <li
-              v-else
-              @click="setStatus('Registered Activity')"
-              class="mt-5 cursor-pointer border-l-2 border-transparent px-2 py-2 font-semibold transition hover:border-l-unityDo-primary hover:text-unityDo-primary"
-            >
-              Registered Activity
-            </li>
+                v-if="status == 'Favorite'"
+                @click="setStatus('Favorite')"
+                class="mt-5 cursor-pointer border-l-2 border-l-unityDo-primary px-2 py-2 font-semibold text-unityDo-primary transition hover:border-l-unityDo-primary hover:text-unityDo-primary"
+              >
+                Favorite
+              </li>
+              <li
+                v-else
+                @click="setStatus('Favorite')"
+                class="mt-5 cursor-pointer border-l-2 border-transparent px-2 py-2 font-semibold transition hover:border-l-unityDo-primary hover:text-unityDo-primary"
+              >
+                Favorite
+              </li>
+              <li
+                v-if="status == 'Registered Activity'"
+                @click="setStatus('Registered Activity')"
+                class="mt-5 cursor-pointer border-l-2 border-l-unityDo-primary px-2 py-2 font-semibold text-unityDo-primary transition hover:border-l-unityDo-primary hover:text-unityDo-primary"
+              >
+                Registered Activity
+              </li>
+              <li
+                v-else
+                @click="setStatus('Registered Activity')"
+                class="mt-5 cursor-pointer border-l-2 border-transparent px-2 py-2 font-semibold transition hover:border-l-unityDo-primary hover:text-unityDo-primary"
+              >
+                Registered Activity
+              </li>
             </div>
           </ul>
         </div>
         <div class="col-span-6">
           <div v-if="status == 'Profile'">
-            <ProfileDetails :user="userDetails" @updateUser="updateUser" />
+            <ProfileDetails
+              :user="userDetails"
+              @updateUser="updateUser"
+              @updateFavoriteCategories="updateFavoriteCategories"
+              :categories="categories"
+            />
           </div>
           <div v-else-if="status == 'Favorite'">
             <ActivityFavorite :activities="favActivities" />

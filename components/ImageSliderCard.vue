@@ -1,4 +1,5 @@
 <script setup>
+import { dateTimeUtil } from "../functions/dateTimeUtils";
 const props = defineProps({
   activity: {
     type: Object,
@@ -22,7 +23,7 @@ const props = defineProps({
                              {{ activity.activityBriefDescription }}
                          </div>
                          <div class="opacity-60 text-sm ">
-                             {{ Date(activity.activityDate) }}
+                             {{ dateTimeUtil.getDateTime(activity.activityDate) }}
                          </div>
                      </div>
                  </div>

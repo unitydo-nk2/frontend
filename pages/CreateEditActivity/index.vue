@@ -7,9 +7,7 @@ import { useCounterStore } from "../stores/counter";
 const store = useCounterStore();
 const errorDetails = ref([]);
 const router = useRouter();
-let formData = new FormData();
 const categories = ref([]);
-const activitiesImages = ref([]);
 
 onBeforeMount(async () => {
   await getCategories();

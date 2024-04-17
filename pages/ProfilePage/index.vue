@@ -3,11 +3,13 @@
 import { useCounterStore } from '../../stores/counter'
 
 onBeforeMount(async () => {
+  await gatFavoriteCategories();
   await getUser();
   await getRegisterdActivity();
 });
 
 const registeredActivities = ref({});
+const favoriteCategories = ref([]);
 const store = useCounterStore();
 const editStatus = ref(false);
 const router = useRouter();
@@ -29,6 +31,7 @@ const getUser = async () => {
   }
 };
 
+
 const getRegisterdActivity = async () => {
   console.log("getUser Bearer " + store.token)
   const res = await fetch(`${import.meta.env.VITE_BASE_URL}/users/registered`, {
@@ -45,6 +48,23 @@ const getRegisterdActivity = async () => {
   }
 };
 
+
+const gatFavoriteCategories = async () => {
+  console.log("getUser Bearer " + store.token)
+  const res = await fetch(`${import.meta.env.VITE_BASE_URL}/categories/favorite`, {
+    method: "GET",
+    headers: {
+      Authorization: "Bearer " + store.token,
+    },
+  });
+  if (res.status === 200) {
+    favoriteCategories.value = await res.json();
+    console.log(favoriteCategories.value)
+  } else {
+    console.log("cannot get data");
+  }
+};
+
 const signOut = () => {
   store.logout();
   router.push({ path: '/login' });
@@ -53,7 +73,7 @@ const signOut = () => {
 </script>
 
 <template>
-  <Profile :user="user" @updateUser="updateUser" @signOut="signOut()" :editSuccess="editStatus" />
+  <Profile :user="user" @updateUser="updateUser" @signOut="signOut()" :editSuccess="editStatus" :categories="favoriteCategories"/>
 </template>
 
 <style></style>

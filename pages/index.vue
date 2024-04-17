@@ -5,9 +5,14 @@ import { useCounterStore } from "../stores/counter";
 const store = useCounterStore();
 const activities = ref([]);
 const comingSoonActivities = ref([]);
+const favoriteCategories = ref([]);
+
 onBeforeMount(async () => {
-  if(store.role == 'user'){
-    await getActivities();
+  if (store.role == "user") {
+    await gatFavoriteCategories();
+    if(await favoriteCategories.value.length == 3){
+      await getActivities();
+    }
   }
   await getcomingSoonActivities();
 });
@@ -25,10 +30,33 @@ const getcomingSoonActivities = async () => {
   }
 };
 
+const gatFavoriteCategories = async () => {
+  console.log("getUser Bearer " + store.token)
+  const res = await fetch(`${import.meta.env.VITE_BASE_URL}/categories/favorite`, {
+    method: "GET",
+    headers: {
+      Authorization: "Bearer " + store.token,
+    },
+  });
+  if (res.status === 200) {
+    favoriteCategories.value = await res.json();
+    console.log(favoriteCategories.value)
+  } else {
+    console.log("cannot get data");
+  }
+};
+
+
 const getActivities = async () => {
   const res = await fetch(
     `${import.meta.env.VITE_BASE_URL}/activities/recommends`,
-    { method: "GET" }
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json", // Set content type to JSON
+        Authorization: "Bearer " + store.token,
+      },
+    }
   );
   if (res.status === 200) {
     activities.value = await res.json();
@@ -58,34 +86,50 @@ const getActivities = async () => {
           Recommended Activities
         </div>
       </div>
-      <div v-if="store.getRole == 'user'">
+      <div v-if="store.getRole == 'user' && favoriteCategories.length == 3">
         <div class="ml-16 overflow-x-scroll hide-scrollbar">
           <ImageSlider :activities="activities" />
         </div>
       </div>
-      <div v-else-if="store.role == 'activityOwner' || store.role == 'admin'">
+      <div v-if="store.getRole == 'user' && favoriteCategories.length != 3">
+        <div
+          class="text-center text-gray-400 text-2xl font-bold pb-4 leading-10 tracking-wide"
+        >
+          Let UnityDo know you more ! Add your favorite categories !
+        </div>
+        <div class="flex justify-center w-full">
+          <button
+            @click="navigateTo('/ProfilePage')"
+            class="bg-white drop-shadow-lg mr-16 hover:bg-indigo-600 text-indigo-600 hover:text-white font-bold py-4 px-8 rounded-full"
+          >
+            Set favorite categories
+          </button>
+        </div>
+      </div>
+      <div v-else-if="store.getRole == 'activityOwner' || store.getRole == 'admin'">
         <div
           class="text-center text-gray-400 text-2xl font-bold pb-4 leading-10 tracking-wide"
         >
           This features is for user only !
         </div>
       </div>
-      <div v-if="store.role == 'Guest'">
+      <div v-if="store.getRole == 'Guest'">
         <div
           class="text-center text-gray-400 text-2xl font-bold p-12 leading-10 tracking-wide"
         >
           Please register to unity do to get speacial recommendation activities
-          
         </div>
         <div class="flex justify-center w-full">
-          <button @click="navigateTo('/login')"
-          class=" bg-white drop-shadow-lg mr-16 hover:bg-indigo-600 text-indigo-600 hover:text-white font-bold py-4 px-8 rounded-full">
-          login to Unitydo
-        </button>
+          <button
+            @click="navigateTo('/login')"
+            class="bg-white drop-shadow-lg mr-16 hover:bg-indigo-600 text-indigo-600 hover:text-white font-bold py-4 px-8 rounded-full"
+          >
+            login to Unitydo
+          </button>
         </div>
       </div>
 
-      <div class="flex justify-end">
+      <div class="flex justify-end mr-16">
         <ViewAllActivityButton />
       </div>
     </div>

@@ -2,7 +2,7 @@
 
 <script setup>
 import { useCounterStore } from '../stores/counter'
-const emit = defineEmits(["deleteActivity"]);
+const emit = defineEmits(["deleteActivity","updateActivityToDone"]);
 
 const props = defineProps({
   activities: {
@@ -187,12 +187,12 @@ const store = useCounterStore();
                       {{ activity.mainCategory }} / {{ activity.category }}
                     </td>
                     <td
-                      class="border-t-0 px-6 align-middle border-l-0 border-r-0 text- whitespace-nowrap p-4 inline-flex gap-10"
+                      class="border-t-0 px-6 inline-flex align-middle content-center  border-l-0 border-r-0 text- whitespace-nowrap p-4  gap-10"
                     >
                       <div>
                         <img
                           @click="emit('deleteActivity', activity.id)"
-                          class="cursor-pointer hover:drop-shadow-2xl"
+                          class="cursor-pointer hover:drop-shadow-2xl inline-block align-middle"
                           src="/image/delete.svg"
                           alt="delete"
                         />
@@ -200,11 +200,20 @@ const store = useCounterStore();
                       <div>
                         <nuxt-link :to="`/CreateEditActivity/${activity.id}`">
                           <img
-                            class="cursor-pointer hover:drop-shadow-2xl"
+                            class="cursor-pointer hover:drop-shadow-2xl inline-block align-middle"
                             src="/image/edit.svg"
                             alt="edit"
                           />
                         </nuxt-link>
+                      </div>
+                      <div>
+                        <button
+                          @click="emit('updateActivityToDone', activity.id)"                          
+                          type="button"
+                          class="hover:bg-unityDo-primary text-unityDo-primary hover:text-white font-semibold font-bold py-2 px-4 border border-unityDo-primary rounded"
+                        >
+                        Mark as Done
+                        </button>
                       </div>
                     </td>
                   </tr>

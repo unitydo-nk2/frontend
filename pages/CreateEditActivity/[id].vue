@@ -196,9 +196,6 @@ const updateImageUpload = async (images) => {
     ) {
       let imageFormData = new FormData();
       const downloadUrl = await uploadFile(image.file);
-      console.log("downloadUrl : " + (await downloadUrl));
-      console.log("imageId : " + image.imageId);
-
       imageFormData.append(
         "updateImage",
         new Blob([downloadUrl], { type: "application/json" })

@@ -7,14 +7,30 @@ const store = useCounterStore();
 const activity = ref([])
 const activityImages = ref([]);
 const similarActivies = ref([]);
+const reviews = ref([]);
 
 onBeforeMount(async () => {
   const route = useRoute()
   const id = route.params.id
-  await getActivityByID(id)
+  await getReviews(id);
+  await getActivityByID(id);
   await getActivityImages(id);
   await getSimilarActivities(id);
 })
+
+const getReviews = async (activityId) => {
+  const res = await fetch(
+    `${import.meta.env.VITE_BASE_URL}/activities/review/${activityId}`,
+    {
+      method: "GET"
+    }
+  );
+  if (res.status === 200) {
+    reviews.value = await res.json();
+  } else {
+    console.log("cannot ge t data");
+  }
+};
 
 const getSimilarActivities = async (id) => {
   const res = await fetch(`${import.meta.env.VITE_BASE_URL}/activities/similar/${id}`, {method: 'GET'})
@@ -55,7 +71,7 @@ const getActivityImages = async (id) => {
 
 <template>
   <div>
-    <ActivityDetail :activity="activity" :activityImages="activityImages" :similarActivities="similarActivies"/>
+    <ActivityDetail :reviews="reviews" :activity="activity" :activityImages="activityImages" :similarActivities="similarActivies"/>
   </div>
 </template>
 

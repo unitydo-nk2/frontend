@@ -89,7 +89,6 @@ const getMainCategories = async () => {
     </div>
     <div>
       <div>
-        <div element-name="filter"></div>
         <div element-name="activity-list">
           <div>
             <ActivityListWithFilter

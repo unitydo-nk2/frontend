@@ -16,6 +16,7 @@ export const useCounterStore = defineStore("counter", {
   getters: {
     getIsLogin: (state) => state.isLogin,
     getEmail: (state) => tokenUtil.paresJWT(state.token).sub,
+    getRole:(state)=> tokenUtil.paresJWT(state.token).role
   },
   actions: {
     getUserEmail(){
@@ -55,6 +56,7 @@ export const useCounterStore = defineStore("counter", {
       this.token = token;
       this.refreshToken = refreshToken;
       this.username = tokenUtil.paresJWT(token).name;
+      this.email = tokenUtil.paresJWT(token).sub;
       localStorageUtil.set('role',this.role)   
       localStorageUtil.set('isLogin',this.isLogin)   
       localStorageUtil.set('token',this.token)   
@@ -68,6 +70,7 @@ export const useCounterStore = defineStore("counter", {
       this.token = token;
       this.refreshToken = refreshToken;
       this.username = tokenUtil.paresJWT(token).name;
+      this.email = tokenUtil.paresJWT(token).sub;
       localStorageUtil.set('role',this.role)   
       localStorageUtil.set('isLogin',this.isLogin)   
       localStorageUtil.set('token',this.token)   
@@ -80,7 +83,8 @@ export const useCounterStore = defineStore("counter", {
       this.isGoogleLogin = false;
       this.token = "";
       this.refreshToken = "";
-      this.username = '';
+      this.username = "";
+      this.email = "";
       localStorageUtil.set('role',this.role)   
       localStorageUtil.set('isLogin',this.isLogin)   
       localStorageUtil.set('token',this.token)   

@@ -17,6 +17,7 @@ onBeforeMount(async () => {
 });
 
 const getUserByID = async (id) => {
+  console.log(store.token)
   const res = await fetch(
     `${import.meta.env.VITE_BASE_URL}/users/registration/${id}`,
     {

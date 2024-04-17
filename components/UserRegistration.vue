@@ -13,7 +13,7 @@ const props = defineProps({
     default: false,
   },
 });
-const router = useRouter();
+
 const store = useCounterStore();
 
 const setRole = (role) => {
@@ -42,7 +42,7 @@ const newUser = ref({
 
 <template>
   <div>
-    <section class="bg-white dark:bg-gray-900">
+    <div class="bg-white dark:bg-gray-900">
       <div class="flex justify-center min-h-screen">
         <div
           class="flex items-center w-full max-w-3xl p-8 mx-auto lg:px-12 lg:w-3/5"
@@ -94,7 +94,7 @@ const newUser = ref({
                   @click="setRole('activiatyOwner')"
                   :class="{
                     'bg-unityDo-primary text-white':
-                      newUser.role === 'activiatyOwner',
+                      newUser.role === 'activityOwner',
                   }"
                   class="flex justify-center w-full px-6 py-3 mt-4 text-unityDo-primary border border-unityDo-primary hover:bg-unityDo-primary hover:text-white hover:border-transparent rounded-lg md:mt-0 md:w-auto md:mx-2 dark:border-unityDo-primary focus:outline-none"
                 >
@@ -183,6 +183,7 @@ const newUser = ref({
                   <option value="male">male</option>
                   <option value="female">female</option>
                   <option value="lgbtq">lgbtq+</option>
+                  <option value="other">other</option>
                   <option value="reatherNotToSay">rather not to say</option>
                 </select>
               </div>
@@ -315,7 +316,7 @@ const newUser = ref({
           </div>
         </div>
       </div>
-    </section>
+    </div>
   </div>
 </template>
 

@@ -1,32 +1,11 @@
 <!-- @format -->
-
 <script setup>
-import { useCounterStore } from "../stores/counter";
+import { tokenUtil } from '../../functions/jwtTokenUtils'
 
 const router = useRouter();
 const store = useCounterStore();
-const step = ref(0);
-const categories = ref([]);
-
 let errorDetails = ref([]);
 let formData = new FormData();
-
-onBeforeMount(async () => {
-  await getCategories();
-});
-
-const getCategories = async () => {
-  const res = await fetch(
-    `${import.meta.env.VITE_BASE_URL}/categories`,
-    { method: "GET" }
-  );
-  if (res.status === 200) {
-    categories.value = await res.json();
-    console.log("categories value " + categories.value);
-  } else {
-    console.log("cannot get data");
-  }
-};
 
 const validateEmail = (email) => {
   console.log("email = " + email);
@@ -103,84 +82,41 @@ const createUser = async (user) => {
       { method: "POST", body: formData }
     );
 
-    if(user.role == "activityOwner"){
+    if (user.role == "activityOwner") {
       if (res.status === 200 || res.status === 201) {
-      alert("you successfully create user !!");
-      store.email = user.email;
-      store.changeIsGoogleLogin(false);
-      router.push({ path: "/Login" });
-    } else if (res.status === 400) {
-      alert("this email have been registered in unitydo !!");
-      console.log("cannot get data");
-    }
-    }else if(user.role=='user'){
+        alert("you successfully create user !!");
+        const jwttoken = await res.json()
+        console.log("jwttoken "+jwttoken.accessToken);
+        store.systemLogin(tokenUtil.paresJWT(jwttoken.accessToken).role, jwttoken.accessToken, jwttoken.refreshToken)
+        router.push({ path: '/' });
+      } else if (res.status === 400) {
+        alert("this email have been registered in unitydo !!");
+        console.log("cannot get data");
+      }
+    } else if (user.role == "user") {
       if (res.status === 200 || res.status === 201) {
-      alert("you successfully create user !!");
-      store.changeIsGoogleLogin(false);
-      store.email = user.email;
-      step.value = 1;
-    } else if (res.status === 400) {
-      alert("this email have been registered in unitydo !!");
-      console.log("cannot get data");
+        alert("you successfully create user !!");
+        store.changeIsGoogleLogin(false);
+        const jwttoken = await res.json()
+        console.log("jwttoken "+jwttoken.accessToken);
+        store.systemLogin(tokenUtil.paresJWT(jwttoken.accessToken).role, jwttoken.accessToken, jwttoken.refreshToken)
+        alert("almost done lets unitydo know you more !!");
+        router.push({ path: "/UserRegistration/CategoriesFavorite" });
+      } else if (res.status === 400) {
+        alert("this email have been registered in unitydo !!");
+        console.log("cannot get data");
+      }
     }
-    }
-
   } else {
     alert(errorDetails.value);
   }
 };
-
-const setUserFavoriteCategory = async (categories) => {
-
-  await categories.forEach(async (category, index) => {
-    const formData = new FormData();
-
-    console.log(index + ') category '+category)
-    console.log('email '+store.email)
-
-    let userJson = JSON.stringify({
-      userEmail: store.email,
-      mainCategoryId: category.id,
-      categoryRank: index + 1
-    });
-
-    const blob = new Blob([userJson], { type: "application/json" });
-    formData.append("favoriteCategory", blob);
-
-    try {
-    const res = await fetch(
-      `${import.meta.env.VITE_BASE_URL}/auth/favoriteCategory`,
-      { method: "POST", body: formData }
-    );
-
-    if (res.ok) {
-      alert("You have successfully set your favorite category!");
-      router.push({ path: "/Login" });
-    } else if (res.status === 400) {
-      const data = await res.json();
-      alert(data.message || "Bad request");
-    } else {
-      throw new Error("Failed to fetch");
-    }
-  } catch (error) {
-    console.error("Error:", error);
-    alert("An error occurred. Please try again later.");
-  }
-  
-  });
-
-};
-
-
 </script>
 
 <template>
   <div>
-    <div v-if="step == 0">
+    <div>
       <UserRegistration @userRegistration="createUser" />
-    </div>
-    <div v-else-if="step == 1">
-      <UserFavoriteCategoriesSelector :categories="categories" @sendFavoriteCategory="setUserFavoriteCategory"/>
     </div>
   </div>
 </template>

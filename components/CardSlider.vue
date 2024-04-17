@@ -1,4 +1,6 @@
 <script setup>
+import { dateTimeUtil } from "../functions/dateTimeUtils";
+
 const props = defineProps({
   activities: {
     type: Array,
@@ -76,8 +78,8 @@ const props = defineProps({
                 {{ props.activities[0].activityBriefDescription }}
               </p>
               <p>
-                {{ new Date(props.activities[0].activityDate) }} -
-                {{ new Date(props.activities[0].activityEndDate) }}
+                {{ dateTimeUtil.getDateTime(props.activities[0].activityDate) }} -
+                {{ dateTimeUtil.getDateTime(props.activities[0].activityEndDate) }}
               </p>
               <p>{{ props.activities[0].userCount }} views</p>
             </div>
@@ -125,8 +127,8 @@ const props = defineProps({
                 {{ props.activities[1].activityBriefDescription }}
               </p>
               <p>
-                {{  new Date(props.activities[1].activityDate) }} -
-                {{  new Date(props.activities[1].activityEndDate) }}
+                {{  dateTimeUtil.getDateTime(props.activities[1].activityDate) }} -
+                {{  dateTimeUtil.getDateTime(props.activities[1].activityEndDate) }}
               </p>
               <p>{{ props.activities[1].userCount }} views</p>
             </div>
@@ -173,8 +175,8 @@ const props = defineProps({
                 {{ props.activities[2].activityBriefDescription }}
               </p>
               <p>
-                {{  new Date(props.activities[2].activityDate) }} -
-                {{  new Date(props.activities[2].activityEndDate) }}
+                {{  dateTimeUtil.getDateTime(props.activities[2].activityDate) }} -
+                {{  dateTimeUtil.getDateTime(props.activities[2].activityEndDate) }}
               </p>
               <p>{{ props.activities[2].userCount }} views</p>
             </div>
@@ -221,8 +223,8 @@ const props = defineProps({
                 {{ props.activities[3].activityBriefDescription }}
               </p>
               <p>
-                {{  new Date(props.activities[3].activityDate) }} -
-                {{  new Date(props.activities[3].activityEndDate) }}
+                {{  dateTimeUtil.getDateTime(props.activities[3].activityDate) }} -
+                {{  dateTimeUtil.getDateTime(props.activities[3].activityEndDate) }}
               </p>
               <p>{{ props.activities[3].userCount }} views</p>
             </div>
@@ -269,8 +271,8 @@ const props = defineProps({
                 {{ props.activities[4].activityBriefDescription }}
               </p>
               <p>
-                {{  new Date(props.activities[4].activityDate) }} -
-                {{  new Date(props.activities[4].activityEndDate) }} 
+                {{  dateTimeUtil.getDateTime(props.activities[4].activityDate) }} -
+                {{  dateTimeUtil.getDateTime(props.activities[4].activityEndDate) }} 
               </p>
               <p>{{ props.activities[4].userCount }} views</p>
             </div>

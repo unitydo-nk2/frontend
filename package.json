@@ -23,6 +23,7 @@
     "firebase": "^10.8.0",
     "google-auth-library": "^8.7.0",
     "nuxt": "^3",
+    "nuxt-rating": "^0.0.15",
     "nuxt-storage": "^1.2.2",
     "nuxt-vue3-google-signin": "^0.0.8",
     "pinia": "^2.1.7"

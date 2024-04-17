@@ -4,6 +4,7 @@ export default defineNuxtConfig({
         '@nuxtjs/tailwindcss',
         'nuxt-vue3-google-signin',
         '@pinia/nuxt',
+        "nuxt-rating"
     ],
     nitro: {
     prerender: {
