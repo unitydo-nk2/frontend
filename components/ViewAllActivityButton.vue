@@ -4,7 +4,7 @@
  
 <template>
 <div>
-    <button @click="navigateTo('/Activities')"
+    <button @click="navigateTo('/Activities/')"
           class="bg-white drop-shadow-lg hover:bg-indigo-600 text-indigo-600 hover:text-white font-bold py-4 px-8 rounded-full">
           All Activities
           <svg class="inline w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">

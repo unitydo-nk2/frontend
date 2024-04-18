@@ -101,7 +101,7 @@ const getUserDetails = () => {
               </button> -->
           <li>
             <a
-              @click="navigateTo('/Activities')"
+              @click="navigateTo('/Activities/')"
               href="#"
               class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 "
               >Activities</a
@@ -112,7 +112,7 @@ const getUserDetails = () => {
           <!-- <nuxt-link to="/ViewAllActivityPost"> -->
           <li v-if="store.role == 'admin' || store.role == 'activityOwner'">
             <a
-              @click="navigateTo('/ViewAllActivityPost')"
+              @click="navigateTo('/ViewAllActivityPost/')"
               href="#"
               class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 "
               >Management</a
@@ -121,7 +121,7 @@ const getUserDetails = () => {
           <!-- </nuxt-link> -->
           <li v-if="store.isLogin == true">
             <a
-              @click="navigateTo('/ProfilePage')"
+              @click="navigateTo('/ProfilePage/')"
               href="#"
               class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 "
               > {{ store.username }} </a
@@ -129,7 +129,7 @@ const getUserDetails = () => {
           </li>
           <li v-if="store.isLogin == false">
             <a
-              @click="navigateTo('/Login')"
+              @click="navigateTo('/login/')"
               href="#"
               class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 "
               >Login</a

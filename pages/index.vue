@@ -99,7 +99,7 @@ const getActivities = async () => {
         </div>
         <div class="flex justify-center w-full">
           <button
-            @click="navigateTo('/ProfilePage')"
+            @click="navigateTo('/ProfilePage/')"
             class="bg-white drop-shadow-lg mr-16 hover:bg-indigo-600 text-indigo-600 hover:text-white font-bold py-4 px-8 rounded-full"
           >
             Set favorite categories
@@ -121,7 +121,7 @@ const getActivities = async () => {
         </div>
         <div class="flex justify-center w-full">
           <button
-            @click="navigateTo('/login')"
+            @click="navigateTo('/login/')"
             class="bg-white drop-shadow-lg mr-16 hover:bg-indigo-600 text-indigo-600 hover:text-white font-bold py-4 px-8 rounded-full"
           >
             login to Unitydo
