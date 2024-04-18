@@ -18,8 +18,6 @@ const store = useCounterStore();
 
 const setRole = (role) => {
   newUser.value.role = role;
-  console.log(role);
-  console.log("new user " + newUser.value.role);
 };
 
 const newUser = ref({
@@ -91,7 +89,7 @@ const newUser = ref({
                   <span class="mx-2"> User </span>
                 </button>
                 <button
-                  @click="setRole('activiatyOwner')"
+                  @click="setRole('activityOwner')"
                   :class="{
                     'bg-unityDo-primary text-white':
                       newUser.role === 'activityOwner',
