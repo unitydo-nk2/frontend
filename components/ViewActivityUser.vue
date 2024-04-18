@@ -86,8 +86,8 @@ const props = defineProps({
                     <td
                       class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-lg whitespace-nowrap p-4"
                     >
-                      <nuxt-link
-                        :to="`/ViewAllActivityUser/${activity.activityId}`"
+                      <div
+                      @click="navigateTo(`/ViewAllActivityUser/${activity.activityId}/`)"
                       >
                         <button
                           type="button"
@@ -95,7 +95,7 @@ const props = defineProps({
                         >
                           Member List
                         </button>
-                      </nuxt-link>
+                      </div>
                     </td>
                   </tr>
                 </tbody>

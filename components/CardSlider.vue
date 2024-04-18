@@ -84,13 +84,13 @@ const props = defineProps({
               <p>{{ props.activities[0].userCount }} views</p>
             </div>
             <footer class="text-right">
-                <nuxt-link :to="`/Activities/${props.activities[0].activityId}`">
+                <div @click="navigateTo(`/Activities/${props.activities[0].activityId}/`)">
               <a
                 class="text-sm font-medium text-indigo-500 hover:underline"
                 href="#0"
                 >Read more</a
               >
-              </nuxt-link>
+              </div>
             </footer>
           </article>
         </div>
@@ -133,12 +133,12 @@ const props = defineProps({
               <p>{{ props.activities[1].userCount }} views</p>
             </div>
             <footer class="text-right">
-                <nuxt-link :to="`/Activities/${props.activities[1].activityId}`">
+                <div @click="navigateTo(`/Activities/${props.activities[1].activityId}/`)">
               <a
                 class="text-sm font-medium text-indigo-500 hover:underline"
                 >Read more</a
               >
-              </nuxt-link>
+              </div>
             </footer>
           </article>
         </div>
@@ -181,12 +181,12 @@ const props = defineProps({
               <p>{{ props.activities[2].userCount }} views</p>
             </div>
             <footer class="text-right">
-                <nuxt-link :to="`/Activities/${props.activities[2].activityId}`">
+                <div @click="navigateTo(`/Activities/${props.activities[2].activityId}/`)">
               <a
                 class="text-sm font-medium text-indigo-500 hover:underline"
                 >Read more</a
               >
-              </nuxt-link>
+              </div>
             </footer>
           </article>
         </div>
@@ -229,12 +229,12 @@ const props = defineProps({
               <p>{{ props.activities[3].userCount }} views</p>
             </div>
             <footer class="text-right">
-                <nuxt-link :to="`/Activities/${props.activities[3].activityId}`">
+                <div @click="navigateTo(`/Activities/${props.activities[3].activityId}/`)">
               <a
                 class="text-sm font-medium text-indigo-500 hover:underline"
                 >Read more</a
               >
-                </nuxt-link>
+                </div>
             </footer>
           </article>
         </div>
@@ -277,11 +277,11 @@ const props = defineProps({
               <p>{{ props.activities[4].userCount }} views</p>
             </div>
             <footer class="text-right">
-                <nuxt-link :to="`/Activities/${props.activities[4].activityId}`">
+                <div @click="navigateTo(`/Activities/${props.activities[4].activityId}/`)">
                 <a class="text-sm font-medium text-indigo-500 hover:underline"
                   >Read more</a
                 >
-              </nuxt-link>
+              </div>
             </footer>
           </article>
         </div>

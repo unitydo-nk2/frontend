@@ -198,13 +198,13 @@ const store = useCounterStore();
                         />
                       </div>
                       <div>
-                        <nuxt-link :to="`/CreateEditActivity/${activity.id}`">
+                        <div @click="navigateTo(`/CreateEditActivity/${activity.id}/`)">
                           <img
                             class="cursor-pointer hover:drop-shadow-2xl inline-block align-middle"
                             src="/image/edit.svg"
                             alt="edit"
                           />
-                        </nuxt-link>
+                        </div>
                       </div>
                       <div>
                         <button

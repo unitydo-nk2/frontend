@@ -21,7 +21,7 @@ const props = defineProps({
         </p>
         <div class="mt-4">
           <button
-            @click="navigateTo('/Activities/'+activity.activityId)"
+            @click="navigateTo('/Activities/'+activity.activityId+'/')"
             class="bg-white drop-shadow-lg hover:bg-indigo-600 text-indigo-600 hover:text-white font-bold py-4 px-8 rounded-full"
           >
             Readmore

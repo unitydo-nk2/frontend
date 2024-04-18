@@ -100,7 +100,7 @@ const props = defineProps({
                     <td
                       class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-lg whitespace-nowrap p-4"
                     >
-                      <nuxt-link :to="`/UserDetails/${user.userId}`"
+                      <div @click="navigateTo(`/UserDetails/${user.userId}/`)"
                       >
                         <button
                           type="button"
@@ -108,7 +108,7 @@ const props = defineProps({
                         >
                           details
                         </button>
-                      </nuxt-link>
+                      </div>
                     </td>
                   </tr>
                 </tbody>

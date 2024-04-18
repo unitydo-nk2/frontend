@@ -144,7 +144,7 @@ const trackHistory = async (activityId) => {
                 :key="index"
                 class="max-w-sm rounded overflow-hidden shadow-lg"
               >
-                <nuxt-link :to="`/Activities/${activity.id}`">
+                <div @click="navigateTo(`/Activities/${activity.id}/`)">
                   <div @click="trackHistory(activity.id)">
                     <img
                       v-if="activity.imagePath == null"
@@ -189,7 +189,7 @@ const trackHistory = async (activityId) => {
                     </div>
                     
                   </div>
-                </nuxt-link>
+                </div>
      
                 <!--  -->
               </div>

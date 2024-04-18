@@ -6,7 +6,7 @@ const store = useCounterStore();
 <template>
 <div class="relative flex flex-col bg-clip-border bg-white text-gray-700 min-h-screen h-auto w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5">
   <nav class="flex flex-col gap-1 min-w-[240px] p-2 font-sans text-base font-normal text-gray-700">
-    <nuxt-link to="/ViewAllActivityPost">
+    <div @click="navigateTo('/ViewAllActivityPost/')">
     <div role="button" tabindex="0" class="flex items-center w-full p-3 rounded-lg text-start leading-tight transition-all hover:bg-blue-50 hover:bg-opacity-80 focus:bg-blue-50 focus:bg-opacity-80 active:bg-gray-50 active:bg-opacity-80 hover:text-blue-900 focus:text-blue-900 active:text-blue-900 outline-none">
       <div class="grid place-items-center mr-4">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="h-5 w-5">
@@ -15,8 +15,8 @@ const store = useCounterStore();
       </div>
       Activities
     </div>
-    </nuxt-link>
-    <nuxt-link to="/ViewAllActivityUser">
+    </div>
+    <div @click="navigateTo('/ViewAllActivityUser/')">
     <div role="button" tabindex="0" class="flex items-center w-full p-3 rounded-lg text-start leading-tight transition-all hover:bg-blue-50 hover:bg-opacity-80 focus:bg-blue-50 focus:bg-opacity-80 active:bg-blue-50 active:bg-opacity-80 hover:text-blue-900 focus:text-blue-900 active:text-blue-900 outline-none">
       
         <div class="grid place-items-center mr-4">
@@ -25,9 +25,9 @@ const store = useCounterStore();
         </svg>
       </div>Registrations
     </div>
-    </nuxt-link>
+    </div>
     <div v-if="store.role == 'admin'">
-    <nuxt-link to="/UserLists">
+    <div to="/UserLists">
     <div role="button" tabindex="0" class="flex items-center w-full p-3 rounded-lg text-start leading-tight transition-all hover:bg-blue-50 hover:bg-opacity-80 focus:bg-blue-50 focus:bg-opacity-80 active:bg-blue-50 active:bg-opacity-80 hover:text-blue-900 focus:text-blue-900 active:text-blue-900 outline-none">
       
         <div class="grid place-items-center mr-4">
@@ -36,7 +36,7 @@ const store = useCounterStore();
         </svg>
       </div>UserLists
     </div>
-    </nuxt-link>
+    </div>
   </div>
     <!-- <div role="button" tabindex="0" class="flex items-center w-full p-3 rounded-lg text-start leading-tight transition-all hover:bg-blue-50 hover:bg-opacity-80 focus:bg-blue-50 focus:bg-opacity-80 active:bg-blue-50 active:bg-opacity-80 hover:text-blue-900 focus:text-blue-900 active:text-blue-900 outline-none">
       <div class="grid place-items-center mr-4">

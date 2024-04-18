@@ -355,13 +355,13 @@ const getImage = (alt) => {
                   Date(activity.activityDate) > new Date())
               "
             >
-              <nuxt-link :to="`/ActivityRegistration/${activity.activityId}`">
+              <div @click="navigateTo(`/ActivityRegistration/${activity.activityId}/`)">
                 <button
                   class="w-[196px] h-[60px] ml-4 bg-white rounded-xl border border-indigo-600 text-indigo-600 text-2xl font-bold"
                 >
                   Register !
                 </button>
-              </nuxt-link>
+              </div>
             </div>
 
             <div v-if="store.role == 'user'">

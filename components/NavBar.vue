@@ -28,7 +28,7 @@ const getUserDetails = () => {
     <div
       class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"
     >
-      <nuxt-link to="/">
+      <div @click="navigateTo('/')">
         <a href="#" class="flex items-center">
           <img
             src="/image/unityDoLogo.png"
@@ -40,7 +40,7 @@ const getUserDetails = () => {
             >UnityDo</span
           >
         </a>
-      </nuxt-link>
+      </div>
       <button
         data-collapse-toggle="navbar-dropdown"
         type="button"
@@ -69,7 +69,7 @@ const getUserDetails = () => {
         <ul
           class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white"
         >
-          <nuxt-link to="/">
+          <div @click="navigateTo('/')">
             <li>
               <!-- <a
                 href="#"
@@ -83,8 +83,8 @@ const getUserDetails = () => {
                 >Home page</a
               >
             </li>
-          </nuxt-link>
-          <!-- <nuxt-link to="/Activities/"> -->
+          </div>
+          <!-- <div to="/Activities/"> -->
           <!-- <li> -->
           <!-- <button
                 id="dropdownNavbarLink"
@@ -108,8 +108,8 @@ const getUserDetails = () => {
             >
           </li>
           <!-- </li> -->
-          <!-- </nuxt-link> -->
-          <!-- <nuxt-link to="/ViewAllActivityPost"> -->
+          <!-- </div> -->
+          <!-- <div to="/ViewAllActivityPost"> -->
           <li v-if="store.role == 'admin' || store.role == 'activityOwner'">
             <a
               @click="navigateTo('/ViewAllActivityPost/')"
@@ -118,7 +118,7 @@ const getUserDetails = () => {
               >Management</a
             >
           </li>
-          <!-- </nuxt-link> -->
+          <!-- </div> -->
           <li v-if="store.isLogin == true">
             <a
               @click="navigateTo('/ProfilePage/')"
