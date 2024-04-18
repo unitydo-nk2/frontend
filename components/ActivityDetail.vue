@@ -40,7 +40,7 @@ const getReviews = async (activityId) => {
   if (res.status === 200) {
     props.reviews = await res.json();
   } else {
-    console.log("cannot ge t data");
+    console.log("cannot get data");
   }
 };
 
@@ -59,11 +59,15 @@ const setFavorite = async (activityId) => {
   if (res.status === 200) {
     alert("added favorite");
   } else {
-    console.log("cannot get data");
+    alert("Problems occurs while set favorite activity.");
   }
 };
 
 const createNewReview = async (createReview) => {
+  if(createReview.description.length == 0 || createReview.description == undefined){
+    createReview.description = '-'
+  }
+
   const formData = new FormData();
 
   const newReview = {
@@ -92,8 +96,12 @@ const createNewReview = async (createReview) => {
   if (res.ok) {
     alert("You successfully reviewed the activity!");
     await getReviews();
+  } else if (res = 404) {
+    alert("Only Participants can review this activity");
+  } else if (res = 400) {
+    alert("You already reviewed this activity");
   } else {
-    console.log("Cannot get data");
+    alert("Problems occurs while create new review please try again already later.");
   }
 };
 
@@ -478,8 +486,13 @@ const getImage = (alt) => {
         You may also like
       </div>
       <div class="overflow-x-scroll hide-scrollbar w-full lg:col-span-9">
-        <div v-if="similarActivities.length == 0" class="text-center text-xl font-bold"> Oops ! seem like there is no similar activities to show. </div>
-        <div v-else > <ImageSlider :activities="similarActivities" /> </div>
+        <div
+          v-if="similarActivities.length == 0"
+          class="text-center text-xl font-bold"
+        >
+          Oops ! seem like there is no similar activities to show.
+        </div>
+        <div v-else><ImageSlider :activities="similarActivities" /></div>
       </div>
     </div>
   </div>
