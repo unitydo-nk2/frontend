@@ -15,8 +15,8 @@ export const useCounterStore = defineStore("counter", {
   }),
   getters: {
     getIsLogin: (state) => state.isLogin,
-    getEmail: (state) => tokenUtil.paresJWT(state.token).sub,
-    getRole:(state)=> tokenUtil.paresJWT(state.token).role
+    getEmail: (state) => state.email,
+    getRole:(state)=> state.role
   },
   actions: {
     getUserEmail(){
@@ -25,6 +25,13 @@ export const useCounterStore = defineStore("counter", {
       }else{
         return tokenUtil.paresJWT(this.token).sub;
       } 
+    },
+    getLoginStatus(){
+      if(localStorageUtil.get('token') == undefined || localStorageUtil.get('token') == null|| localStorageUtil.get('token') == '' ){
+        return false;
+      }else{
+        return true;
+      }
     },
     setFromToken(token:string, refreshToken:string){
       this.role = tokenUtil.paresJWT(token).role;
@@ -35,19 +42,15 @@ export const useCounterStore = defineStore("counter", {
      },
     changeEmail(email: string) {
       this.email = email;
-      console.log(email);
     },
     changeUserName(name: string) {
       this.username = name;
-      console.log(name);
     },
     changeActivity(activity: Object) {
       this.activityLookUp = activity;
-      console.log(activity);
     },
     changeIsGoogleLogin(status: boolean) {
       this.isGoogleLogin = status;
-      console.log(status);
     },
     systemLogin(role: string, token: string, refreshToken: string) {
       this.role = role;

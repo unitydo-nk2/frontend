@@ -1,4 +1,4 @@
-<script setup>
+<script  setup>
 import { dateTimeUtil } from "../functions/dateTimeUtils";
 const props = defineProps({
   review: {
@@ -48,7 +48,7 @@ let selectedRating = props.review.rates;
           </h6>
         </div>
         <p class="font-normal text-lg leading-8 text-gray-400">
-          {{ dateTimeUtil.getDateTime(createTime) }}
+          {{ dateTimeUtil.getDateTime(review.createTime) }}
         </p>
       </div>
       <p

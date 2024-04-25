@@ -26,7 +26,6 @@ const getActivityByID = async (activityId) => {
   );
   if (res.status === 200) {
     users.value = await res.json();
-    console.log("value " + users.value);
   } else {
     console.log("cannot get data");
   }
@@ -35,7 +34,7 @@ const getActivityByID = async (activityId) => {
 
 <template>
   <div class="flex flex-row">
-    <SideBareDemo />
+    <SideBar/>
     <ViewSpecificActivityRegistrant :users="users" />
   </div>
 </template>

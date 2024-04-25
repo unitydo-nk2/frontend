@@ -23,7 +23,6 @@ const getActivities = async () => {
   );
   if (res.status === 200) {
     activities.value = await res.json();
-    console.log("value " + activities.value);
   } else {
     console.log("cannot get data");
   }
@@ -44,13 +43,13 @@ const updateToDone = async (activityId) => {
       alert("update successfully");
       await getActivities();
     } else {
-      alert("fail to update" + res.status + await res.json().title);
+      let error = JSON.parse(await res.text())
+      alert("fail to update : " + await error.detail);
     }
 }
 
 // DELETE
 const deleteActivity = async (deleteActivityId) => {
-  console.log("delete" + deleteActivityId);
   if (
     deleteActivityId > 0 &&
     confirm("Are you sure you want to delete this activity ?") == true
@@ -78,7 +77,7 @@ const deleteActivity = async (deleteActivityId) => {
 
 <template>
   <div class="flex flex-row">
-    <SideBareDemo />
+    <SideBar/>
     <ViewActivityPostList
       @deleteActivity="deleteActivity"
       @updateActivityToDone="updateToDone"

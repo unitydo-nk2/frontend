@@ -22,7 +22,6 @@ const getActivities = async () => {
   );
   if (res.status === 200) {
     activities.value = await res.json();
-    console.log("value " + activities.value);
   } else {
     console.log("cannot get data");
   }
@@ -31,7 +30,7 @@ const getActivities = async () => {
 
 <template>
   <div class="flex flex-row">
-    <SideBareDemo />
+    <SideBar/>
     <ViewActivityUser :activities="activities" />
   </div>
 </template>

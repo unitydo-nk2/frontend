@@ -1,7 +1,6 @@
 <!-- @format -->
 
 <script setup>
-
 const activities = ref([]);
 const upComingActivities = ref([]);
 const popularActivities = ref([]);
@@ -21,31 +20,35 @@ const getActivities = async () => {
   });
   if (res.status === 200) {
     activities.value = await res.json();
-    console.log("value " + activities.value);
   } else {
+    activities.value = [];
     console.log("cannot get data");
   }
 };
 
 const getPopularActivities = async () => {
-  const res = await fetch(`${import.meta.env.VITE_BASE_URL}/activities/popular`, {
-    method: "GET",
-  });
+  const res = await fetch(
+    `${import.meta.env.VITE_BASE_URL}/activities/popular`,
+    {
+      method: "GET",
+    }
+  );
   if (res.status === 200) {
     popularActivities.value = await res.json();
-    console.log("popularActivities value " + popularActivities.value[0].activityName);
   } else {
     console.log("cannot get data");
   }
 };
 
 const getUpComingActivities = async () => {
-  const res = await fetch(`${import.meta.env.VITE_BASE_URL}/activities/comingSoon`, {
-    method: "GET",
-  });
+  const res = await fetch(
+    `${import.meta.env.VITE_BASE_URL}/activities/comingSoon`,
+    {
+      method: "GET",
+    }
+  );
   if (res.status === 200) {
     upComingActivities.value = await res.json();
-    console.log("value " + upComingActivities.value);
   } else {
     console.log("cannot get data");
   }
@@ -57,20 +60,18 @@ const getMainCategories = async () => {
   });
   if (res.status === 200) {
     mainCategories.value = await res.json();
-    console.log("mainCategories value " + mainCategories.value);
   } else {
     console.log("cannot get data");
   }
 };
-
 </script>
 
 <template>
   <div class="font-primary">
-    <div
-      class="flex flex-col bg-gradient-to-r from-slate-700 to-fuchsia-950"
-    >
-      <CommingSoonSlider :activities="upComingActivities"/>
+    <div class="flex flex-col bg-gradient-to-r from-slate-700 to-fuchsia-950">
+      <div class="overflow-x-scroll hide-scrollbar w-full">
+        <CommingSoonSlider :activities="upComingActivities" />
+      </div>
     </div>
     <div class="flex flex-col justify-center items-center pt-16 pb-24">
       <div
@@ -84,7 +85,7 @@ const getMainCategories = async () => {
         Popular Activity
       </div>
       <div>
-        <CardSlider :activities="popularActivities"/>
+        <CardSlider :activities="popularActivities" />
       </div>
     </div>
     <div>
@@ -103,4 +104,8 @@ const getMainCategories = async () => {
   </div>
 </template>
 
-<style></style>
+<style>
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+</style>

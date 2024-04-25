@@ -20,8 +20,6 @@ onBeforeMount(async () => {
 const user = ref({});
 
 const getUser = async () => {
-  console.log("Bearer " + localStorageUtil.get("token"));
-
   const res = await fetch(`${import.meta.env.VITE_BASE_URL}/users`, {
     method: "GET",
     headers: {
@@ -49,20 +47,14 @@ const getActivityByID = async (id) => {
   });
   if (res.status === 200) {
     activity.value = await res.json();
-    console.log("value " + activity.value);
   } else {
     console.log("cannot get data");
   }
 };
 
 const createNewRegistration = async (user) => {
-  console.log('id '+ user.userId);
-  console.log("Bearer " + localStorageUtil.get("token"));
-
   const formData = new FormData();
   formData.append("userId", user.userId); // Make sure the name matches the expected name on the backend
-  console.log("activityId " + activityId);
-  console.log("formData "+formData)
   const res = await fetch(
     `${import.meta.env.VITE_BASE_URL}/activities/${activityId}/registration`,
     {

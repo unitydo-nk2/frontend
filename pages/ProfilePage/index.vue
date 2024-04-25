@@ -17,7 +17,6 @@ const router = useRouter();
 const user = ref({});
 
 const getUser = async () => {
-  console.log("getUser Bearer " + store.token)
   const res = await fetch(`${import.meta.env.VITE_BASE_URL}/users`, {
     method: "GET",
     headers: {
@@ -33,7 +32,6 @@ const getUser = async () => {
 
 
 const getRegisterdActivity = async () => {
-  console.log("getUser Bearer " + store.token)
   const res = await fetch(`${import.meta.env.VITE_BASE_URL}/users/registered`, {
     method: "GET",
     headers: {
@@ -42,7 +40,6 @@ const getRegisterdActivity = async () => {
   });
   if (res.status === 200) {
     registeredActivities.value = await res.json();
-    console.log(registeredActivities.value)
   } else {
     console.log("cannot get data");
   }
@@ -50,7 +47,6 @@ const getRegisterdActivity = async () => {
 
 
 const gatFavoriteCategories = async () => {
-  console.log("getUser Bearer " + store.token)
   const res = await fetch(`${import.meta.env.VITE_BASE_URL}/categories/favorite`, {
     method: "GET",
     headers: {
@@ -59,7 +55,6 @@ const gatFavoriteCategories = async () => {
   });
   if (res.status === 200) {
     favoriteCategories.value = await res.json();
-    console.log(favoriteCategories.value)
   } else {
     console.log("cannot get data");
   }

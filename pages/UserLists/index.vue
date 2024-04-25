@@ -17,32 +17,32 @@ const getUserLists = async () => {
   const res = await fetch(`${import.meta.env.VITE_BASE_URL}/users/list`, {
     method: "GET",
     headers: {
-        "Content-Type": "application/json", // Set content type to JSON
-        Authorization: "Bearer " + store.token,
-      },
+      "Content-Type": "application/json", // Set content type to JSON
+      Authorization: "Bearer " + store.token,
+    },
   });
   if (res.status === 200) {
     users.value = await res.json();
-    console.log("value " + users.value);
   } else {
     console.log("cannot get data");
   }
 };
 
 const deleteUser = async (deleteUserId) => {
-  console.log("delete" + deleteUserId);
   if (
     deleteUserId > 0 &&
-    confirm("Are you sure you want to delete this user ? all registration and activities registered will be gone to !") == true
+    confirm(
+      "Are you sure you want to delete this user ? all registration and activities registered will be gone to !"
+    ) == true
   ) {
     const res = await fetch(
       `${import.meta.env.VITE_BASE_URL}/users/${deleteUserId}`,
       {
         method: "DELETE",
         headers: {
-        "Content-Type": "application/json", // Set content type to JSON
-        Authorization: "Bearer " + store.token,
-      },
+          "Content-Type": "application/json", // Set content type to JSON
+          Authorization: "Bearer " + store.token,
+        },
       }
     );
     if (res.status === 200) {
@@ -55,14 +55,12 @@ const deleteUser = async (deleteUserId) => {
   }
 };
 </script>
- 
-<template>
-      <div class="flex flex-row">
-<SideBareDemo />
-<ViewAllUsers :users="users" @deleteUser="deleteUser"/>
-      </div>
-</template>
- 
-<style>
 
-</style>
+<template>
+  <div class="flex flex-row">
+    <SideBar />
+    <ViewAllUsers :users="users" @deleteUser="deleteUser" />
+  </div>
+</template>
+
+<style></style>

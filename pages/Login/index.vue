@@ -5,7 +5,6 @@ import { tokenUtil } from '../../functions/jwtTokenUtils'
 import { useCounterStore } from '../../stores/counter'
 
 onBeforeMount(async () => {
-  console.log('b4 mounted')
   const store = useCounterStore();
   store.logout();
 })

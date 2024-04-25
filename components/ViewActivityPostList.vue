@@ -145,6 +145,12 @@ const store = useCounterStore();
             </div>
 
             <div class="block w-full overflow-x-auto">
+
+              <div v-if="activities.length == 0" class=" border border-solid border-blueGray-100 items-center bg-transparent w-full border-collapse">
+                <div class="text-lg uppercase align-middle font-semibold  text-center">No activity</div>
+              </div>
+
+              <div v-else>
               <table class="items-center bg-transparent w-full border-collapse">
                 <thead>
                   <tr>
@@ -206,7 +212,8 @@ const store = useCounterStore();
                           />
                         </div>
                       </div>
-                      <div>
+                      <div v-if="store.role == 'activityOwner'">
+                        <!-- <div> -->
                         <button
                           @click="emit('updateActivityToDone', activity.id)"                          
                           type="button"
@@ -219,6 +226,7 @@ const store = useCounterStore();
                   </tr>
                 </tbody>
               </table>
+              </div>
             </div>
           </div>
         </div>

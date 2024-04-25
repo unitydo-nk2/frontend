@@ -2,19 +2,18 @@
 
 <script setup>
 import { useCounterStore } from '../stores/counter'
+const route = useRoute();
 
 const router = useRouter();
 
 const store = useCounterStore();
 onBeforeMount(async () => {
-  await getUserDetails()
+  getUserDetails()
 })
 
 const getUserDetails = () => {
   if(store.token == '' ){
-    console.log('token is null')
     if(localStorage.getItem('token') != null || localStorage.getItem('token') != undefined ){
-      console.log('get token')
       store.setFromToken(localStorage.getItem('token') , localStorage.getItem('refreshToken'))
     }else{
       router.push({path: '/Login'})
@@ -29,7 +28,7 @@ const getUserDetails = () => {
       class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"
     >
       <div @click="navigateTo('/')">
-        <a href="#" class="flex items-center">
+        <a class="flex items-center">
           <img
             src="/image/unityDoLogo.png"
             class="h-8 mr-3"
@@ -79,7 +78,7 @@ const getUserDetails = () => {
               > -->
               <a
                 href="#"
-                class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 "
+                :class="route.fullPath == '/'?'bg-unityDo-primary rounded-full px-3 py-2 text-white':'' +'hover:text-unityDo-primary block py-2 pl-3 pr-4 text-gray-900 rounded md:p-0 md:border-0'"
                 >Home page</a
               >
             </li>
@@ -103,7 +102,7 @@ const getUserDetails = () => {
             <a
               @click="navigateTo('/Activities/')"
               href="#"
-              class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 "
+              :class="route.fullPath.startsWith('/Activities/') ? 'bg-unityDo-primary rounded-full px-3 py-2 text-white':'' +'hover:text-unityDo-primary block py-2 pl-3 pr-4 text-gray-900 rounded md:p-0 md:border-0'"
               >Activities</a
             >
           </li>
@@ -111,10 +110,10 @@ const getUserDetails = () => {
           <!-- </div> -->
           <!-- <div to="/ViewAllActivityPost"> -->
           <li v-if="store.role == 'admin' || store.role == 'activityOwner'">
+            
             <a
               @click="navigateTo('/ViewAllActivityPost/')"
-              href="#"
-              class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 "
+              :class="route.fullPath.startsWith('/ViewAllActivityUser/') || route.fullPath.startsWith('/ViewAllActivityPost/')  ? 'bg-unityDo-primary rounded-full px-3 py-2 text-white':'' +'hover:text-unityDo-primary block py-2 pl-3 pr-4 text-gray-900 rounded md:p-0 md:border-0'"
               >Management</a
             >
           </li>
@@ -123,7 +122,7 @@ const getUserDetails = () => {
             <a
               @click="navigateTo('/ProfilePage/')"
               href="#"
-              class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 "
+              :class="route.fullPath == '/ProfilePage/' ? 'bg-unityDo-primary rounded-full px-3 py-2 text-white':'' +'hover:text-unityDo-primary block py-2 pl-3 pr-4 text-gray-900 rounded md:p-0 md:border-0'"
               > {{ store.username }} </a
             >
           </li>
@@ -131,7 +130,7 @@ const getUserDetails = () => {
             <a
               @click="navigateTo('/login/')"
               href="#"
-              class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 "
+              :class="route.fullPath == '/login/' ? 'bg-unityDo-primary rounded-full px-3 py-2 text-white':'' +' hover:text-unityDo-primary block py-2 pl-3 pr-4 text-gray-900 rounded md:p-0 md:border-0'"
               >Login</a
             >
           </li>

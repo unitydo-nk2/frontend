@@ -19,7 +19,6 @@ const getCategories = async () => {
   });
   if (res.status === 200) {
     categories.value = await res.json();
-    console.log("value " + categories.value);
   } else {
     console.log("cannot get data");
   }
@@ -33,15 +32,12 @@ const validateGoogleMapLink = (googleMapLink) => {
   const isValid1 = googleMapLink.match(regex1);
 
   if (isValid || isValid1) {
-    console.log("maps is google map format");
   } else {
-    console.log("maps is not google map format");
     errorDetails.value.push("Invalid google link map.");
   }
 };
 
 const validateLength = (string, label, length = 0) => {
-  console.log("checking " + label + " " + string);
   if (string.length > length) {
     errorDetails.value.push(
       label + " cannot more than " + length + " characters"
@@ -59,19 +55,11 @@ const validateDateTime = (
   annnouncementDate
 ) => {
   let getActivityDate = new Date(activityDate);
-  console.log(getActivityDate + " getActivityDate " + getActivityDate);
   let getActivityEndDate = new Date(activityEndDate);
-  console.log(activityEndDate + " activityEndDate " + activityEndDate);
   let getregistrationDate = new Date(registrationDate);
-  console.log(registrationDate + " getregistrationDate " + getregistrationDate);
   let getRregistrationEndDate = new Date(registrationEndDate);
-  console.log(
-    registrationEndDate + " registrationEndDate " + registrationEndDate
-  );
   let getAnnnouncementDate = new Date(annnouncementDate);
-  console.log(annnouncementDate + " annnouncementDate " + annnouncementDate);
   if (getActivityDate > getActivityEndDate) {
-    console.log("do if getActivityDate > getActivityEndDate ");
     errorDetails.value.push("Invalid activity date!");
   } else if (
     getregistrationDate > getRregistrationEndDate ||
@@ -79,32 +67,22 @@ const validateDateTime = (
     getregistrationDate > getActivityDate ||
     getregistrationDate > getActivityEndDate
   ) {
-    console.log(
-      "do else if getregistrationDate > getRregistrationEndDate || getregistrationDate > getAnnnouncementDate || getregistrationDate > getActivityDate || getregistrationDate > getActivityEndDate"
-    );
     errorDetails.value.push("Invalid registration date!");
   } else if (
     getRregistrationEndDate > getAnnnouncementDate ||
     getRregistrationEndDate > getActivityDate ||
     getRregistrationEndDate > getActivityEndDate
   ) {
-    console.log(
-      "do else if getRregistrationEndDate > getAnnnouncementDate || getRregistrationEndDate > getActivityDate || getRregistrationEndDate > getActivityEndDate"
-    );
     errorDetails.value.push("Invalid registration end date!");
   } else if (
     getAnnnouncementDate > getActivityDate ||
     getRregistrationEndDate > getActivityEndDate
   ) {
-    console.log(
-      "do else if getAnnnouncementDate > getActivityDate || getRregistrationEndDate > getActivityEndDate"
-    );
     errorDetails.value.push("Invalid announcement date!");
   }
 };
 
 const validateActivity = (activity) => {
-  console.log("checking");
   validateLength(activity.activityName, "activity name", 50);
   validateLength(activity.activityOwnerUserName, "username", 50);
   validateLength(activity.activityBriefDescription, "brief description", 100);
@@ -133,8 +111,6 @@ const validateActivity = (activity) => {
 };
 
 const validateLocation = (format, location, googleMapLink) => {
-  console.log("location " + location);
-  console.log("googleMapLink " + googleMapLink);
   if (format == "online") {
     if (location.length == 0 || location.length == null) {
       errorDetails.value.push("meeting platform is requied");
@@ -151,8 +127,6 @@ const validateLocation = (format, location, googleMapLink) => {
 };
 
 const imageUpload = async (images, activityId) => {
-  console.log("imageUpload is called");
-  console.log("activityId " + activityId);
   await images.forEach(async (image) => {
     if (image.file !== undefined || image.file !== "" || image.file !== null) {
       let imageFormData = new FormData();
@@ -192,9 +166,7 @@ const imageUpload = async (images, activityId) => {
 
 const createNewActivity = async (activity, file) => {
   errorDetails.value = [];
-  console.log("createNewRegistration call");
   validateActivity(activity);
-  console.log("errorDetails" + errorDetails.value);
   if (errorDetails.value.length == 0) {
     const formData = new FormData();
 
@@ -242,7 +214,6 @@ const createNewActivity = async (activity, file) => {
     if (res.ok) {
       alert("You successfully created the activity!");
       let data = await res.json();
-      console.log("data " + JSON.stringify(data));
       await imageUpload(file, data.activityId);
       await router.push({ path: "/Activities/" });
     } else {

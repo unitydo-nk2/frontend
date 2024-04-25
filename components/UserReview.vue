@@ -1,4 +1,7 @@
 <script setup>
+import { useCounterStore } from '../stores/counter'
+const store = useCounterStore();
+
 const emit = defineEmits(["createNewReview"]);
 const props = defineProps({
   reviews: {
@@ -6,6 +9,10 @@ const props = defineProps({
     default: [],
   },
   isActivityDone:{
+    type : Boolean,
+    default: true
+  },
+  isUserRegistered:{
     type : Boolean,
     default: false
   }
@@ -38,13 +45,13 @@ const userReview = computed(() => {
           Activity still on process
         </h2>
         <ReviewList :reviews="reviews"/>
-        <div v-if = "isActivityDone" class="pt-8">
+        <div v-if = "store.role == 'User' && isActivityDone && isUserRegistered" class="pt-8">
           <label
             class="text-gray-600 dark:text-gray-200 flex justify-start font-semibold text-lg"
             >My review</label
           >
 
-          <div  class="flex items-center">
+          <div class="flex items-center">
             <label
               class="text-gray-600 dark:text-gray-200 flex justify-start font-semibold text-lg"
               >Rates :

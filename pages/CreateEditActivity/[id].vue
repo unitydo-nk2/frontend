@@ -28,7 +28,6 @@ const getActivityImages = async (id) => {
   );
   if (res.status === 200) {
     activityImages.value = await res.json();
-    console.log("value " + activity.value);
   } else {
     console.log("cannot get data");
   }
@@ -40,7 +39,6 @@ const getActivityByID = async (id) => {
   });
   if (res.status === 200) {
     activity.value = await res.json();
-    console.log("value " + activity.value);
   } else {
     console.log("cannot get data");
   }
@@ -52,7 +50,6 @@ const getCategories = async () => {
   });
   if (res.status === 200) {
     categories.value = await res.json();
-    console.log("value " + categories.value);
   } else {
     console.log("cannot get data");
   }
@@ -66,15 +63,12 @@ const validateGoogleMapLink = (googleMapLink) => {
   const isValid1 = googleMapLink.match(regex1);
 
   if (isValid || isValid1) {
-    console.log("maps is google map format");
   } else {
-    console.log("maps is not google map format");
     errorDetails.value.push("Invalid google link map.");
   }
 };
 
 const validateLength = (string, label, length = 0) => {
-  console.log("checking " + label + " " + string);
   if (string.length > length) {
     errorDetails.value.push(
       label + " cannot more than " + length + " characters"
@@ -85,8 +79,6 @@ const validateLength = (string, label, length = 0) => {
 };
 
 const validateLocation = (format, location, googleMapLink) => {
-  console.log("location " + location);
-  console.log("googleMapLink " + googleMapLink);
   if (format == "online") {
     if (location.length == 0 || location.length == null) {
       errorDetails.value.push("meeting platform is requied");
@@ -110,19 +102,12 @@ const validateDateTime = (
   annnouncementDate
 ) => {
   let getActivityDate = new Date(activityDate);
-  console.log(getActivityDate + " getActivityDate " + getActivityDate);
   let getActivityEndDate = new Date(activityEndDate);
-  console.log(activityEndDate + " activityEndDate " + activityEndDate);
   let getregistrationDate = new Date(registrationDate);
-  console.log(registrationDate + " getregistrationDate " + getregistrationDate);
   let getRregistrationEndDate = new Date(registrationEndDate);
-  console.log(
-    registrationEndDate + " registrationEndDate " + registrationEndDate
-  );
+
   let getAnnnouncementDate = new Date(annnouncementDate);
-  console.log(annnouncementDate + " annnouncementDate " + annnouncementDate);
   if (getActivityDate > getActivityEndDate) {
-    console.log("do if getActivityDate > getActivityEndDate ");
     errorDetails.value.push("activity date must before activity end date");
   } else if (
     getregistrationDate > getRregistrationEndDate ||
@@ -130,32 +115,22 @@ const validateDateTime = (
     getregistrationDate > getActivityDate ||
     getregistrationDate > getActivityEndDate
   ) {
-    console.log(
-      "do else if getregistrationDate > getRregistrationEndDate || getregistrationDate > getAnnnouncementDate || getregistrationDate > getActivityDate || getregistrationDate > getActivityEndDate"
-    );
     errorDetails.value.push("registration date is wrong");
   } else if (
     getRregistrationEndDate > getAnnnouncementDate ||
     getRregistrationEndDate > getActivityDate ||
     getRregistrationEndDate > getActivityEndDate
   ) {
-    console.log(
-      "do else if getRregistrationEndDate > getAnnnouncementDate || getRregistrationEndDate > getActivityDate || getRregistrationEndDate > getActivityEndDate"
-    );
     errorDetails.value.push("registration end date is wrong");
   } else if (
     getAnnnouncementDate > getActivityDate ||
     getRregistrationEndDate > getActivityEndDate
   ) {
-    console.log(
-      "do else if getAnnnouncementDate > getActivityDate || getRregistrationEndDate > getActivityEndDate"
-    );
     errorDetails.value.push("announcement date is after the activity date");
   }
 };
 
 const validateActivity = (activity) => {
-  console.log("checking");
   validateLength(activity.activityName, "activity name", 50);
   validateLength(activity.activityOwnerUserName, "username", 50);
   validateLength(activity.activityBriefDescription, "brief description", 100);
@@ -184,10 +159,7 @@ const validateActivity = (activity) => {
 };
 
 const updateImageUpload = async (images) => {
-  console.log("images : " + images);
   images.forEach(async (image) => {
-    console.log("imageId : " + image.imageId);
-
     if (
       image.file !== undefined ||
       image.file !== "" ||
@@ -263,7 +235,6 @@ const updateActivity = async (activityId, activity, file) => {
     new Blob([JSON.stringify(updateLocation)], { type: "application/json" })
   );
 
-  console.log("Token : Bearer " + store.token);
   const res = await fetch(
     `${import.meta.env.VITE_BASE_URL}/activities/${activityId}`,
     {

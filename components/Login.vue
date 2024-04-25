@@ -26,12 +26,10 @@ const getTokenbyEmail = async (email: string) => {
     );
     if (res.status === 200 || res.status === 201) {
       const jwttoken = await res.json();
-      console.log("jwt " + jwttoken.accessToken);
       store.googleLogin(tokenUtil.paresJWT(jwttoken.accessToken).role,jwttoken.accessToken,jwttoken.refreshToken);
       router.push({path: '/'})
     } else if (res.status == 204) {
       alert(`no data go to registration`);
-      console.log('usercredentia '+ usercredential.value)
       store.changeEmail(tokenUtil.paresJWT(usercredential.value).email )
       store.changeIsGoogleLogin(true)
       router.push({path: '/UserRegistration'})
@@ -43,10 +41,8 @@ const getTokenbyEmail = async (email: string) => {
 // handle success event
 const handleLoginSuccess = (response: CredentialResponse) => {
   const { credential } = response;
-  console.log("Access Token", credential);
   let parseToken = tokenUtil.paresJWT(credential);
   usercredential.value = credential;
-  console.log("parse jwt " + parseToken.email);
   getTokenbyEmail(parseToken.email);
 };
 
@@ -128,6 +124,7 @@ const userLogin = computed(() => {
             </span>
 
             <input
+              @keyup.enter="$emit('userLogInClick', userLogin)"
               v-model="userLogin.password"
               type="password"
               class="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
@@ -146,7 +143,7 @@ const userLogin = computed(() => {
             <p class="mt-4 text-center text-gray-600 dark:text-gray-400">
               or sign in with
             </p>
-            <div class="relative flex items-center mt-4">
+            <div class="relative flex justify-center mt-4">
               <GoogleSignInButton
                 @success="handleLoginSuccess"
                 @error="handleLoginError"

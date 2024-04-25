@@ -24,14 +24,12 @@ const getcomingSoonActivities = async () => {
   );
   if (res.status === 200) {
     comingSoonActivities.value = await res.json();
-    console.log("value " + comingSoonActivities.value);
   } else {
     console.log("cannot get data");
   }
 };
 
 const gatFavoriteCategories = async () => {
-  console.log("getUser Bearer " + store.token)
   const res = await fetch(`${import.meta.env.VITE_BASE_URL}/categories/favorite`, {
     method: "GET",
     headers: {
@@ -40,7 +38,6 @@ const gatFavoriteCategories = async () => {
   });
   if (res.status === 200) {
     favoriteCategories.value = await res.json();
-    console.log(favoriteCategories.value)
   } else {
     console.log("cannot get data");
   }
@@ -60,7 +57,6 @@ const getActivities = async () => {
   );
   if (res.status === 200) {
     activities.value = await res.json();
-    console.log("value " + activities.value);
   } else {
     console.log("cannot get data");
   }

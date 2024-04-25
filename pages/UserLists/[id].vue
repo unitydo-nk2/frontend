@@ -17,7 +17,6 @@ onBeforeMount(async () => {
 });
 
 const getUserByID = async (id) => {
-  console.log(store.token)
   const res = await fetch(
     `${import.meta.env.VITE_BASE_URL}/users/registration/${id}`,
     {
@@ -30,7 +29,6 @@ const getUserByID = async (id) => {
   );
   if (res.status === 200) {
     user.value = await res.json();
-    console.log("value " + user.value);
   } else {
     console.log("cannot get data");
   }
@@ -65,7 +63,7 @@ const updateRegistrationStatus = async (id, status) => {
 
 <template>
   <div class="flex flex-row">
-    <SideBareDemo />
+    <SideBar/>
     <ManageUserDetail
       :user="user"
       @updateRegistrationStatus="updateRegistrationStatus"

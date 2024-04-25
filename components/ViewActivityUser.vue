@@ -41,7 +41,12 @@ const props = defineProps({
             </div>
 
             <div class="block w-full overflow-x-auto">
-              <table class="items-center bg-transparent w-full border-collapse">
+              <div v-if="activities.length == 0" class=" border border-solid border-blueGray-100 items-center bg-transparent w-full border-collapse">
+                <div class="text-lg uppercase align-middle font-semibold  text-center">No activity</div>
+              </div>
+
+              <div v-else>
+              <table v-esle class="items-center bg-transparent w-full border-collapse">
                 <thead>
                   <tr>
                     <th
@@ -87,7 +92,11 @@ const props = defineProps({
                       class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-lg whitespace-nowrap p-4"
                     >
                       <div
-                      @click="navigateTo(`/ViewAllActivityUser/${activity.activityId}/`)"
+                        @click="
+                          navigateTo(
+                            `/ViewAllActivityUser/${activity.activityId}/`
+                          )
+                        "
                       >
                         <button
                           type="button"
@@ -100,6 +109,7 @@ const props = defineProps({
                   </tr>
                 </tbody>
               </table>
+            </div>
             </div>
           </div>
         </div>

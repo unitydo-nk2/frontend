@@ -29,7 +29,6 @@ const getCategories = async () => {
   });
   if (res.status === 200) {
     categoryList.value = await res.json();
-    console.log("categories value " + categoryList.value);
   } else {
     console.log("cannot get data");
   }
@@ -231,7 +230,8 @@ const favoriteCategoriesList = computed(() => {
             </div>
 
             <div>
-              <label class="block mb-2 text-sm text-gray-600">Nickname</label>
+              <label v-if="user.role == 'activityOwner'" class="block mb-2 text-sm text-gray-600">Organization Name</label>
+              <label  class="block mb-2 text-sm text-gray-600">Nickname</label>
               <input
                 :disabled="!isEdit"
                 v-model="userDetails.nickName"
@@ -261,11 +261,11 @@ const favoriteCategoriesList = computed(() => {
                 v-model="userDetails.gender"
                 class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
               >
-                <option value="male">male</option>
-                <option value="female">female</option>
-                <option value="lgbtq">lgbtq+</option>
-                <option value="other">other</option>
-                <option value="reatherNotToSay">rather not to say</option>
+                <option value="Male">male</option>
+                <option value="Female">female</option>
+                <option value="Lgbtq">lgbtq+</option>
+                <option value="Other">other</option>
+                <option value="ReatherNotToSay">rather not to say</option>
               </select>
             </div>
             <div>

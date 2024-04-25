@@ -8,7 +8,6 @@ let errorDetails = ref([]);
 let formData = new FormData();
 
 const validateEmail = (email) => {
-  console.log("email = " + email);
   let validRegex =
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   if (email.match(validRegex)) {
@@ -31,7 +30,6 @@ const validateLength = (string, label, length = 0) => {
 };
 
 const validateUser = (user) => {
-  console.log("checking");
   validateLength(user.name, "name", 50);
   validateLength(user.surName, "surname", 50);
   validateLength(user.email, "email", 100);
@@ -86,7 +84,6 @@ const createUser = async (user) => {
       if (res.status === 200 || res.status === 201) {
         alert("you successfully create user !!");
         const jwttoken = await res.json()
-        console.log("jwttoken "+jwttoken.accessToken);
         store.systemLogin(tokenUtil.paresJWT(jwttoken.accessToken).role, jwttoken.accessToken, jwttoken.refreshToken)
         router.push({ path: '/' });
       } else if (res.status === 400) {
@@ -98,7 +95,6 @@ const createUser = async (user) => {
         alert("you successfully create user !!");
         store.changeIsGoogleLogin(false);
         const jwttoken = await res.json()
-        console.log("jwttoken "+jwttoken.accessToken);
         store.systemLogin(tokenUtil.paresJWT(jwttoken.accessToken).role, jwttoken.accessToken, jwttoken.refreshToken)
         alert("almost done lets unitydo know you more !!");
         router.push({ path: "/UserRegistration/CategoriesFavorite" });

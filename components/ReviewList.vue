@@ -8,7 +8,7 @@ const props = defineProps({
 </script>
  
 <template>
-  <div v-if="reviews.length == 0">no review</div>    
+  <div v-if="reviews.length == 0">No Review</div>    
   <div v-else> 
     <div
           v-for="(review, index) in reviews"

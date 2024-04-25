@@ -167,7 +167,7 @@ const updateFavoriteCategories = async (favoriteCategories) => {
           checkSum++;
         } else if (res.status === 400) {
           const data = await res.json();
-          alert(data.message || "Bad request");
+          alert("Cannot complete the request.");
         } else {
           alert(res.status + " error");
         }

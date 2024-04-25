@@ -144,10 +144,12 @@ const newUser = ref({
               </div>
 
               <div>
-                <label
+                <label v-if="newUser.role == 'activityOwner'"
                   class="block mb-2 text-sm text-gray-600 dark:text-gray-200"
-                  >Nickname</label
-                >
+                  >Organization Name</label>
+                  <label v-if="newUser.role == 'user'"
+                  class="block mb-2 text-sm text-gray-600 dark:text-gray-200"
+                  >Nickname</label>
                 <input
                   v-model="newUser.nickName"
                   type="text"
@@ -178,11 +180,11 @@ const newUser = ref({
                   v-model="newUser.gender"
                   class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                 >
-                  <option value="male">male</option>
-                  <option value="female">female</option>
-                  <option value="lgbtq">lgbtq+</option>
-                  <option value="other">other</option>
-                  <option value="reatherNotToSay">rather not to say</option>
+                  <option value="Male">male</option>
+                  <option value="Female">female</option>
+                  <option value="Lgbtq">lgbtq+</option>
+                  <option value="Other">other</option>
+                  <option value="ReatherNotToSay">rather not to say</option>
                 </select>
               </div>
 
@@ -275,17 +277,6 @@ const newUser = ref({
                   class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                 />
               </div>
-
-              <!-- <div class="col-span-2">
-                <label class="text-sm text-gray-600 dark:text-gray-200"
-                  >Your address</label
-                >
-                <input
-                  type="text"
-                  placeholder="Enter your password"
-                  class="block w-1/2 px-5 py-10 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
-                />
-              </div> -->
               <div class="col-span-2">
                 <label class="text-sm text-gray-600 dark:text-gray-200"
                   >Your address</label
@@ -298,16 +289,16 @@ const newUser = ref({
               </div>
               <div class="flex justify-end gap-3 pt-2 col-span-2">
                 <button
-                  @click="$emit('userRegistration', newUser)"
-                  class="hover:bg-unityDo-primary text-unityDo-primary hover:text-white font-semibold font-bold py-2 px-4 border border-unityDo-primary rounded"
-                >
-                  Sign Up
-                </button>
-                <button
                   @click="navigateTo('/login/')"
                   class="hover:bg-unityDo-primary text-unityDo-primary hover:text-white font-semibold font-bold py-2 px-4 border border-unityDo-primary rounded"
                 >
                   Cancel
+                </button>
+                <button
+                  @click="$emit('userRegistration', newUser)"
+                  class="hover:bg-unityDo-primary text-unityDo-primary hover:text-white font-semibold font-bold py-2 px-4 border border-unityDo-primary rounded"
+                >
+                  Sign Up
                 </button>
               </div>
             </div>

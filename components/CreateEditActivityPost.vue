@@ -190,13 +190,11 @@ const uploadImage = async (event, alt, imgId) => {
   const allowedTypes = ["image/jpeg", "image/png"]; // Allowed file types
 
   let index = findIndexByAlt(fileUpload.value, alt);
-  console.log("index " + index);
 
   const file = event.target.files[0];
 
   // Check if file type is allowed
   if (!allowedTypes.includes(file.type)) {
-    console.log("Invalid file type. Only JPEG and PNG files are allowed.");
     alert("Invalid file type. Only JPEG and PNG files are allowed.");
     clearFile(alt);
     return; // Stop further execution
@@ -207,12 +205,10 @@ const uploadImage = async (event, alt, imgId) => {
   fileUpload.value[index].imageId = imgId;
 
   if (file.size > maxSize) {
-    console.log("File size exceeds 15 MB. Clearing file...");
     alert("File size exceeds 15 MB. Please select a smaller file.");
     clearFile(alt);
     return; // Stop further execution
   } else {
-    console.log("File size within limits.");
   }
 };
 </script>
