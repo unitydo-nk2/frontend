@@ -7,6 +7,28 @@ const props = defineProps({
     default: {},
   },
 });
+
+const store = useCounterStore();
+
+const trackHistory = async (activityId) => {
+  let email =
+    store.getEmail == null || store.getEmail == "" ? "guest" : store.getEmail;
+  const res = await fetch(
+    `${import.meta.env.VITE_BASE_URL}/tracks/${activityId}`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json", // Set content type to JSON
+        Authorization: "Bearer " + store.token,
+      },
+      body: email,
+    }
+  );
+  if (res.status === 200) {
+  } else {
+    console.log("cannot get data");
+  }
+};
 </script>
 
 <template>

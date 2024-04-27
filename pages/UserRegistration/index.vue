@@ -5,7 +5,6 @@ import { tokenUtil } from '../../functions/jwtTokenUtils'
 const router = useRouter();
 const store = useCounterStore();
 let errorDetails = ref([]);
-let formData = new FormData();
 
 const validateEmail = (email) => {
   let validRegex =
@@ -54,6 +53,7 @@ const validatePassWord = (password, confirmedPassword) => {
 
 const createUser = async (user) => {
   // alert("hello world")
+  let formData = new FormData();
   errorDetails.value = [];
   validateUser(user);
   if (errorDetails.value.length == 0) {

@@ -11,20 +11,7 @@ const props = defineProps({
 
 <template>
   <div class="mx-4 max-w-screen-xl sm:mx-8 xl:mx-auto w-full">
-    <!-- <h1 class="border-b py-6 text-4xl font-semibold" style="display: inline-block;">Setting</h1>
-<div style="display: inline-block; margin-left: auto;">
-  <a @click="">Sign out</a>
-</div> -->
-
-
     <div class="">
-      <!-- 
-    <div class="col-span-2 hidden sm:block">
-      <ul>
-        <li class="mt-5 cursor-pointer border-l-2 border-transparent px-2 py-2 font-semibold transition hover:border-l-blue-700 hover:text-blue-700">Profile</li>
-        <li class="mt-5 cursor-pointer border-l-2 border-transparent px-2 py-2 font-semibold transition hover:border-l-blue-700 hover:text-blue-700">Favorite</li>
-      </ul>
-    </div> -->
       <div class="">
         <p class="py-2 pt-5 text-xl text-unityDo-primary font-semibold">
           {{ user.name }} {{ user.surName }}

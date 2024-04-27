@@ -27,7 +27,7 @@ const newUser = ref({
   surName: "",
   nickName: "",
   email: store.email,
-  gender: "male",
+  gender: "Male",
   dateOfBirth: "",
   religion: "Christianity",
   telephoneNumber: "",

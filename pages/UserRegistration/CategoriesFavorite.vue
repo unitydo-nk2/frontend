@@ -41,17 +41,16 @@ await categories.forEach(async (category, index) => {
   );
 
   if (res.ok) {
-    alert("You have successfully set your favorite category!");
-    router.push({ path: "/" });
   } else if (res.status === 400) {
     const data = await res.json();
-    alert(data.message || "Bad request");
+    alert("Cannot sending the request. Please try again.");
   } else {
     throw new Error("Failed to fetch");
   }
 
 });
-
+alert("You have successfully set your favorite category!");
+router.push({ path: "/" });
 };
 
 </script>

@@ -52,10 +52,8 @@ const setFavorite = async (activityId) => {
     }
   );
   if (res.status === 200) {
-    alert("added favorite");
     isFavoriteStatus.value = true;
   } else {
-    alert("Problems occurs while set favorite activity.");
   }
 };
 
@@ -71,10 +69,8 @@ const unFavorite = async (activityId) => {
     }
   );
   if (res.status === 200) {
-    alert("remove favorite");
     isFavoriteStatus.value = false;
   } else {
-    alert("Problems occurs while remove favorite activity.");
   }
 };
 
@@ -261,11 +257,9 @@ const getImage = (alt) => {
               {{ dateTimeUtil.getDateTime(activity.registerEndDate) }}
             </div>
           </div>
-          <!-- <div class="m-4 w-full h-px border border-neutral-50"></div> -->
-          <!-- buttons -->
           <div class="w-4/5 m-4 flex justify-center items-center gap-8">
             <div v-if="(store.role == 'user' || store.role == 'Guest') &&
-              (dateTimeUtil.getDateTime(activity.activityDate) > new Date())
+              (new Date(activity.activityDate) > new Date())
               ">
               <div @click="
               navigateTo(`/ActivityRegistration/${activity.activityId}/`)
@@ -276,7 +270,7 @@ const getImage = (alt) => {
                 </button>
               </div>
             </div>
-            <div>
+            <div v-else>
               <button 
                   class="w-full h-[60px] p-4 bg-indigo-600  text-white rounded-xl border border-indigo-600 text-2xl font-bold">
                   Registeration closed

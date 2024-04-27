@@ -77,7 +77,6 @@ const getUserDetails = () => {
                 >หน้าหลัก</a
               > -->
               <a
-                href="#"
                 :class="route.fullPath == '/'?'bg-unityDo-primary rounded-full px-3 py-2 text-white':'' +'hover:text-unityDo-primary block py-2 pl-3 pr-4 text-gray-900 rounded md:p-0 md:border-0'"
                 >Home page</a
               >
@@ -101,7 +100,6 @@ const getUserDetails = () => {
           <li>
             <a
               @click="navigateTo('/Activities/')"
-              href="#"
               :class="route.fullPath.startsWith('/Activities/') ? 'bg-unityDo-primary rounded-full px-3 py-2 text-white':'' +'hover:text-unityDo-primary block py-2 pl-3 pr-4 text-gray-900 rounded md:p-0 md:border-0'"
               >Activities</a
             >
@@ -121,7 +119,6 @@ const getUserDetails = () => {
           <li v-if="store.isLogin == true">
             <a
               @click="navigateTo('/ProfilePage/')"
-              href="#"
               :class="route.fullPath == '/ProfilePage/' ? 'bg-unityDo-primary rounded-full px-3 py-2 text-white':'' +'hover:text-unityDo-primary block py-2 pl-3 pr-4 text-gray-900 rounded md:p-0 md:border-0'"
               > {{ store.username }} </a
             >
@@ -129,7 +126,6 @@ const getUserDetails = () => {
           <li v-if="store.isLogin == false">
             <a
               @click="navigateTo('/Login/')"
-              href="#"
               :class="route.fullPath == '/Login/' ? 'bg-unityDo-primary rounded-full px-3 py-2 text-white':'' +' hover:text-unityDo-primary block py-2 pl-3 pr-4 text-gray-900 rounded md:p-0 md:border-0'"
               >Login</a
             >

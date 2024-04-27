@@ -38,7 +38,6 @@ const userLoginAuthentication = async (user) => {
       const jwttoken = await res.json()
       console.log(jwttoken.accessToken);
       store.systemLogin(tokenUtil.paresJWT(jwttoken.accessToken).role,jwttoken.accessToken,jwttoken.refreshToken)
-      alert('login success')
       router.push({ path: '/' });
     } else if (res.status == 401) {
       alert(`Password Incorrect`)

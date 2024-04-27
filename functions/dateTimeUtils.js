@@ -7,5 +7,5 @@ export const dateTimeUtil = {
   },
   getTime: function (dateTime) {
     return new Date(dateTime).toTimeString().slice(0, 5);
-  },
+  }
 };
