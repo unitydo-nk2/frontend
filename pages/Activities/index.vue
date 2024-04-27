@@ -6,7 +6,8 @@ const upComingActivities = ref([]);
 const popularActivities = ref([]);
 const mainCategories = ref([]);
 const activityImages = ref([]);
-
+const loadStatus = ref(true);
+const loadPopularActivityStatus  = ref(true);
 onBeforeMount(async () => {
   await getActivities();
   await getUpComingActivities();
@@ -20,8 +21,10 @@ const getActivities = async () => {
   });
   if (res.status === 200) {
     activities.value = await res.json();
+    loadStatus.value = true;
   } else {
     activities.value = [];
+    loadStatus.value = false;
     console.log("cannot get data");
   }
 };
@@ -36,6 +39,8 @@ const getPopularActivities = async () => {
   if (res.status === 200) {
     popularActivities.value = await res.json();
   } else {
+    loadPopularActivityStatus.value = false;
+    popularActivities.value = [];
     console.log("cannot get data");
   }
 };
@@ -85,7 +90,7 @@ const getMainCategories = async () => {
         Popular Activity
       </div>
       <div>
-        <CardSlider :activities="popularActivities" />
+        <CardSlider :activities="popularActivities" :loadStatus="loadPopularActivityStatus"/>
       </div>
     </div>
     <div>
@@ -96,6 +101,7 @@ const getMainCategories = async () => {
               :activities="activities"
               :mainCategories="mainCategories"
               :activityImages="activityImages"
+              :loadStatus="loadStatus"
             />
           </div>
         </div>

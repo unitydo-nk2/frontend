@@ -97,7 +97,7 @@ const createUser = async (user) => {
         const jwttoken = await res.json()
         store.systemLogin(tokenUtil.paresJWT(jwttoken.accessToken).role, jwttoken.accessToken, jwttoken.refreshToken)
         alert("almost done lets unitydo know you more !!");
-        router.push({ path: "/UserRegistration/CategoriesFavorite" });
+        router.push({ path: "/UserRegistration/CategoriesFavorite/" });
       } else if (res.status === 400) {
         alert("this email have been registered in unitydo !!");
         console.log("cannot get data");

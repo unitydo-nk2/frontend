@@ -337,7 +337,7 @@ const favoriteCategoriesList = computed(() => {
                 class="block w-full resize-none h-20 px-2 py-4 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
               />
             </div>
-            <div class="col-span-2  pb-8">
+            <div v-if="store.role == 'user'" class="col-span-2  pb-8">
               <p
                 class="py-2 pt-5 text-xl text-unityDo-primary font-semibold uppercase"
               >
@@ -436,6 +436,12 @@ const favoriteCategoriesList = computed(() => {
                 class="flex justify-end gap-3 pt-8 pb-4 col-span-2"
               >
                 <button
+                  @click="editToggle"
+                  class="hover:bg-unityDo-primary text-unityDo-primary hover:text-white font-semibold font-bold py-2 px-4 border border-unityDo-primary rounded"
+                >
+                  Cancel
+                </button>
+                <button
                   @click="
                     [
                       $emit('updateUser', userDetails),
@@ -445,13 +451,7 @@ const favoriteCategoriesList = computed(() => {
                   "
                   class="hover:bg-unityDo-primary text-unityDo-primary hover:text-white font-semibold font-bold py-2 px-4 border border-unityDo-primary rounded"
                 >
-                  submit
-                </button>
-                <button
-                  @click="editToggle"
-                  class="hover:bg-unityDo-primary text-unityDo-primary hover:text-white font-semibold font-bold py-2 px-4 border border-unityDo-primary rounded"
-                >
-                  Cancel
+                  Submit
                 </button>
               </div>
             </div>

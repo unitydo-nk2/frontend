@@ -6,12 +6,15 @@ const store = useCounterStore();
 const activities = ref([]);
 const comingSoonActivities = ref([]);
 const favoriteCategories = ref([]);
+const loadStatus = ref(true);
+const activitiesRecommendationLoadStatus = ref(true);
 
 onBeforeMount(async () => {
+  console.log("role b4 "+store.role)
   if (store.role == "user") {
     await gatFavoriteCategories();
-    if(await favoriteCategories.value.length == 3){
-      await getActivities();
+    if(favoriteCategories.value.length == 3){
+      await getRecommendedActivities();
     }
   }
   await getcomingSoonActivities();
@@ -24,7 +27,10 @@ const getcomingSoonActivities = async () => {
   );
   if (res.status === 200) {
     comingSoonActivities.value = await res.json();
+    loadStatus.value = true;
   } else {
+    comingSoonActivities.value = [];
+    loadStatus.value = false;
     console.log("cannot get data");
   }
 };
@@ -38,13 +44,15 @@ const gatFavoriteCategories = async () => {
   });
   if (res.status === 200) {
     favoriteCategories.value = await res.json();
+    activitiesRecommendationLoadStatus.value = true;
   } else {
+    activitiesRecommendationLoadStatus.value = false;
     console.log("cannot get data");
   }
 };
 
 
-const getActivities = async () => {
+const getRecommendedActivities = async () => {
   const res = await fetch(
     `${import.meta.env.VITE_BASE_URL}/activities/recommends`,
     {
@@ -66,7 +74,7 @@ const getActivities = async () => {
 <template>
   <div class="font-primary">
     <div class="bg-[url('/image/gradientBg.png')] content-none bg-cover">
-      <Carousel :activities="comingSoonActivities" />
+      <Carousel :activities="comingSoonActivities" :loadStatus="loadStatus" />
     </div>
 
     <div class="my-8">
@@ -84,7 +92,7 @@ const getActivities = async () => {
       </div>
       <div v-if="store.getRole == 'user' && favoriteCategories.length == 3">
         <div class="ml-16 overflow-x-scroll hide-scrollbar">
-          <ImageSlider :activities="activities" />
+          <ImageSlider :activities="activities" :loadStatus="activitiesRecommendationLoadStatus"/>
         </div>
       </div>
       <div v-if="store.getRole == 'user' && favoriteCategories.length != 3">
@@ -95,7 +103,7 @@ const getActivities = async () => {
         </div>
         <div class="flex justify-center w-full">
           <button
-            @click="navigateTo('/ProfilePage/')"
+            @click="navigateTo('/UserRegistration/CategoriesFavorite/')"
             class="bg-white drop-shadow-lg mr-16 hover:bg-indigo-600 text-indigo-600 hover:text-white font-bold py-4 px-8 rounded-full"
           >
             Set favorite categories
@@ -117,7 +125,7 @@ const getActivities = async () => {
         </div>
         <div class="flex justify-center w-full">
           <button
-            @click="navigateTo('/login/')"
+            @click="navigateTo('/Login/')"
             class="bg-white drop-shadow-lg mr-16 hover:bg-indigo-600 text-indigo-600 hover:text-white font-bold py-4 px-8 rounded-full"
           >
             login to Unitydo

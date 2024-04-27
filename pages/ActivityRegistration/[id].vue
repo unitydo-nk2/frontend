@@ -12,7 +12,7 @@ let activityId;
 onBeforeMount(async () => {
   if(store.role=='Guest'){
     alert('To register the activity, please login !')
-    router.push({ path: "/login" });
+    router.push({ path: "/Login/" });
   }
   await getUser();
 });

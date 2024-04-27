@@ -289,7 +289,7 @@ const newUser = ref({
               </div>
               <div class="flex justify-end gap-3 pt-2 col-span-2">
                 <button
-                  @click="navigateTo('/login/')"
+                  @click="navigateTo('/Login/')"
                   class="hover:bg-unityDo-primary text-unityDo-primary hover:text-white font-semibold font-bold py-2 px-4 border border-unityDo-primary rounded"
                 >
                   Cancel

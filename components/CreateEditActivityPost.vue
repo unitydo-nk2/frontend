@@ -79,12 +79,6 @@ const clearFile = (ElementId) => {
   // isFileSelected.value = false;
 };
 
-// const clearAll = () => {
-//   fileUpload.value = null;
-//   document.getElementById("fileUpload").value = "";
-//   fileDescription.value = "";
-//   title.value = "";
-// };
 
 const getImage = (alt) => {
   const foundObject = props.activityImages.find((obj) => obj.alt === alt);
@@ -507,8 +501,8 @@ const uploadImage = async (event, alt, imgId) => {
         </label>
         <div class="flex bg-grey-lighter">
           <div v-if="status == 'edit' && getImage('poster') !== undefined">
-            <div>
-              <img :src="getImage('poster')" />
+            <div >
+              <img :src="getImage('poster')" width="540"/>
             </div>
           </div>
 
@@ -555,8 +549,8 @@ const uploadImage = async (event, alt, imgId) => {
           <div
             v-if="status == 'edit' && getImage('activityDetail1') !== undefined"
           >
-            <div>
-              <img :src="getImage('activityDetail1')" />
+            <div >
+              <img :src="getImage('activityDetail1')" width="218" />
             </div>
           </div>
           <label
@@ -593,7 +587,7 @@ const uploadImage = async (event, alt, imgId) => {
           </label>
         </div>
       </div>
-      <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+      <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0 h-56">
         <label
           class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
           for="grid-first-name"
@@ -604,8 +598,8 @@ const uploadImage = async (event, alt, imgId) => {
           <div
             v-if="status == 'edit' && getImage('activityDetail2') !== undefined"
           >
-            <div>
-              <img :src="getImage('activityDetail2')" />
+          <div >
+              <img :src="getImage('activityDetail2')" width="218" />
             </div>
           </div>
           <label
@@ -655,8 +649,8 @@ const uploadImage = async (event, alt, imgId) => {
           <div
             v-if="status == 'edit' && getImage('activityDetail3') !== undefined"
           >
-            <div>
-              <img :src="getImage('activityDetail3')" />
+          <div >
+              <img :src="getImage('activityDetail3')" width="540" />
             </div>
           </div>
           <label
@@ -705,7 +699,7 @@ const uploadImage = async (event, alt, imgId) => {
             v-if="status == 'edit' && getImage('activityDetail4') !== undefined"
           >
             <div>
-              <img :src="getImage('activityDetail4')" />
+              <img :src="getImage('activityDetail4')" width="540" />
             </div>
           </div>
           <label
@@ -743,24 +737,24 @@ const uploadImage = async (event, alt, imgId) => {
         </div>
       </div>
     </div>
-    <div class="flex flex-wrap -mx-3 mb-6">
-      <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+    <div class="flex flex-wrap -mx-3 mb-6 h-56">
+      <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0 ">
         <label
           class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
           for="grid-first-name"
         >
           Activity images(5) *option {{ fileUpload[5].name }}
         </label>
-        <div class="flex bg-grey-lighter">
+        <div class="flex bg-grey-lighter h-full">
           <div
             v-if="status == 'edit' && getImage('activityDetail5') !== undefined"
           >
             <div>
-              <img :src="getImage('activityDetail5')" />
+              <img :src="getImage('activityDetail5')" width="540"/>
             </div>
           </div>
           <label
-            class="w-full flex flex-col items-center px-4 py-6 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase border border-dashed border-gray-500 relative cursor-pointer hover:bg-gray-300 hover:text-white"
+            class="w-full h-full flex flex-col items-center px-4 py-6 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase border border-dashed border-gray-500 relative cursor-pointer hover:bg-gray-300 hover:text-white"
           >
             <svg
               class="w-8 h-8"

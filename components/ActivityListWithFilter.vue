@@ -10,6 +10,10 @@ const props = defineProps({
     type: Array,
     default: [],
   },
+  loadStatus: {
+    type: Boolean,
+    default: true
+  }
 });
 
 const curNameSearch = ref("");
@@ -118,7 +122,7 @@ const searchData = computed(() => {
 
             <!-- Product grid -->
             <div class="lg:col-span-3">
-              <ActivityListCard :activities="searchData" />
+              <ActivityListCard :activities="searchData" :loadStatus="loadStatus" />
             </div>
           </div>
         </section>

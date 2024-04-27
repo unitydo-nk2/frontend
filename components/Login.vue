@@ -32,7 +32,7 @@ const getTokenbyEmail = async (email: string) => {
       alert(`no data go to registration`);
       store.changeEmail(tokenUtil.paresJWT(usercredential.value).email )
       store.changeIsGoogleLogin(true)
-      router.push({path: '/UserRegistration'})
+      router.push({path: '/UserRegistration/'})
     } else {
       alert(`error loging in unityDo with google`);
     }

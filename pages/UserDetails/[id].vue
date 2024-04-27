@@ -31,7 +31,7 @@ const deleteUserById = async (id) => {
   if (res.status === 200) {
     user.value = await res.json();
     const router = useRoute();
-    router.push({ path: '/UserLists' });   
+    router.push({ path: '/UserLists/' });   
   } else {
     console.log("cannot get data");
   }

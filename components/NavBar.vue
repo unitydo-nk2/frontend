@@ -16,7 +16,7 @@ const getUserDetails = () => {
     if(localStorage.getItem('token') != null || localStorage.getItem('token') != undefined ){
       store.setFromToken(localStorage.getItem('token') , localStorage.getItem('refreshToken'))
     }else{
-      router.push({path: '/Login'})
+      router.push({path: '/Login/'})
     }
   }
 }
@@ -128,9 +128,9 @@ const getUserDetails = () => {
           </li>
           <li v-if="store.isLogin == false">
             <a
-              @click="navigateTo('/login/')"
+              @click="navigateTo('/Login/')"
               href="#"
-              :class="route.fullPath == '/login/' ? 'bg-unityDo-primary rounded-full px-3 py-2 text-white':'' +' hover:text-unityDo-primary block py-2 pl-3 pr-4 text-gray-900 rounded md:p-0 md:border-0'"
+              :class="route.fullPath == '/Login/' ? 'bg-unityDo-primary rounded-full px-3 py-2 text-white':'' +' hover:text-unityDo-primary block py-2 pl-3 pr-4 text-gray-900 rounded md:p-0 md:border-0'"
               >Login</a
             >
           </li>

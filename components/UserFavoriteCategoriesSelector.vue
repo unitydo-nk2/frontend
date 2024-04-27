@@ -50,7 +50,7 @@ const setFavoriteCategories = (category) => {
                 </h1>
 
                 <p class="mt-4 text-gray-500 dark:text-gray-400">
-                  Let’s UnityDo know you more. S
+                  Let’s UnityDo know you more.
                 </p>
                 <div>
                   <!-- <div class="w-96 h-80 relative"> -->

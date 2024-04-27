@@ -197,6 +197,7 @@ const updateImageUpload = async (images) => {
 const updateActivity = async (activityId, activity, file) => {
   errorDetails.value = [];
   validateActivity(activity);
+  if (errorDetails.value.length == 0) {
 
   // Create a new FormData object to handle multipart form data
   const formData = new FormData();
@@ -253,6 +254,9 @@ const updateActivity = async (activityId, activity, file) => {
   } else {
     console.log("cannot get data");
   }
+}else{
+  alert(errorDetails.value)
+}
 };
 </script>
 

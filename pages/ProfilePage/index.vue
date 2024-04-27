@@ -62,7 +62,7 @@ const gatFavoriteCategories = async () => {
 
 const signOut = () => {
   store.logout();
-  router.push({ path: '/login' });
+  router.push({ path: '/Login/' });
 }
 
 </script>

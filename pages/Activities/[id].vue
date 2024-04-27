@@ -54,7 +54,6 @@ const getUserFavorite = async (activityId) => {
   );
   if (res.status === 200) {
     isFavorite.value = await res.json();
-    alert(isFavorite.value)
   } else {
     isFavorite.value = false;
     console.log("cannot get user favorite");
