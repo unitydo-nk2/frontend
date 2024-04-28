@@ -10,7 +10,6 @@ const loadStatus = ref(true);
 const activitiesRecommendationLoadStatus = ref(true);
 
 onBeforeMount(async () => {
-  console.log("role b4 "+store.role)
   if (store.role == "user") {
     await gatFavoriteCategories();
     if(favoriteCategories.value.length == 3){

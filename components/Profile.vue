@@ -54,7 +54,6 @@ const setStatus = (s) => {
 };
 
 const getUser = async () => {
-  console.log("getUser Bearer " + store.token);
   const res = await fetch(`${import.meta.env.VITE_BASE_URL}/users`, {
     method: "GET",
     headers: {
