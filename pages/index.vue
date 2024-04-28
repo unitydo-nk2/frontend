@@ -90,12 +90,12 @@ const getRecommendedActivities = async () => {
           Recommended Activities
         </div>
       </div>
-      <div v-if="store.getRole == 'user' && favoriteCategories.length == 3">
+      <div v-if="store.getRole() == 'user' && favoriteCategories.length == 3">
         <div class="ml-16 overflow-x-scroll hide-scrollbar">
           <ImageSlider :activities="activities" :loadStatus="activitiesRecommendationLoadStatus"/>
         </div>
       </div>
-      <div v-if="store.getRole == 'user' && favoriteCategories.length != 3">
+      <div v-if="store.getRole() == 'user' && favoriteCategories.length != 3">
         <div
           class="text-center text-gray-400 text-2xl font-bold pb-4 leading-10 tracking-wide"
         >
@@ -110,14 +110,14 @@ const getRecommendedActivities = async () => {
           </button>
         </div>
       </div>
-      <div v-else-if="store.getRole == 'activityOwner' || store.getRole == 'admin'">
+      <div v-else-if="store.getRole() == 'activityOwner' || store.getRole() == 'admin'">
         <div
           class="text-center text-gray-400 text-2xl font-bold pb-4 leading-10 tracking-wide"
         >
           This features is for user only !
         </div>
       </div>
-      <div v-if="store.getRole == 'Guest'">
+      <div v-if="store.getRole() == 'Guest'">
         <div
           class="text-center text-gray-400 text-2xl font-bold p-12 leading-10 tracking-wide"
         >

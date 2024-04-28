@@ -1,10 +1,10 @@
 import { defineStore } from "pinia";
-import { tokenUtil} from '../functions/jwtTokenUtils'
-import {localStorageUtil} from '../functions/localStorageUtils'
+import { tokenUtil } from '../functions/jwtTokenUtils'
+import { localStorageUtil } from '../functions/localStorageUtils'
 
 export const useCounterStore = defineStore("counter", {
   state: () => ({
-    email:"",
+    email: "",
     username: "",
     activityLookUp: {},
     role: "Guest",
@@ -16,30 +16,37 @@ export const useCounterStore = defineStore("counter", {
   getters: {
     getIsLogin: (state) => state.isLogin,
     getEmail: (state) => state.email,
-    getRole:(state)=> state.role
   },
   actions: {
-    getUserEmail(){
-      if(this.role == "Guest"){
+    getUserEmail() {
+      if (this.role == "Guest") {
         return null;
-      }else{
+      } else {
         return tokenUtil.paresJWT(this.token).sub;
-      } 
+      }
     },
-    getLoginStatus(){
-      if(localStorageUtil.get('token') == undefined || localStorageUtil.get('token') == null|| localStorageUtil.get('token') == '' ){
+    getLoginStatus() {
+      if (localStorageUtil.get('token') == undefined || localStorageUtil.get('token') == null || localStorageUtil.get('token') == '') {
         return false;
-      }else{
+      } else {
         return true;
       }
     },
-    setFromToken(token:string, refreshToken:string){
+    getRole() {
+      if (localStorageUtil.get('token') == undefined || localStorageUtil.get('token') == null || localStorageUtil.get('token') == '') {
+        return 'Guest';
+      } else {
+        return tokenUtil.paresJWT(localStorageUtil.get('token')).role
+          ;
+      }
+    },
+    setFromToken(token: string, refreshToken: string) {
       this.role = tokenUtil.paresJWT(token).role;
       this.isLogin = true;
       this.token = token;
       this.refreshToken = refreshToken;
       this.username = tokenUtil.paresJWT(token).name;
-     },
+    },
     changeEmail(email: string) {
       this.email = email;
     },
@@ -60,11 +67,11 @@ export const useCounterStore = defineStore("counter", {
       this.refreshToken = refreshToken;
       this.username = tokenUtil.paresJWT(token).name;
       this.email = tokenUtil.paresJWT(token).sub;
-      localStorageUtil.set('role',this.role)   
-      localStorageUtil.set('isLogin',this.isLogin)   
-      localStorageUtil.set('token',this.token)   
-      localStorageUtil.set('refreshToken',this.refreshToken)   
-      localStorageUtil.set('username',this.username)   
+      localStorageUtil.set('role', this.role)
+      localStorageUtil.set('isLogin', this.isLogin)
+      localStorageUtil.set('token', this.token)
+      localStorageUtil.set('refreshToken', this.refreshToken)
+      localStorageUtil.set('username', this.username)
     },
     googleLogin(role: string, token: string, refreshToken: string) {
       this.role = role;
@@ -74,11 +81,11 @@ export const useCounterStore = defineStore("counter", {
       this.refreshToken = refreshToken;
       this.username = tokenUtil.paresJWT(token).name;
       this.email = tokenUtil.paresJWT(token).sub;
-      localStorageUtil.set('role',this.role)   
-      localStorageUtil.set('isLogin',this.isLogin)   
-      localStorageUtil.set('token',this.token)   
-      localStorageUtil.set('refreshToken',this.refreshToken)   
-      localStorageUtil.set('username',this.username)   
+      localStorageUtil.set('role', this.role)
+      localStorageUtil.set('isLogin', this.isLogin)
+      localStorageUtil.set('token', this.token)
+      localStorageUtil.set('refreshToken', this.refreshToken)
+      localStorageUtil.set('username', this.username)
     },
     logout() {
       this.role = "Guest";
@@ -88,11 +95,11 @@ export const useCounterStore = defineStore("counter", {
       this.refreshToken = "";
       this.username = "";
       this.email = "";
-      localStorageUtil.set('role',this.role)   
-      localStorageUtil.set('isLogin',this.isLogin)   
-      localStorageUtil.set('token',this.token)   
-      localStorageUtil.set('refreshToken',this.refreshToken)   
-      localStorageUtil.set('username',this.username)   
+      localStorageUtil.set('role', this.role)
+      localStorageUtil.set('isLogin', this.isLogin)
+      localStorageUtil.set('token', this.token)
+      localStorageUtil.set('refreshToken', this.refreshToken)
+      localStorageUtil.set('username', this.username)
     },
   },
 });

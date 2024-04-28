@@ -3,15 +3,19 @@ import { useCounterStore } from "../stores/counter";
 export default defineNuxtRouteMiddleware((to, from) => {
   const store = useCounterStore();
   const isLoggIn = store.getLoginStatus();
-  const role = store.getRole;
+  const role = store.getRole();
+  console.log(isLoggIn)
+  console.log(role)
+  console.log(to.fullPath)
+
   if (isLoggIn) {
-    if (role === 'user' && (to.fullPath.startsWith('/ViewAllActivityPost/') || to.fullPath.startsWith('/ViewAllActivityUser/'))) {
+    if (role === 'user' && (to.fullPath.startsWith('/ViewAllActivityPost') || to.fullPath.startsWith('/ViewAllActivityUser'))) {
       return navigateTo("/Error/");
-    } else if ((role === 'activityOwner' || role === 'admin') && to.fullPath.startsWith('/ActivityRegistration/')) {
+    } else if ((role === 'activityOwner' || role === 'admin') && to.fullPath.startsWith('/ActivityRegistration')) {
       return navigateTo("/Error/");
     }
   } else if (!isLoggIn) {
-    if (to.fullPath.startsWith('/ViewAllActivityPost/') || to.fullPath.startsWith('/ViewAllActivityUser/') || to.fullPath.startsWith('/ActivityRegistration/')) {
+    if (to.fullPath.startsWith('/ViewAllActivityPost') || to.fullPath.startsWith('/ViewAllActivityUser') || to.fullPath.startsWith('/ActivityRegistration/')) {
       return navigateTo("/Login/");
     }
   }
