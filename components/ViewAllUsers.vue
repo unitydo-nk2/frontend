@@ -22,7 +22,7 @@ const props = defineProps({
         <div
           class="text-zinc-900 text-4xl font-bold font-['DB Heavent'] tracking-wide"
         >
-          ผู้ใช้งานในระบบ
+          Users in System
         </div>
         <div class="w-full h-px mt-4 mb-2 border border-stone-300"></div>
       </div>

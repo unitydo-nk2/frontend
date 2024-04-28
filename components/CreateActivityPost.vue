@@ -172,7 +172,7 @@ const newActivity = computed(() => {
             <div
               class="w-24 text-indigo-600 text-base font-bold font-['DB Heavent'] leading-normal tracking-wide"
             >
-              ผู้จัดกิจกรรม
+              activity Owner
             </div>
           </div>
           <textarea
@@ -268,7 +268,7 @@ const newActivity = computed(() => {
             <div
               class="w-52 text-indigo-600 text-base font-bold font-['DB Heavent'] leading-normal tracking-wide"
             >
-              จำนวนผู้เข้าร่วม
+              participants
             </div>
             <div class="text-xl font-normal font-['DB Heavent']">
               <input
