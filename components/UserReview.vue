@@ -44,7 +44,6 @@ const userReview = computed(() => {
         <h2 v-else class="font-manrope font-bold text-4xl text-black mb-8 text-center">
           Activity still on process
         </h2>
-        {{reviews}}
         <ReviewList :reviews="reviews"/>
         <div v-if = "store.role == 'user' && isActivityDone && isUserRegistered" class="pt-8">
           <label

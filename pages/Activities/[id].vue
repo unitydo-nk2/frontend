@@ -172,7 +172,6 @@ const createNewReview = async (createReview) => {
 
 <template>
     <div>
-      {{ reviews }}
     <ActivityDetail @createNewReview="createNewReview" :reviews="reviews" :activity="activity" :activityImages="activityImages" :similarActivities="similarActivies" :isUserRegistered="isUserRegistered" :isFavorite="isFavorite"/>
     </div>
 </template>

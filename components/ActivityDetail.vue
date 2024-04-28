@@ -102,9 +102,6 @@ const getImage = (alt) => {
 
 <template>
   <div>
-
-    {{ reviews }}
-
     <div
       class="font-primary grid md:grid-cols-2 
       w-full h-fit pt-16 pb-16 bg-gradient-to-r from-slate-700 to-fuchsia-950">
