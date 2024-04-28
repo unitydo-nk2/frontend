@@ -1,8 +1,8 @@
 <!-- @format -->
 
 <script setup>
-import { useCounterStore } from '../stores/counter'
-const emit = defineEmits(["deleteActivity","updateActivityToDone"]);
+import { useCounterStore } from "../stores/counter";
+const emit = defineEmits(["deleteActivity", "updateActivityToDone"]);
 
 const props = defineProps({
   activities: {
@@ -12,14 +12,13 @@ const props = defineProps({
 });
 
 const store = useCounterStore();
-
 </script>
 
 <template>
-  <div class="font-primary w-full ">
+  <div class="font-primary w-full">
     <div class="px-4 grid">
       <div class="p-4 rounded-lg dark:border-gray-700">
-        <div class="text-zinc-400 text-base font-normal ">
+        <div class="text-zinc-400 text-base font-normal">
           Activities > Activity Detail
         </div>
         <div class="text-zinc-900 text-4xl font-bold tracking-wide">
@@ -27,7 +26,10 @@ const store = useCounterStore();
         </div>
         <div class="w-full h-px mt-4 mb-2 border border-stone-300"></div>
       </div>
-      <div v-if="store.role == 'activityOwner'" class="flex flex-in-line px-4 gap-4 justify-between">
+      <div
+        v-if="store.role == 'activityOwner'"
+        class="flex flex-in-line px-4 gap-4 justify-between"
+      >
         <a @click="navigateTo('/CreateEditActivity/')">
           <button
             class="w-44 h-9 px-2.5 py-1.5 rounded-md border border-indigo-600 justify-start items-center gap-1 inline-flex"
@@ -47,7 +49,7 @@ const store = useCounterStore();
               />
             </svg>
 
-            <div class="w-36 text-indigo-600 text-2xl font-medium ">
+            <div class="w-36 text-indigo-600 text-2xl font-medium">
               Create Post
             </div>
           </button>
@@ -144,87 +146,121 @@ const store = useCounterStore();
             </div>
 
             <div class="block w-full overflow-x-auto">
-
-              <div v-if="activities.length == 0" class=" border border-solid border-blueGray-100 items-center bg-transparent w-full border-collapse">
-                <div class="text-lg uppercase align-middle font-semibold  text-center">No activity</div>
+              <div
+                v-if="activities.length == 0"
+                class="border border-solid border-blueGray-100 items-center bg-transparent w-full border-collapse"
+              >
+                <div
+                  class="text-lg uppercase align-middle font-semibold text-center"
+                >
+                  No activity
+                </div>
               </div>
 
               <div v-else>
-              <table class="items-center bg-transparent w-full border-collapse">
-                <thead>
-                  <tr>
-                    <th
-                      class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xl uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
-                    >
-                      Activity Name
-                    </th>
-                    <th
-                      class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xl uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
-                    >
-                      Activity Owner
-                    </th>
-                    <th
-                      class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xl uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
-                    >
-                      Categories
-                    </th>
-                    <th
-                      class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xl uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
-                    ></th>
-                  </tr>
-                </thead>
+                <table
+                  class="items-center bg-transparent w-full border-collapse"
+                >
+                  <thead>
+                    <tr>
+                      <th
+                        class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xl uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+                      >
+                        Activity Name
+                      </th>
+                      <th
+                        class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xl uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+                      >
+                        Activity Owner
+                      </th>
+                      <th
+                        class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xl uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+                      >
+                        Categories
+                      </th>
+                      <th
+                        class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xl uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+                      ></th>
+                    </tr>
+                  </thead>
 
-                <tbody>
-                  <tr v-for="(activity, index) in activities" :key="index">
-                    <th
-                      class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-lg whitespace-nowrap p-4 text-left text-blueGray-700"
-                    >
-                      {{ activity.activityName }}
-                    </th>
-                    <td
-                      class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-lg whitespace-nowrap p-4"
-                    >
-                      {{ activity.activityOwnerUsername }}
-                    </td>
-                    <td
-                      class="border-t-0 px-6 align-center border-l-0 border-r-0 text-lg whitespace-nowrap p-4"
-                    >
-                      {{ activity.mainCategory }} / {{ activity.category }}
-                    </td>
-                    <td
-                      class="border-t-0 px-6 inline-flex align-middle content-center  border-l-0 border-r-0 text- whitespace-nowrap p-4  gap-10"
-                    >
-                      <div>
-                        <img
-                          @click="emit('deleteActivity', activity.id)"
-                          class="cursor-pointer hover:drop-shadow-2xl inline-block align-middle"
-                          src="/image/delete.svg"
-                          alt="delete"
-                        />
-                      </div>
-                      <div>
-                        <div @click="navigateTo(`/CreateEditActivity/${activity.id}/`)">
-                          <img
+                  <tbody>
+                    <tr v-for="(activity, index) in activities" :key="index">
+                      <th
+                        class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-lg whitespace-nowrap p-4 text-left text-blueGray-700"
+                      >
+                        {{ activity.activityName }}
+                      </th>
+                      <td
+                        class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-lg whitespace-nowrap p-4"
+                      >
+                        {{ activity.activityOwnerUsername }}
+                      </td>
+                      <td
+                        class="border-t-0 px-6 align-center border-l-0 border-r-0 text-lg whitespace-nowrap p-4"
+                      >
+                        {{ activity.mainCategory }} / {{ activity.category }}
+                      </td>
+                      <td
+                        class="border-t-0 px-6 inline-flex items-center align-middle content-center border-l-0 border-r-0 text- whitespace-nowrap p-4 gap-10"
+                      >
+                        <div @click="emit('deleteActivity', activity.id)">
+                          <svg
+                            height="28"
+                            fill="#979797"
+                            viewBox="0 0 48 48"
+                            width="28"
+                            xmlns="http://www.w3.org/2000/svg"
                             class="cursor-pointer hover:drop-shadow-2xl inline-block align-middle"
-                            src="/image/edit.svg"
-                            alt="edit"
-                          />
+                          >
+                            <path d="M0 0h48v48H0V0z" fill="none" />
+                            <path
+                              d="M12 38c0 2.2 1.8 4 4 4h16c2.2 0 4-1.8 4-4V14H12v24zm4.93-14.24l2.83-2.83L24 25.17l4.24-4.24 2.83 2.83L26.83 28l4.24 4.24-2.83 2.83L24 30.83l-4.24 4.24-2.83-2.83L21.17 28l-4.24-4.24zM31 8l-2-2H19l-2 2h-7v4h28V8z"
+                            />
+                            <path d="M0 0h48v48H0z" fill="none" />
+                          </svg>
                         </div>
-                      </div>
-                      <div v-if="store.role == 'activityOwner'">
-                        <!-- <div> -->
-                        <button
-                          @click="emit('updateActivityToDone', activity.id)"                          
-                          type="button"
-                          class="hover:bg-unityDo-primary text-unityDo-primary hover:text-white font-semibold font-bold py-2 px-4 border border-unityDo-primary rounded"
-                        >
-                        Mark as Done
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+                        <div>
+                          <div
+                            @click="
+                              navigateTo(`/CreateEditActivity/${activity.id}/`)
+                            "
+                          >
+                            <svg
+                              class="feather feather-edit cursor-pointer hover:drop-shadow-2xl inline-block align-middle"
+                              fill="white"
+                              height="24"
+                              stroke="#979797"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              viewBox="0 0 24 24"
+                              width="24"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"
+                              />
+                              <path
+                                d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                        <div v-if="store.role == 'activityOwner'">
+                          <!-- <div> -->
+                          <button
+                            @click="emit('updateActivityToDone', activity.id)"
+                            type="button"
+                            class="hover:bg-unityDo-primary text-unityDo-primary hover:text-white font-semibold font-bold py-2 px-4 border border-unityDo-primary rounded"
+                          >
+                            Mark as Done
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
