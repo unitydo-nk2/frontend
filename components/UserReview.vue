@@ -44,6 +44,7 @@ const userReview = computed(() => {
         <h2 v-else class="font-manrope font-bold text-4xl text-black mb-8 text-center">
           Activity still on process
         </h2>
+        {{reviews}}
         <ReviewList :reviews="reviews"/>
         <div v-if = "store.role == 'user' && isActivityDone && isUserRegistered" class="pt-8">
           <label
@@ -90,6 +91,7 @@ const userReview = computed(() => {
           />
           <div class="flex justify-end gap-3 pt-2">
           <button
+            :disabled="userReview.description.length > 500"
             @click="$emit('createNewReview', userReview)"
             class="hover:bg-unityDo-primary text-unityDo-primary hover:text-white font-semibold font-bold py-2 px-4 border border-unityDo-primary rounded"
           >

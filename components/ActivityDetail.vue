@@ -34,9 +34,26 @@ const props = defineProps({
   },
 });
 
-const reviewLists = ref(props.reviews)
+
+
 const isFavoriteStatus = ref(props.isFavorite)
-const isUserValidForReview = ref(props.isUserRegistered)
+const description = ref('-')
+const rates = ref(0)
+
+const reviewSetup = computed(() => {
+  return {
+    description : description.value,
+    rates : rates.value
+  }
+});
+
+const setReview = (review) => {
+  description.value = review.description;
+  rates.value = review.rates;
+  // Emit the createNewReview event after setReview is done
+  emit('createNewReview', reviewSetup.value);
+};
+
 
 const setDetailStatus = (status) => {
   detailStatus.value = status;
@@ -76,72 +93,6 @@ const unFavorite = async (activityId) => {
   }
 };
 
-
-
-const createNewReview = async (createReview) => {
-  if (
-    createReview.description.length == 0 ||
-    createReview.description == undefined
-  ) {
-    createReview.description = "-";
-  }
-
-  const formData = new FormData();
-
-  const newReview = {
-    rates: createReview.rates,
-    description: createReview.description,
-  };
-
-  formData.append(
-    "review",
-    new Blob([JSON.stringify(newReview)], { type: "application/json" })
-  );
-
-  const res = await fetch(
-    `${import.meta.env.VITE_BASE_URL}/activities/review/${props.activity.activityId
-    }`,
-    {
-      method: "POST",
-      headers: {
-        Authorization: "Bearer " + store.token,
-      },
-      body: formData,
-    }
-  );
-
-  if (res.ok) {
-    alert("You successfully reviewed the activity!");
-    await getReviews(props.activity.activityId);
-  } else if ((res = 404)) {
-    alert("Only Participants can review this activity");
-  } else if ((res = 400)) {
-    alert("You already reviewed this activity");
-  } else {
-    alert(
-      "Problems occurs while create new review please try again already later."
-    );
-  }
-};
-
-const getReviews = async (activityId) => {
-  const res = await fetch(
-    `${import.meta.env.VITE_BASE_URL}/activities/review/${activityId}`,
-    {
-      method: "GET",
-      headers: {
-      Authorization: "Bearer " + store.token,
-    },
-    }
-  );
-  if (res.status === 200) {
-    reviewLists.value = await res.json();
-    isUserValidForReview.value = false;
-  } else {
-    console.log("cannot get reviews");
-  }
-};
-
 const getImage = (alt) => {
   const foundObject = props.activityImages.find((obj) => obj.alt === alt);
   return foundObject ? foundObject.imagepath : undefined;
@@ -151,6 +102,9 @@ const getImage = (alt) => {
 
 <template>
   <div>
+
+    {{ reviews }}
+
     <div
       class="font-primary grid md:grid-cols-2 
       w-full h-fit pt-16 pb-16 bg-gradient-to-r from-slate-700 to-fuchsia-950">
@@ -316,6 +270,7 @@ const getImage = (alt) => {
 
               </button>
             </div>
+            
 
 
             <!-- <div v-else-if="store.role == 'user'">
@@ -389,7 +344,10 @@ const getImage = (alt) => {
             {{ activity.suggestionNotes }}
           </div>
           <div v-if="detailStatus == 'Reviews'" class="text-center m-16">
-            <UserReview @createNewReview="createNewReview" :reviews="reviewLists" :isUserRegistered="isUserValidForReview"
+            <UserReview        
+            @createNewReview="setReview"
+     
+             :reviews="reviews" :isUserRegistered="isUserRegistered"
               :isActivityDone="activity.activityStatus == 'Done'" />
           </div>
         </div>

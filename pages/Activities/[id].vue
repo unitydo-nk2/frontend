@@ -119,11 +119,61 @@ const getActivityImages = async (id) => {
     console.log("cannot get data");
   }
 };
+
+
+const createNewReview = async (createReview) => {
+  if (
+    createReview.description.length == 0 ||
+    createReview.description == undefined
+  ) {
+    createReview.description = "-";
+  }
+
+  const formData = new FormData();
+
+  const newReview = {
+    rates: createReview.rates,
+    description: createReview.description,
+  };
+
+  formData.append(
+    "review",
+    new Blob([JSON.stringify(newReview)], { type: "application/json" })
+  );
+
+  const res = await fetch(
+    `${import.meta.env.VITE_BASE_URL}/activities/review/${activity.value.activityId
+    }`,
+    {
+      method: "POST",
+      headers: {
+        Authorization: "Bearer " + store.token,
+      },
+      body: formData,
+    }
+  );
+
+  if (res.ok) {
+    alert("You successfully reviewed the activity!");
+    await getReviews(activity.value.activityId);
+    isUserRegistered.value = false;
+  } else if ((res = 404)) {
+    alert("Only Participants can review this activity");
+  } else if ((res = 400)) {
+    alert("You already reviewed this activity");
+  } else {
+    alert(
+      "Problems occurs while create new review please try again already later."
+    );
+  }
+};
+
 </script>
 
 <template>
     <div>
-    <ActivityDetail :reviews="reviews" :activity="activity" :activityImages="activityImages" :similarActivities="similarActivies" :isUserRegistered="isUserRegistered" :isFavorite="isFavorite"/>
+      {{ reviews }}
+    <ActivityDetail @createNewReview="createNewReview" :reviews="reviews" :activity="activity" :activityImages="activityImages" :similarActivities="similarActivies" :isUserRegistered="isUserRegistered" :isFavorite="isFavorite"/>
     </div>
 </template>
 
