@@ -30,7 +30,6 @@ onBeforeMount(async () => {
 });
 
 const validateLength = (string, label, length = 0) => {
-  console.log("checking " + label + " " + string + " " + length);
   if (string.length > length) {
     errorDetails.value.push(
       label + " cannot more than " + length + " characters"
@@ -42,7 +41,6 @@ const validateLength = (string, label, length = 0) => {
 
 const validateUser = (user) => {
   errorDetails.value = [];
-  console.log("checking");
   validateLength(user.name, "name", 50);
   validateLength(user.surName, "surname", 50);
   validateLength(user.username, "username", 50);

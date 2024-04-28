@@ -45,7 +45,7 @@ const userReview = computed(() => {
           Activity still on process
         </h2>
         <ReviewList :reviews="reviews"/>
-        <div v-if = "store.role == 'User' && isActivityDone && isUserRegistered" class="pt-8">
+        <div v-if = "store.role == 'user' && isActivityDone && isUserRegistered" class="pt-8">
           <label
             class="text-gray-600 dark:text-gray-200 flex justify-start font-semibold text-lg"
             >My review</label

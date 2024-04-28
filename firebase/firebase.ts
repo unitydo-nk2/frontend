@@ -34,14 +34,12 @@ export const uploadFile = async (file : any) => {
     reader.readAsDataURL(file);
     reader.onload = async (e) => {
       const result = reader.result;
-      console.log(result);
       const  downloadUrl = await saveFile('images/'+file.name,result);
       if(downloadUrl){
         resolve(downloadUrl)
       }else{
         reject();
       }
-      console.log(downloadUrl);
     }
    }) 
 }

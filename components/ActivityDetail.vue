@@ -34,7 +34,9 @@ const props = defineProps({
   },
 });
 
+const reviewLists = ref(props.reviews)
 const isFavoriteStatus = ref(props.isFavorite)
+const isUserValidForReview = ref(props.isUserRegistered)
 
 const setDetailStatus = (status) => {
   detailStatus.value = status;
@@ -110,7 +112,7 @@ const createNewReview = async (createReview) => {
 
   if (res.ok) {
     alert("You successfully reviewed the activity!");
-    await getReviews();
+    await getReviews(props.activity.activityId);
   } else if ((res = 404)) {
     alert("Only Participants can review this activity");
   } else if ((res = 400)) {
@@ -119,6 +121,24 @@ const createNewReview = async (createReview) => {
     alert(
       "Problems occurs while create new review please try again already later."
     );
+  }
+};
+
+const getReviews = async (activityId) => {
+  const res = await fetch(
+    `${import.meta.env.VITE_BASE_URL}/activities/review/${activityId}`,
+    {
+      method: "GET",
+      headers: {
+      Authorization: "Bearer " + store.token,
+    },
+    }
+  );
+  if (res.status === 200) {
+    reviewLists.value = await res.json();
+    isUserValidForReview.value = false;
+  } else {
+    console.log("cannot get reviews");
   }
 };
 
@@ -369,7 +389,7 @@ const getImage = (alt) => {
             {{ activity.suggestionNotes }}
           </div>
           <div v-if="detailStatus == 'Reviews'" class="text-center m-16">
-            <UserReview @createNewReview="createNewReview" :reviews="reviews" :isUserRegistered="isUserRegistered"
+            <UserReview @createNewReview="createNewReview" :reviews="reviewLists" :isUserRegistered="isUserValidForReview"
               :isActivityDone="activity.activityStatus == 'Done'" />
           </div>
         </div>

@@ -4,9 +4,6 @@ export default defineNuxtRouteMiddleware((to, from) => {
   const store = useCounterStore();
   const isLoggIn = store.getLoginStatus();
   const role = store.getRole();
-  console.log(isLoggIn)
-  console.log(role)
-  console.log(to.fullPath)
 
   if (isLoggIn) {
     if (role === 'user' && (to.fullPath.startsWith('/ViewAllActivityPost') || to.fullPath.startsWith('/ViewAllActivityUser'))) {

@@ -36,7 +36,6 @@ const userLoginAuthentication = async (user) => {
     })
     if (res.status === 200 || res.status === 201) {
       const jwttoken = await res.json()
-      console.log(jwttoken.accessToken);
       store.systemLogin(tokenUtil.paresJWT(jwttoken.accessToken).role,jwttoken.accessToken,jwttoken.refreshToken)
       router.push({ path: '/' });
     } else if (res.status == 401) {
