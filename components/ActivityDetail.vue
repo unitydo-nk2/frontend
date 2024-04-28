@@ -229,9 +229,9 @@ const getImage = (alt) => {
             <div class="m-4 w-24 text-violet-100 text-xl font-bold leading-normal tracking-wide">
               Location
             </div>
-            <div class="m-4 text-white text-xl font-bold leading-normal tracking-wide">
+            <a :href="activity.googleMapLink" class="m-4 text-white text-xl font-bold leading-normal tracking-wide hover:underline underline-offset-4">
               {{ activity.locationName }}
-            </div>
+            </a>
             <div class="m-4 w-24 text-violet-100 text-xl font-bold leading-normal tracking-wide">
               Amount
             </div>

@@ -128,7 +128,6 @@ const store = useCounterStore();
         rel="stylesheet"
         href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css"
       />
-
       <section class="py-1 bg-blueGray-50">
         <div class="w-full px-4 mx-auto mt-4">
           <div
